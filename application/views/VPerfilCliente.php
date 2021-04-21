@@ -213,129 +213,7 @@
                 </div>
 
                 <hr>
-
-                <div class="container">
-                  <div class="container-fluid  py-0 pt-3">
-                    <div class="row">    
-                      <!-- Team member -->
-                      <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                          <div class="mainflip">
-                            <div class="frontside">
-                              <div class="card">
-                                <div class="card-body text-center">
-                                  <p><img class=" img-fluid" src="" alt="card image"></p>
-                                  <h4 class="card-title">Marcela Vazquez</h4>
-                                  <p class="card-text">                                              
-                                    <strong> Cirujano Dentista</strong>
-                                    <br>
-                                    <small> Especialidad  - Ortodoncia</small>
-                                    <br>
-                                    <small> Cedula Profesional  - 123123123123</small>
-                                  </p>
-                                  <p class="card-text" style="color: #007b5e;"> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>      
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="backside">
-                              <div class="card">
-                                <div class="card-body text-center mt-4">
-                                  <h4 class="card-title">
-                                    <a class="dropdown-item text-primary" href="profesional.php?id=0001">Marcela Vazquez</a>
-                                  </h4>
-                                  <p class="card-text">
-                                    <strong> Cirujano Dentista</strong>
-                                    <br>
-                                    Soy especialista en Prostodoncia o Rehabilitación Oral, egresada de la Universidad de Guadalajara.
-                                  </p>
-                                  <hr>
-                                  <div class="container-fluid">
-                                    <div class="row">
-                                      <div class="col-4">
-                                        <small>Telefono:</small>
-                                      </div>
-                                      <div class="col">
-                                        <small> 33 22 33 55 44 </small>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-4">
-                                        <small>Dirección:</small>
-                                      </div>
-                                      <div class="col">
-                                        <small> Av Mariano Otero 2397</small>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- ./Team member -->
-                      <!-- Team member -->
-                      <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                          <div class="mainflip">
-                            <div class="frontside">
-                              <div class="card">
-                                <div class="card-body text-center">
-                                  <p><img class=" img-fluid" src="" alt="card image"></p>
-                                  <h4 class="card-title">Rodrigo Mancera</h4>
-                                  <p class="card-text">
-                                    <strong> Ingeniero Civil</strong>
-                                    <br>
-                                    <small> Especialidad  - Carreteras y Puentes</small>
-                                    <br>
-                                    <small> Cedula Profesional  - 123123123123</small>
-                                  </p>
-                                  <p class="card-text" style="color: #007b5e;"> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>      
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="backside">
-                              <div class="card">
-                                <div class="card-body text-center mt-4">
-                                  <h4 class="card-title">
-                                    <a class="dropdown-item text-primary" href="profesional.php?id=0001">Rodrigo Mancera</a>
-                                  </h4>
-                                  <p class="card-text">
-                                    <strong> Ingeniero Civil</strong>
-                                    <br>
-                                    Soy especialista en Puentes y carreteras, egresada de la Universidad de Guadalajara.
-                                  </p>
-                                  <hr>
-                                  <div class="container-fluid">
-                                    <div class="row">
-                                      <div class="col-4">
-                                        <small>Telefono:</small>
-                                      </div>
-                                      <div class="col">
-                                        <small> 33 22 33 55 44 </small>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-4">
-                                        <small>Dirección:</small>
-                                      </div>
-                                      <div class="col">
-                                        <small> Av. Empresarios 150, Puerta de Hierro</small>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- ./Team member -->
-                    </div>
-                  </div>
-                </div>
+                <div id="tbody_profesionistas_favoritos"></div>
               </div>
               <!--  Detalle tab  - Mis Favoritos- Fin  -->
 
@@ -663,7 +541,7 @@
 <!-- ============================================================== -->		
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
-
+<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">    
 
 <!-- ============================================================== -->	        
 <!-- tinymce -->    
