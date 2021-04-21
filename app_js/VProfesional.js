@@ -45,6 +45,8 @@ $(function()
 			$('#metodos_pago').html("<br>"+data['profesional'][0].metodos_pago+"<br>");
 			
 			$('#email_contacto').html("(Datos de pagina alta Usuario) "+data['profesional'][0].email);
+
+			if($('#id_cat_rol').val()=="3")	 checar_favorito();	
 			
 		}			
 		get_redes_sociales();
@@ -60,6 +62,27 @@ $(function()
    desbloqueaPantalla(); 
 
 });
+
+function checar_favorito()
+{	
+	let method_checar_favorito = 'CProfesional/checar_favorito';
+	var post_url = baseUrl+method_checar_favorito
+
+	var id_cat_usuario=$( "#id_cat_usuario" ).val();
+	var id_cat_profesional=$( "#id_cat_profesional" ).val();
+	
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_usuario":id_cat_usuario,"id_cat_profesional":id_cat_profesional}, 			  
+		url: post_url,                          
+		success: function(data){ 			
+			if(typeof(data['favorito'][0]) != 'undefined' )      $('#imagen_favorito').attr("src",baseUrl+"imagenes/favorito.png");						  
+			else   												 $('#imagen_favorito').attr("src",baseUrl+"imagenes/favorito_no.png");						  						
+		}
+	});
+}
+
 
 
 function get_reconocimientos()
@@ -344,25 +367,32 @@ function get_redes_sociales()
 	});
 }
 
+$('#ancla_favorito').click(function(){	
+
+	var imagen_favorito=$('#imagen_favorito').attr('src');
+	var existe="";
+	
+	if(imagen_favorito.indexOf("favorito_no") != -1) existe="no";		
+	else 											 existe="si";
+
+	
+	let method_update_favorito = 'CProfesional/UpdateFavorito';
+	var post_url = baseUrl+method_update_favorito
+
+	var id_cat_usuario=$( "#id_cat_usuario" ).val();
+	var id_cat_profesional=$( "#id_cat_profesional" ).val();	
+
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_usuario":id_cat_usuario,"id_cat_profesional":id_cat_profesional,"existe":existe}, 			  
+		url: post_url,                          
+		success: function(data){            
+			if (existe=="si")	$('#imagen_favorito').attr("src",baseUrl+"imagenes/favorito_no.png");						  
+			else   			    $('#imagen_favorito').attr("src",baseUrl+"imagenes/favorito.png");						  						
+		}
+	});
+	return false;	
+});
 
 
-
-// $("#perfil_profesional").on("click", function() {
-// 	let method_profesion = 'CAltaProfesional';
-// 	var post_url = baseUrl+method_profesion
-
-// 	var id_cat_profesional=$( "#id_cat_profesional" ).val();
-
-// 	$.ajax({
-// 		type: "POST",   
-// 		dataType:'json',       
-// 		data : {"id_cat_profesional":id_cat_profesional}, 			  
-// 		url: post_url,                          
-// 		success: function(data){                                			
-			
-		 
-			
-// 		}
-// 	});
-// 	return false;
-// });

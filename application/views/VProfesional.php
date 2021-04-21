@@ -21,10 +21,16 @@
                   <div class="card-deck">     
                     <div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">           
                       <div class="row py-0 px-0">
-                        <div class="col px-0" style="text-align: center; color: #757474">
-                          <input type="hidden" id="id_cat_profesional" value="<?php echo $datosvista["id_cat_profesional"] ?>" >
+                        <div class="col px-0" style="text-align: center; color: #757474">                        
+                          <input type="hidden" id="id_cat_usuario" value="<?php echo $idUsuario ?>" >                          
+                          <input type="hidden" id="id_cat_profesional" value="<?php echo $datosvista["id_cat_profesional"] ?>" >                          
                           <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
                           <img id="imagen" src="imagenes/Con1.png" class="imagenes" alt="...">
+                          <?php if ($id_perfil==3) {?>
+                            <a id="ancla_favorito">
+                              <img id="imagen_favorito" src="imagenes/Con1.png" class="float-right mr-2" alt="..." width="30px" height="30px">
+                            </a>
+                          <?php } ?>
                           <h4 class="tituloV"> 
                             <strong id="profesionista"> 
                               Alan Melchor 

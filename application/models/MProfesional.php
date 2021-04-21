@@ -112,6 +112,31 @@ class MProfesional extends CI_Model {
     return $resultado->result();        
     } 
 
+    public function ChecarFavorito()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="select * from cat_favoritos where id_cat_usuario=".$postData['id_cat_usuario']." and id_cat_profesional=".$postData['id_cat_profesional'];         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    } 
+
+    public function UpdateFavorito()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    if ($postData['existe']=="si")
+        $query="delete from cat_favoritos where id_cat_usuario=".$postData['id_cat_usuario']." and id_cat_profesional=".$postData['id_cat_profesional'];         
+    else 
+        $query="insert into cat_favoritos(id_cat_usuario,id_cat_profesional)values(".$postData['id_cat_usuario'].",".$postData['id_cat_profesional'].")";         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    //return $resultado->result();        
+    } 
+
 }
 
 ?>

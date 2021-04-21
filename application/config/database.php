@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['dbProfesiolandia'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'estimaciones.morelia.gob.mx:3309',
 	'username' => 'martin',
-	'password' => 'martin',
+	'password' => 'brcq_mysql_boy',
 	'database' => 'profesiolandia',
 	'dbdriver' => 'mysqli',
-	'port'     => '3306',  
+	'port'     => '3309',  
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,

@@ -60,6 +60,16 @@ class CProfesional extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+	public function checar_favorito(){
+		$resultado['favorito'] = $this->MProfesional->ChecarFavorito();				
+		echo json_encode($resultado);
+	}
+	
+	public function UpdateFavorito(){
+		$resultado['update_favorito'] = $this->MProfesional->UpdateFavorito();				
+		echo json_encode($resultado);
+	}
+
 }
 
 
