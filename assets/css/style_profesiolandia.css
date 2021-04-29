@@ -4,6 +4,24 @@
  */
 
 
+
+.bg-objetivo {
+    background-color: #25A325;
+}
+.bg-buscar {
+    background-color: #4382BA;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #4382BA !important;
+}
+
+.checked {
+  color: green;
+}
+
+
+
 .tituloV     {
   color: #007b5e ;
 }

@@ -14,8 +14,10 @@
         <!-- File export -->
 
         <div class="container mt-n0">
-          <div class="container-fluid py-0 p-3" style="color: #008000; text-align: center;">              
-            <h5>Para registrarte es necesario que llenes la siguiente información y en breve te llegara un correo para validar tus datos y puedas activar tu cuenta</h5>              
+          <div class="container-fluid py-0 p-3" style="text-align: center;">              
+            
+
+            <h4 class="tituloV"> <strong> Para registrarte es necesario que llenes la siguiente información y en breve te llegara un correo para validar tus datos y puedas activar tu cuenta </strong></h4>          
           </div>
         </div>
 
@@ -114,8 +116,6 @@
 
                     </div>
                                     
-                    
-
                   </div>
                 
 
@@ -211,6 +211,7 @@
 </style>
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">
 
 
 
