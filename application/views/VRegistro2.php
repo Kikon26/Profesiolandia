@@ -75,8 +75,8 @@
                                     <div class="form-group col-md-12" style="text-align: center;">
                                       Al registrarse, confirma que ha leído y aceptado nuestras
                                         <br>
-                                        <a href="condiciones_servicio.php">Condiciones del servicio</a>, <a href="proteccion_datos.php"> Proteccion de datos </a> y
-                                        <a href="politica_privacidad.php"> Politica de Privacidad </a>
+                                        <a href="<?php echo base_url(); ?>CCondiciones_Servicio">Condiciones del servicio</a>, <a href="<?php echo base_url(); ?>CProteccion_Datos"> Proteccion de datos </a> y
+                                        <a href="<?php echo base_url(); ?>CPolitica_Privacidad"> Politica de Privacidad </a>
                                       
                                     </div>
                                 
