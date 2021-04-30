@@ -44,7 +44,7 @@
                               <div class="row" align="right">                                
                                 
                                 <div class="col-md-12">
-                                  <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresa tu Nombre" required>
+                                  <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresa tu nombre de Usuario" required>
                                 </div>
                                 
                               </div>
@@ -56,15 +56,24 @@
                               </div>
                               <br>
                               <div class="row">             
-                                <div class="col-md-12">
-                                  <input type="text" name="celular" id="celular" class="form-control" placeholder="Ingresa tu numero celular (opcional)">
+                                <div class="controls col-md-12">
+                                  <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="Este campo es requerido" placeholder="Ingresa tu Password">                                                  
+                                </div>
+                              </div>
+                              <br>
+                               <div class="row">             
+                                <div class="controls col-md-12">
+                                 
+                                  <input type="password" name="password2" id="password2" data-validation-match-match="password" class="form-control" required placeholder="Confirma tu Password">
+                                                                              
                                 </div>
                               </div>
                               <br>
                               <div class="row">             
                                 <div class="col-md-12">
-                                  <select id="Registro" class="form-control">
-                                    <option value="usuario" selected>Quiero ser Usuario de Profesiolandia</option>
+                                  <select name="Registro" id="Registro" class="form-control" required>
+                                    <option value="" >Selecciona una opcion</option>
+                                    <option value="usuario" >Quiero ser Usuario de Profesiolandia</option>
                                     <option value="profesional">Quiero darme de alta como Profesional</option>
                                   </select>
                                 </div>

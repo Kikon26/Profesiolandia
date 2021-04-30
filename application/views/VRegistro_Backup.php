@@ -77,7 +77,7 @@
                           <div class="form-group col-md-4">
                               <label class="col-form-label">Password</label>                                      
                               <div class="controls">
-                                  <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="This field is required">                                         
+                                  <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="Este campo es requerido">                                         
                               </div>                                 
                           </div>   
 

@@ -41,7 +41,7 @@ Los datos personales que son sometidos a tratamiento son: nombre, contraseña, c
 
 <strong> ¿Dónde se pueden ejercer los derechos de acceso, corrección/rectificación, cancelación u oposición de datos personales (derechos ARCO)? </strong><br>
 
-Para el ejercicio de los derechos ARCO, y revocación del consentimiento para transferencias que lo requieran se podrá presentar la solicitud correspondiente ante  <strong> Profesiolandia </strong>; por correo electrónico soporte@profesiolandia.com.<br>
+Para el ejercicio de los derechos ARCO, y revocación del consentimiento para transferencias que lo requieran se podrá presentar la solicitud correspondiente ante  <strong> Profesiolandia </strong>; por correo electrónico soporte@profesiolandia.com<br>
 Tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso); solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que se elimine la misma de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
 <br><br>
 
@@ -64,7 +64,7 @@ La respuesta a su solicitud de derechos ARCO se remitirá en los plazos establec
 La información que proporciones será utilizada únicamente por <strong>Profesiolandia</strong> en los trámites solicitados por los usuarios, asimismo, no realiza transferencias que requieran tu autorización expresa, y no lleva a cabo el tratamiento de datos personales con finalidades distintas a las aquí señaladas, por lo que, de tener lugar cualquiera de dichos supuestos, se procederá a recabar el consentimiento expreso respectivo.<br><br>
 
 <strong> Cambios a la Politica de Privacidad </strong><br>
-La presente Politica de Privacidad, así como el simplificado pueden ser  objeto de modificaciones, cambios o actualizaciones, en atención la normatividad aplicable, mecanismos y políticas que al efecto se expida. Las modificaciones, cambios o actualizaciones serán hechas de conocimiento a través de la página de internet https://www.profesiolandia.com/politica_privacidad.php<br><br>
+La presente Politica de Privacidad, así como el simplificado pueden ser  objeto de modificaciones, cambios o actualizaciones, en atención la normatividad aplicable, mecanismos y políticas que al efecto se expida. Las modificaciones, cambios o actualizaciones serán hechas de conocimiento a través de la página de internet https://www.profesiolandia.com/CPolitica_Privacidad<br><br>
 
 <strong> Portabilidad de Datos Personales </strong><br>
 <strong> Profesiolandia </strong> actualmente no cuenta con formatos estructurados y comúnmente utilizados para la portabilidad de datos personales, en términos de lo dispuesto en el artículo 6 de los Lineamientos que establecen los parámetros, modalidades y procedimientos para la portabilidad de datos personales, por lo que no es posible hacer de aplicación la portabilidad de datos personales por el momento.
