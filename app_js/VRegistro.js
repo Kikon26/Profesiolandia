@@ -16,144 +16,24 @@ $(function()
 	'use strict'; 
 	//bloqueaPantalla();
   
-	let method = 'CRegistro/rol?';
-	let criterios = {d:'1'};
+	/*
+	let method = 'CKike/Usuario?';
+	let criterios = {id_cat_usuario:$('#id_cat_usuario').val()};
 	
 	asyncGetReq(criterios, baseUrl + method).then(data => 
 	{ //Funcion callback``	
 	
-	
-	if (data['rol']) 
-	{   
-		var html = "<option value=''>Tipo de Registro</option>";                
-		for (let i in data['rol']) 
-			{ 
-				html += '<option value='+data['rol'][i].id_cat_rol+'  >'+
-							//data['rol'][i].id_cat_rol+'.-'+
-							data['rol'][i].descripcion+'</option>';                   
-			}    
-		
-		$('#id_cat_rol').html(html);     
-		
-		cat_estado();
-
-		
-	}	
-
-		
+        	
 	  desbloqueaPantalla();
   	}).catch(e => { console.error(e); desbloqueaPantalla();});
 	//fin dle proceso
 
-	
-	$("#form_save").on("submit", function(){ 	 
-		var nombre = $('#nombre').val();
-		var paterno = $('#paterno').val();
-		var materno = $('#materno').val();
-		var email = $('#email').val();		
-		var id_cat_rol = $('#id_cat_rol').val();
-		var usuario = $('#usuario').val();
-		var password = $('#password').val();
-		var file = $("#file").get(0).files[0];	
+	*/  
 
-		var id_cat_estado = $('#id_cat_estado').val();		
-		var mpio = $('#mpio').val();		
-		var colonia = $('#colonia').val();		
-		var calle = $('#calle').val();		
-		var cp = $('#cp').val();		
-		var num = $('#num').val();		
-		var telefono = $('#telefono').val();	
-		
-		
-		var formData = new FormData();
-
-		formData.append("nombre", nombre);
-
-		formData.append("paterno", paterno);
-		formData.append("materno", materno);
-		formData.append("email", email);
-		formData.append("id_cat_rol", id_cat_rol);
-		formData.append("usuario", usuario);
-		formData.append("password", password);		        
-		formData.append("file", file);
-
-		formData.append("id_cat_estado", id_cat_estado);		        
-		formData.append("mpio", mpio);		        
-		formData.append("colonia", colonia);		        
-		formData.append("calle", calle);		        
-		formData.append("cp", cp);		        
-		formData.append("num", num);		        
-		formData.append("telefono", telefono);		        
-		
-	        
-		let method_data_save = 'CRegistro/save';
-		var post_url = baseUrl+method_data_save 
-		
-		$.ajax        
-		({
-            url: post_url,                       
-            type: "POST",               
-            dataType:'json',            
-            data:formData,            
-            processData:false,
-            contentType:false,
-            cache:false,
-            async:false,      
-			success: function(data)
-			{					
-                Swal.fire({
-					title: 'El registro ha sido creado!',                        
-				}).then((result) => {
-					
-				})
-			}
-		});
-	
-	
-		 return false;
-		
-	 });	
-
+	desbloqueaPantalla();
 
 });
 
 
 
 
-$('#file').on('change',function(){
-    //get the file name
-    var fileName = $(this).val();
-    //replace the "Choose a file" label
-    $(this).next('.custom-file-label').html(fileName.replace(/^.*[\\\/]/, ''));
-})
-
-function AvoidSpace(event) {
-    var k = event ? event.which : window.event.keyCode;
-    if (k == 32) return false;
-}
-
-
-function cat_estado()
-{
-
-	let method_estado = 'CRegistro/estado';
-	var post_url = baseUrl+method_estado
-	$.ajax({
-		type: "POST",   
-		dataType:'json',         
-		url: post_url,                          
-		success: function(data){                                
-			var html = '<option value="">Selecciona Estado</option>';                
-			for (let i in data['estado']) 				{  
-				    
-					if (data['estado'][i].id_cat_estado==id_cat_estado)                                                  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'" selected>'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                                                                                                     					  
-					else  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'">'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                   
-				}    
-			
-			$('#id_cat_estado').html(html);			
-			
-		}
-	});
-}
