@@ -12,38 +12,35 @@ class MRegistro extends CI_Model {
 	{	
 	
     }
+    
+    public function save_usuario()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+      
+      $data = array(              
+        'usuario'  => $postData['usuario'], 
+        'password'  => sha1($postData['password']),             
+        'email'  => $postData['email'], 
+        'id_cat_rol'  => $postData['id_cat_rol'],              
+        'fecha_alta' => date("Y-m-d H:i:s"),
+        'activo' => 1
+      );
 
-	public function DetalleUsuario($id_cat_usuario)
-  {
-    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $postData = $this->input->post();
+      if ($postData['id_cat_rol']==2)  $resultado=$sqlsrvDB->insert('cat_profesionales',$data);           
+      else                             $resultado=$sqlsrvDB->insert('usuarios',$data);           
+            
+      return $resultado;              
+    } 
 
-    $query="select  
-            s.nombre as estado,                                    
-			p.usuario,
-            p.nombre,
-			p.paterno,
-			p.materno,
-			p.email,
-			p.imagen,
-            d.id_cat_estado,
-            d.municipio,
-            d.colonia,
-            d.calle,
-            d.num,
-            d.cp,
-            d.tel                                    
-            from usuarios as p inner join             
-            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario and p.id_cat_usuario={$id_cat_usuario} left join 
-            cat_estados as s on s.id_cat_estado=d.id_cat_estado"; 
 
-  
-    $resultado = $sqlsrvDB->query($query);		
-    return $resultado->result();    
-  }  
-
-	
-
+    public function CatalogoRoles()
+    {
+		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $query="select id_cat_rol,descripcion from cat_roles where id_cat_rol in (2,3) order by id_cat_rol";         
+        $resultado = $sqlsrvDB->query($query);		
+		return $resultado->result();        
+    }
 }
 
 ?>

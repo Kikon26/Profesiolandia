@@ -16,24 +16,82 @@ $(function()
 	'use strict'; 
 	//bloqueaPantalla();
   
-	/*
-	let method = 'CKike/Usuario?';
-	let criterios = {id_cat_usuario:$('#id_cat_usuario').val()};
+	let method = 'CRegistro/rol?';
+	let criterios = {d:'1'};
 	
 	asyncGetReq(criterios, baseUrl + method).then(data => 
 	{ //Funcion callback``	
 	
-        	
+	
+	if (data['rol']) 
+	{   
+		var html = "<option value=''>Tipo de Registro</option>";                
+		for (let i in data['rol']) 
+			{ 
+				html += '<option value='+data['rol'][i].id_cat_rol+'  >'+
+							//data['rol'][i].id_cat_rol+'.-'+
+							data['rol'][i].descripcion+'</option>';                   
+			}    
+		
+		$('#id_cat_rol').html(html);     
+	}	
+
+		
 	  desbloqueaPantalla();
   	}).catch(e => { console.error(e); desbloqueaPantalla();});
 	//fin dle proceso
 
-	*/  
+	
+	$("#form_save").on("submit", function(){ 	 
+		
+		var email = $('#email').val();		
+		var id_cat_rol = $('#id_cat_rol').val();
+		var usuario = $('#usuario').val();
+		var password = $('#password').val();				
+		
+		var formData = new FormData();
+		
+		formData.append("email", email);
+		formData.append("id_cat_rol", id_cat_rol);
+		formData.append("usuario", usuario);
+		formData.append("password", password);		        
+		
+	        
+		let method_data_save = 'CRegistro/save';
+		var post_url = baseUrl+method_data_save 
+		
+		$.ajax        
+		({
+            url: post_url,                       
+            type: "POST",               
+            dataType:'json',            
+            data:formData,            
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,      
+			success: function(data)
+			{					
+                Swal.fire({
+					title: 'El registro ha sido creado!',                        
+				}).then((result) => {
+					
+				})
+			}
+		});
+	
+	
+		 return false;
+		
+	 });	
 
-	desbloqueaPantalla();
 
 });
 
 
+function AvoidSpace(event) {
+    var k = event ? event.which : window.event.keyCode;
+    if (k == 32) return false;
+}
 
 

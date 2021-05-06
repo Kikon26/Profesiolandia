@@ -20,12 +20,12 @@ class MPerfilCliente extends CI_Model {
 
     $query="select  
             s.nombre as estado,                                    
-			p.usuario,
+            p.usuario,
             p.nombre,
-			p.paterno,
-			p.materno,
-			p.email,
-			p.imagen,
+            p.paterno,
+            p.materno,
+            p.email,
+            p.imagen,
             d.id_cat_estado,
             d.municipio,
             d.colonia,
@@ -33,9 +33,10 @@ class MPerfilCliente extends CI_Model {
             d.num,
             d.cp,
             d.tel                                    
-            from usuarios as p inner join             
-            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario and p.id_cat_usuario={$id_cat_usuario} left join 
-            cat_estados as s on s.id_cat_estado=d.id_cat_estado"; 
+            from usuarios as p left join             
+            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario  left join 
+            cat_estados as s on s.id_cat_estado=d.id_cat_estado
+            where p.id_cat_usuario={$id_cat_usuario} "; 
 
   
     $resultado = $sqlsrvDB->query($query);		
@@ -84,8 +85,14 @@ class MPerfilCliente extends CI_Model {
 		'tel'  => $postData['telefono'],          
 		'activo' => 1
 		);      
-		$sqlsrvDB->where('id_cat_usuario', $postData['id_cat_usuario']);      
-		$resultado=$sqlsrvDB->update('cat_direcciones',$data);    
+
+    if ($postData['existe_direccion']=="si")
+    {
+      $sqlsrvDB->where('id_cat_usuario', $postData['id_cat_usuario']);      
+      $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
+    }
+    else 
+      $resultado=$sqlsrvDB->insert('cat_direcciones',$data);           
       
       
       return $resultado;              
