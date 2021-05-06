@@ -56,12 +56,13 @@ class MAltaProfesional extends CI_Model {
             r.pagina_web,
             r.activo
             
-            from cat_profesionales as p inner join 
-            cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.id_cat_profesional={$postData['id_cat_profesional']} and p.activo=1 left join 
+            from cat_profesionales as p left join 
+            cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
             cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
             cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional left join
-            cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional ";               
+            cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
+            where p.id_cat_profesional={$postData['id_cat_profesional']} ";               
   
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();    

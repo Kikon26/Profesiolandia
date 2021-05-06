@@ -13,16 +13,8 @@ class CRegistro extends CI_Controller {
 		$this->load->model('MMenu');
     }
     public function index(){
-		if (isset($this->session->gIdPerfil)) 
-		 {
-			 $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
-
-		 }
-		else 								  
-			$tabla = $this->MMenu->MenuRol(4);		
-
-
-
+		if (isset($this->session->gIdPerfil)) $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
+		else 								  $tabla = $this->MMenu->MenuRol(4);		
         $data = array(
             'seccion' => 'Registro',
 			'vista' => 'VRegistro',
@@ -34,13 +26,15 @@ class CRegistro extends CI_Controller {
 		$this->load->view('mp/pagina_principal',$data);
 	}
 
-	public function Usuario(){
-		$resultado['usuario'] = $this->MRegistro->DetalleUsuario($this->input->get('id_cat_usuario'));				
+	public function save(){				
+		$resultado['save']=$this->MRegistro->save_usuario();                
+		echo json_encode($resultado);	
+    }
+  	
+	public function rol(){
+		$resultado['rol'] = $this->MRegistro->CatalogoRoles();				
 		echo json_encode($resultado);
 	}
-
-	
-
 }
 
 
