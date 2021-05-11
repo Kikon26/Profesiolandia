@@ -12,32 +12,26 @@ class CBienvenida extends CI_Controller {
 		$this->load->model('MBienvenida');
 		$this->load->model('MMenu');
     }
-    public function index(){
-		if (isset($this->session->gIdPerfil)) 
-		 {
-			 $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
+    public function index($enviado,$nombre){
+		if (isset($this->session->gIdPerfil)) $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);		 
+		else 								  $tabla = $this->MMenu->MenuRol(4);		
 
-		 }
-		else 								  
-			$tabla = $this->MMenu->MenuRol(4);		
-
-
+		$dataf = array(
+			'enviado'  => $enviado,
+			'nombre'  => $nombre
+		);
 
         $data = array(
             'seccion' => 'bienvenida',
 			'vista' => 'VBienvenida',
 			'data' => '',
-			'dataf' => '',
+			'dataf' => $dataf,			
 			'menu' => $tabla
          );
        
 		$this->load->view('mp/pagina_principal',$data);
 	}
-
-	public function Usuario(){
-		$resultado['usuario'] = $this->MBienvenida->DetalleUsuario($this->input->get('id_cat_usuario'));				
-		echo json_encode($resultado);
-	}
+	
 
 	
 

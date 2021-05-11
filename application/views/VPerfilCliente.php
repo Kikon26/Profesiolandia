@@ -59,6 +59,7 @@
                                     <div class="col-md-4">
                                         <label class="col-form-label">Nombre</label>
                                         <input type="hidden" name="id_cat_usuario" id="id_cat_usuario" value="<?php echo  $idUsuario; ?>" >  
+                                        <input type="hidden" name="existe_direccion" id="existe_direccion" value="no" >  
                                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
                                       </div>
                                       

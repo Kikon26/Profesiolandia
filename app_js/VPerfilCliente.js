@@ -33,19 +33,38 @@ $(function()
 		$('#email').val(data['usuario'][0].email);		
 		
 		$('#usuario').val(data['usuario'][0].usuario);			
-        cat_estado(data['usuario'][0].id_cat_estado);
-		
-		$('#mpio').val(data['usuario'][0].municipio);		
-		$('#colonia').val(data['usuario'][0].colonia);		
-		$('#calle').val(data['usuario'][0].calle);		
-		$('#cp').val(data['usuario'][0].cp);		
-		$('#num').val(data['usuario'][0].num);		
-		$('#telefono').val(data['usuario'][0].tel);	
+        
+		cat_estado(data['usuario'][0].id_cat_estado);
+
+		if (data['usuario'][0].id_cat_estado!=null) 
+		{
+			$('#existe_direccion').val("si");
+			
+			
+			$('#mpio').val(data['usuario'][0].municipio);		
+			$('#colonia').val(data['usuario'][0].colonia);		
+			$('#calle').val(data['usuario'][0].calle);		
+			$('#cp').val(data['usuario'][0].cp);		
+			$('#num').val(data['usuario'][0].num);		
+			$('#telefono').val(data['usuario'][0].tel);	
+		}	
 
 
-        $("#imagen_perfil").attr('data-nombre',data['usuario'][0].imagen);
-        $("#imagen_perfil").attr('src',baseUrl+"assets/images/users/"+data['usuario'][0].imagen);
-        $("#div_imagen_perfil").show();
+        
+		if(data['usuario'][0].imagen==null) 
+		    {
+				$("#imagen_perfil").attr('src',baseUrl+"imagenes/no_disponible.jpeg");
+				$("#imagen_perfil").attr('data-nombre',"no");
+			}	
+		else 								
+			{
+				$("#imagen_perfil").attr('src',baseUrl+"assets/images/users/"+data['usuario'][0].imagen);
+				$("#imagen_perfil").attr('data-nombre',data['usuario'][0].imagen);
+				
+			}	
+		$("#div_imagen_perfil").show();	
+			
+        
     }	
 
 	
@@ -65,6 +84,7 @@ $(function()
 		var usuario = $('#usuario').val();
 		var password = $('#password').val();		
 		
+		var existe_direccion=$('#existe_direccion').val();
 		var id_cat_estado = $('#id_cat_estado').val();		
 		var mpio = $('#mpio').val();		
 		var colonia = $('#colonia').val();		
@@ -83,12 +103,10 @@ $(function()
             formData.append("file", file);
 			formData.append("file_exist", "si");	
 
-            if( $("#imagen_perfil").attr("data-nombre")!="" )
-				{
+           
 					var imagen_perfil = $("#imagen_perfil").attr("data-nombre");							
 					formData.append("imagen_perfil", imagen_perfil);
-				}
-        }	
+		}	
 		else 		
 			formData.append("file_exist", "no");
 	
@@ -102,6 +120,7 @@ $(function()
 		formData.append("password", password);		        
 		formData.append("file", file);
 
+		formData.append("existe_direccion", existe_direccion);		        
 		formData.append("id_cat_estado", id_cat_estado);		        
 		formData.append("mpio", mpio);		        
 		formData.append("colonia", colonia);		        
