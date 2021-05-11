@@ -420,14 +420,33 @@ function get_profesional()
 		
 		$('#metodos_pago').val(data['profesional'][0].metodos_pago);
 
+
 		cat_estado(data['profesional'][0].id_cat_estado);
-		$('#mpio').val(data['profesional'][0].municipio);
-		$('#colonia').val(data['profesional'][0].colonia);
-		$('#calle').val(data['profesional'][0].calle);
-		$('#cp').val(data['profesional'][0].cp);
-		$('#num').val(data['profesional'][0].num);
-		$('#telefono').val(data['profesional'][0].tel);		
+		if (data['profesional'][0].id_cat_estado!=null) 
+		{
+			$('#existe_direccion').val("si");
+			$('#mpio').val(data['profesional'][0].municipio);
+			$('#colonia').val(data['profesional'][0].colonia);
+			$('#calle').val(data['profesional'][0].calle);
+			$('#cp').val(data['profesional'][0].cp);
+			$('#num').val(data['profesional'][0].num);
+			$('#telefono').val(data['profesional'][0].tel);							
+		}	
 		$('#email').val(data['profesional'][0].email);
+
+		/*
+		if(data['profesional'][0].imagen==null) 
+		    {
+				$("#imagen_perfil").attr('src',baseUrl+"imagenes/no_disponible.jpeg");
+				$("#imagen_perfil").attr('data-nombre',"no");
+			}	
+		else 								
+			{
+				$("#imagen_perfil").attr('src',baseUrl+"assets/images/profesionales/"+data['profesional'][0].imagen);
+				$("#imagen_perfil").attr('data-nombre',data['profesional'][0].imagen);
+				
+			}	
+		$("#div_imagen_perfil").show();	*/
 	
 		
 		$('#horario_apertura_1').timepicker({ 
@@ -981,6 +1000,7 @@ $("#form_contacto").on("submit", function(){
 	
 	var id_cat_profesional = $('#id_cat_profesional').val();		
 
+	var existe_direccion=$('#existe_direccion').val();
 	var id_cat_estado = $('#id_cat_estado').val();		
 	var mpio = $('#mpio').val();		
 	var colonia = $('#colonia').val();		
@@ -988,12 +1008,12 @@ $("#form_contacto").on("submit", function(){
 	var cp = $('#cp').val();		
 	var num = $('#num').val();		
 	var telefono = $('#telefono').val();	
-	var email = $('#email').val();		
-
+	var email = $('#email').val();			
 		
-	var formData = new FormData();
-	
+	var formData = new FormData();	
+
 	formData.append("id_cat_profesional", id_cat_profesional);
+	formData.append("existe_direccion", existe_direccion);
 	formData.append("id_cat_estado", id_cat_estado);		        
 	formData.append("mpio", mpio);		        
 	formData.append("colonia", colonia);		        
@@ -1002,6 +1022,7 @@ $("#form_contacto").on("submit", function(){
 	formData.append("num", num);		        
 	formData.append("telefono", telefono);		        
 	formData.append("email", email);
+	
 
 	for (var i = 1; i <= 7; i++) 		
 	{

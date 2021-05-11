@@ -71,12 +71,16 @@ $(function()
             cache:false,
             async:false,      
 			success: function(data)
-			{					
+			{	
+				//console.log(data['enviado']);
+				location.href=baseUrl + "CBienvenida/index/true/"+data['nombre'];
+
+				/*
                 Swal.fire({
 					title: 'El registro ha sido creado!',                        
 				}).then((result) => {
 					
-				})
+				})*/
 			}
 		});
 	

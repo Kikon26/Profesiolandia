@@ -161,7 +161,9 @@ class MAltaProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
     $postData = $this->input->post();
 
-    $data = array(           
+    $data = array(  
+      'id_cat_profesional'  => $postData['id_cat_profesional'],             
+		  'id_cat_usuario'  => null,                   
       'id_cat_estado'  => $postData['id_cat_estado'], 
       'municipio'  => $postData['mpio'], 
       'colonia'  => $postData['colonia'], 
@@ -171,9 +173,14 @@ class MAltaProfesional extends CI_Model {
       'tel'  => $postData['telefono'],          
       'activo' => 1
     );      
-    $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);      
-    $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
 
+    if ($postData['existe_direccion']=="si")
+    {
+      $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);      
+      $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
+    }
+    else 
+      $resultado=$sqlsrvDB->insert('cat_direcciones',$data);           
     /********************************************************************************/
     $data = array(           
       'email'  => $postData['email'] 
