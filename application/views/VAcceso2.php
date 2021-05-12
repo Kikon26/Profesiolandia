@@ -24,7 +24,9 @@
 
             <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
               <div class="form-group has-feedback">
-                <input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">
+                <div class="controls">                                
+                  <input id="txtUsuario" name="txtUsuario" type="email" required data-validation-required-message="Esté campo es requerido" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">                
+                </div>  
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
               </div>
               

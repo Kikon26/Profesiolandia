@@ -49,7 +49,7 @@
                     <div class="row"> 
                       <div class="form-group col-md-12">        
                         <div class="controls">                                
-                          <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido" placeholder="Ingresa tu email"> 
+                          <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido" placeholder="Ingresa tu email">                           
                         </div>
                       </div>
                     </div>
