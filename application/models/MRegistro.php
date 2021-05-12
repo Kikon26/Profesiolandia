@@ -101,6 +101,23 @@ class MRegistro extends CI_Model {
       
       return $resultado;              
     }
+
+    
+    public function VerificarExisteEmail()
+    {
+		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();
+
+    $query="select exists
+            (
+              select 1 from 
+              (
+                select email from usuarios union select email from cat_profesionales 
+              ) as t where t.email='".$postData['email']."' 
+            )  as existe";         
+        $resultado = $sqlsrvDB->query($query);		
+		return $resultado->result();        
+    }
 }
 
 ?>
