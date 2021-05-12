@@ -106,7 +106,7 @@ class CRegistro extends CI_Controller {
 		 
 		//Establecemos esta configuración
 		  $this->email->initialize($config);
-		  $this->email->from("mast.32@gmail.com", "Profesiolandia");
+		  $this->email->from("enrique.rocko@gmail.com", "Profesiolandia");
 		  $this->email->to($postData['email'], $postData['usuario']);		
 		  $this->email->subject($subject);
 		  $this->email->message($message);
@@ -115,7 +115,7 @@ class CRegistro extends CI_Controller {
 		  $resultado['enviado']=false;
 		  //Enviamos el email y si se produce bien o mal que avise con una flasdata
 		  if($this->email->send())
-		  {
+		  {	
 			 //$this->session->set_flashdata('envio', 'Email enviado correctamente');			
 			  $resultado['enviado']=true;
 		  }		
@@ -184,6 +184,11 @@ class CRegistro extends CI_Controller {
   	
 	public function rol(){
 		$resultado['rol'] = $this->MRegistro->CatalogoRoles();				
+		echo json_encode($resultado);
+	}
+
+	public function verificar_existe_email(){
+		$resultado['existe'] = $this->MRegistro->VerificarExisteEmail();				
 		echo json_encode($resultado);
 	}
 }

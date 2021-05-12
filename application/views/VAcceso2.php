@@ -21,6 +21,7 @@
           </div>
       
 
+
       <!-- Formulario - Inicio -->
              <div class="card">
 
@@ -72,6 +73,29 @@
                     <div class="col-md-12" align="center">
                       <a href="<?php echo base_url(); ?>CReset_Password" style="color: gray">  <u> Olvide mi contraseña </u></a><br>
                    </div>
+
+          <div id="cuadro" style="display:none;" class="login-box-body border text-secondary">
+            <p class="login-box-msg">Teclee los datos para validar el acceso</p>
+
+            <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
+              <div class="form-group has-feedback">
+                <div class="controls">                                
+                  <input id="txtUsuario" name="txtUsuario" type="email" required data-validation-required-message="Esté campo es requerido" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">                
+                </div>  
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+              </div>
+              
+              <div class="form-group has-feedback">
+                <input id="txtPassw" name="txtPassw" type="password" class="form-control" placeholder="Contraseña">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              </div>
+              <div class="row">
+                <div class="col-8">
+                  <div class="checkbox icheck">
+                    <label>
+                      <input type="checkbox"> Recuerdame
+                    </label>
+
                   </div>
                 </div>
             </div>
