@@ -40,7 +40,7 @@
 
     <div class="login-box">
       <div class="login-logo ">
-        <img src="<?php echo base_url(); ?>imagenes/logo-profesiolandia.png" class="img-circle" alt="Mpio. de Morelia" width='40%'>
+        <img src="<?php echo base_url(); ?>imagenessss/logo-profesiolandia.png" class="img-circle" alt="Mpio. de Morelia" width='40%'>
         <div id="tit1" style="display:none;"> <b>Profesiolandia</b> </div>
         <div id="tit2" style="display:none;position: relative"><b></b></div>
       </div>

@@ -21,7 +21,7 @@ class MProfesionales extends CI_Model {
         $sqlsrvDB->select("*")->from('cat_profesionales')->where($cond);
         */
         
-        $query="SELECT * FROM cat_profesionales WHERE usuario = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
+        $query="SELECT * FROM cat_profesionales WHERE email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
          
         //$resultado = $sqlsrvDB->get();
 

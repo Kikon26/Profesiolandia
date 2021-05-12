@@ -44,6 +44,7 @@ $(function()
 	
 	$("#form_save").on("submit", function(){ 	 
 		
+		
 		var email = $('#email').val();		
 		var id_cat_rol = $('#id_cat_rol').val();
 		var usuario = $('#usuario').val();
@@ -56,35 +57,31 @@ $(function()
 		formData.append("usuario", usuario);
 		formData.append("password", password);		        
 		
-	        
+			
 		let method_data_save = 'CRegistro/save';
 		var post_url = baseUrl+method_data_save 
 		
 		$.ajax        
 		({
-            url: post_url,                       
-            type: "POST",               
-            dataType:'json',            
-            data:formData,            
-            processData:false,
-            contentType:false,
-            cache:false,
-            async:false,      
+			url: post_url,                       
+			type: "POST",               
+			dataType:'json',            
+			data:formData,            
+			processData:false,
+			contentType:false,
+			cache:false,
+			async:false,      
 			success: function(data)
 			{	
 				//console.log(data['enviado']);
-				location.href=baseUrl + "CBienvenida/index/true/"+data['nombre'];
-
-				/*
-                Swal.fire({
+				Swal.fire({
 					title: 'El registro ha sido creado!',                        
 				}).then((result) => {
-					
-				})*/
+					location.href=baseUrl + "CBienvenida/index/true/"+data['nombre'];	
+				})					
 			}
 		});
-	
-	
+		
 		 return false;
 		
 	 });	
@@ -99,3 +96,43 @@ function AvoidSpace(event) {
 }
 
 
+$( "#email" ).blur(function() {
+	//alert( "Handler for .blur() called." );
+	var email = $('#email').val();		
+	
+	var formData = new FormData();
+	
+	formData.append("email", email);
+			
+	let method_data_save = 'CRegistro/verificar_existe_email';
+	var post_url = baseUrl+method_data_save 
+	
+	$.ajax        
+	({
+		url: post_url,                       
+		type: "POST",               
+		dataType:'json',            
+		data:formData,            
+		processData:false,
+		contentType:false,
+		cache:false,
+		async:false,      
+		success: function(data)
+		{	
+			//console.log(data['existe'][0]);
+		    if (data['existe'][0].existe=="1")			
+			{
+				
+				Swal.fire({					
+					title: 'El email ya existe!, debe ingresar otro!'                        
+					
+				}).then((result) => {
+					$('#email').focus();									
+				})				
+				
+				
+			}			
+		}
+	});
+
+  });

@@ -203,6 +203,13 @@ $(function()
 						}).then((result) => {
 							
 						})	*/
+
+						Swal.fire(
+							'El correo ya existe, intenta con otro !',
+							'',
+							'error'
+						  )	
+					
 					}
 					
 				})
