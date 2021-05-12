@@ -20,15 +20,16 @@
 
             <!--Tabs de informacion del profesional inicio  -->
             <nav>
-              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
+              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">                
+                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
                 <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>                
                 <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
                 <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
                 <a class="nav-item nav-link" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
               </div>
             </nav>
-            <div class="tab-content" id="nav-tabContent">              
+            <div class="tab-content" id="nav-tabContent">    
+                             
               <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                 <div class="container-fluid">
                   <br>
@@ -47,6 +48,7 @@
                         <label for="titulo">Título</label>
                         <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >  
                         <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
+                        <input type="hidden" name="existe_direccion" id="existe_direccion" value="no" >  
                         <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
                         </select>
                       </div>
