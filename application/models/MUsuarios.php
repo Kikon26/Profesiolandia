@@ -22,7 +22,7 @@ class MUsuarios extends CI_Model {
         $sqlsrvDB->select("*")->from('usuarios')->where($cond);
         */ 
 
-        $query="SELECT * FROM usuarios WHERE usuario = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
+        $query="SELECT * FROM usuarios WHERE email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
 
         //$resultado = $sqlsrvDB->get();
 

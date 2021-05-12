@@ -186,6 +186,11 @@ class CRegistro extends CI_Controller {
 		$resultado['rol'] = $this->MRegistro->CatalogoRoles();				
 		echo json_encode($resultado);
 	}
+
+	public function verificar_existe_email(){
+		$resultado['existe'] = $this->MRegistro->VerificarExisteEmail();				
+		echo json_encode($resultado);
+	}
 }
 
 
