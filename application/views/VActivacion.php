@@ -23,20 +23,19 @@
 
           <!--  Codigo de formulario de alta de usuarios | profesionales -->
           <div class="container">
-              <div class="container-fluid  py-0 pt-3" style="text-align: center;">
-                <strong> Tu cuenta ha sido activada satisfactoriamente.</strong>
+              <div class="container-fluid  py-0 pt-3" style="text-align: justify;">
+                 Tu cuenta ha sido activada satisfactoriamente.
                 <br>
-                <strong>Ahora puedes ir a la Pagina de <strong>
-                    <a href="<?php echo base_url(); ?>CInicio" style="padding: 10px;">Inicio</a>
-                </strong> o puedes ir a la pagina de <strong>
-                  <a href="<?php echo base_url(); ?>CAcceso" style="padding: 10px;">Inicio de sesión</a>
-                </strong> para obtener mayores beneficios</strong>
+             Ahora puedes ir a la Pagina de
+                    <a href="<?php echo base_url(); ?>CInicio" style="padding: 0px;">Inicio</a>
+                o puedes ir a la pagina de
+                  <a href="<?php echo base_url(); ?>CAcceso" style="padding: 0px;">Inicio de sesión</a>
+                 para obtener mayores beneficios
              </div>
              
-              <br>
               <div class="row">
                 <div class="col" style="text-align: center;">
-                <img src="<?php echo base_url(); ?>imagenes/welcome.png" style="height: 300px; width: 390px;"  alt="Welcome">
+                <img src="<?php echo base_url(); ?>imagenes/welcome.jpg" style="height: 300px; width: 390px;"  alt="Welcome">
                 </div>
               </div>
             </div>
