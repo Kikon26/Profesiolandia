@@ -17,7 +17,7 @@
           <h4 class="tituloV"> 
            <strong>
             <br><br>  
-               Bienvenido a Profesiolandia "Nombre Usuario"
+               Bienvenido a Profesiolandia "Nombre de Usuario"
           </strong>
          </h4>
 
@@ -32,15 +32,12 @@
                   <a href="<?php echo base_url(); ?>CAcceso" style="padding: 0px;">Inicio de sesión</a>
                  para obtener mayores beneficios
              </div>
-             
               <div class="row">
                 <div class="col" style="text-align: center;">
                 <img src="<?php echo base_url(); ?>imagenes/welcome.jpg" style="height: 300px; width: 390px;"  alt="Welcome">
                 </div>
               </div>
             </div>
-
-
     
         </div>
       </div>  
