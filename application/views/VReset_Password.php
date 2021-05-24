@@ -12,12 +12,12 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
         <!-- File export -->
-                <div class="container mt-n0">
+        <div class="container mt-n0">
           <div class="container-fluid py-0 pt-3 col-xs-12 col-sm-6 col-md-6" style="text-align: center;">
             
             
             <strong>
-              <h3 class="tituloV"> <strong> Pagina Base </strong></h3>
+              <h3 class="tituloV"> <strong> ¿ Olvidaste tu contraseña ? </strong></h3>
             </strong>
 
            <!--  Codigo de Reret_Password | profesionales -->
@@ -65,7 +65,8 @@
 
     
           </div>
-        </div>  
+        </div>
+      
 
     </div>
             <!-- ============================================================== -->
@@ -76,6 +77,9 @@
 <!-- ============================================================== -->
 <!-- End Page wrapper  -->
 <!-- ============================================================== -->		
+
+
+
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">

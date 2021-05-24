@@ -1,5 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<<<<<<< HEAD
+ERROR - 2021-05-10 15:31:47 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión C:\xampp\htdocs\CATO\Profesiolandia\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2021-05-10 15:31:47 --> Unable to connect to the database
+=======
 ERROR - 2021-05-10 12:32:04 --> Severity: error --> Exception: syntax error, unexpected 'public' (T_PUBLIC) C:\xampp\htdocs\Profesiolandia\application\controllers\CRegistro.php 136
 ERROR - 2021-05-10 12:33:31 --> 404 Page Not Found: Assets/js
 ERROR - 2021-05-10 12:33:31 --> 404 Page Not Found: Assets/libs
@@ -122,3 +126,4 @@ ERROR - 2021-05-10 13:31:23 --> 404 Page Not Found: Assets/css
 ERROR - 2021-05-10 13:31:23 --> 404 Page Not Found: Assets/libs
 ERROR - 2021-05-10 13:31:23 --> 404 Page Not Found: Assets/libs
 ERROR - 2021-05-10 13:31:23 --> 404 Page Not Found: Assets/js
+>>>>>>> c0e9a29f1977699d1d83e4ecdf4fabd69e5ac8cf

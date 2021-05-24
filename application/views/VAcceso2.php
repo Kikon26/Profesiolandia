@@ -12,13 +12,68 @@
         <!-- ============================================================== -->
 
         
-        <div class="login-box mt-0">
+<div class="container mt-n0">
+        <div class="container-fluid py-0 pt-3 col-xs-12 col-sm-6 col-md-6" style="text-align: center;">
+          
           <div class="login-logo ">
-            <img src="<?php echo base_url(); ?>imagenes/logo-profesiolandia.png" class="img-circle" alt="Mpio. de Morelia" width='40%' >
-            <div id="tit1" style="display:none;"> <b>Profesiolandia</b> </div>
+            <img src="<?php echo base_url(); ?>imagenes/Logo_Profesiolandia_perspectiva.png" class="img-circle" alt="Profesiolandia" width='60%' >
             <div id="tit2" style="display:none;position: relative"><b></b></div>
           </div>
       
+
+
+      <!-- Formulario - Inicio -->
+             <div class="card">
+
+                  <div class="card-header bg-light">
+                       <div class="row"> 
+                          <div class="col-md-12"> 
+                            <h6  class="m-b-0 text-black">Llene los datos para poder ingresar</h6>                                                                
+                          </div>  
+                           
+                       </div>                                
+                   </div>
+
+                    <div class="card-body">
+                              <h4 class="card-title"></h4>
+                              <h6 class="card-subtitle"></h6>
+
+                <div id="cuadro" style="display:none;">
+             
+
+                  <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
+                    <div class="form-group has-feedback">
+                      <input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Email" required value="<?php echo $tUsua ?>">
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    
+                    <div class="form-group has-feedback">
+                      <input id="txtPassw" name="txtPassw" type="password" class="form-control" placeholder="Contraseña" required>
+                      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12" align="center">
+                        <div class="checkbox icheck">
+                          <label>
+                            <input type="checkbox"> Recuerdame
+                          </label>
+                        </div>
+                        </div>
+                     </div> 
+                      
+                      <div class="row">
+                        <div class="col-md-12">
+                             <button type="submit" class="btn btn-success" id="button_guardar"> <i class="fa fa-check"></i> Ingresar</button>   
+                        </div>
+                      </div>
+                  </form>
+
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12" align="center">
+                      <a href="<?php echo base_url(); ?>CReset_Password" style="color: gray">  <u> Olvide mi contraseña </u></a><br>
+                   </div>
+
           <div id="cuadro" style="display:none;" class="login-box-body border text-secondary">
             <p class="login-box-msg">Teclee los datos para validar el acceso</p>
 
@@ -40,17 +95,12 @@
                     <label>
                       <input type="checkbox"> Recuerdame
                     </label>
+
                   </div>
                 </div>
-                
-                <div class="col-4">
-                  <button type="submit" class="btn btn-primary btn-block btn-flat float-right">Accesar</button>
-                </div>
-                
-              </div>
-            </form>
-            <a href="#">Olvide mi contraseña</a><br>
-          </div>
+            </div>
+        </div>
+          <!-- Formulario - Fin -->
           
         </div>
         
@@ -75,8 +125,8 @@
           });
         </script>
 
-
-
+      </div>
+      </div>
       </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -95,6 +145,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/Ionicons/css/ionicons.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>template/dist/css/AdminLTE.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>template/plugins/iCheck/square/blue.css">
+<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
