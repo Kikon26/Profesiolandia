@@ -16,103 +16,9 @@
           <div class="container-fluid py-0 pt-3 col-xs-12 col-sm-6 col-md-6" style="text-align: center;">
  
             <?php  
-            /*
-                 ini_set('SMTP', "localhost");
-                 ini_set('smtp_port', 25);
-                 ini_set('sendmail_from', "postmaster@localhost.com");
-                 ini_set('display_errors', "On");    // Mostrar los errores (usar sólo durante las pruebas)
-            */
-
-            // valida variable GET email
-                   if (isset( $_GET["email"]))     
-                   {
-                     $email=$_GET["email"];
-                     $nombre=$_GET["nombre"];  // Nombre del nuevo usuario/profesional (Obtenido de la BaseDatos)
-                   }
-                   else
-                   {
-                    $email="ecalderon@profesiolandia.com";
-                     $nombre="Sr(a)";
-                   }
-                   // echo '¡La direccion es: ' . $dir;
-
-            $to = "enrique.rocko@gmail.com";
-            $subject = "Instucciones Profesiolandia - Cambio de contrasena";
-            $headers = "MIME-Version: 1.0\r\n"; 
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
-
-            //dirección del remitente 
-            $headers .= "From: Profesiolandia <soporte@profesiolandia.com>\r\n"; 
-
-            //dirección de respuesta, si queremos que sea distinta que la del remitente 
-            $headers .= "Reply-To: Profesiolandia <suporte@profesiolandia.com>\r\n"; 
-
-
-
-            $message = "
-
-            <html lang='en'>
-              <head>
-                
-                <meta charset='utf-8'>
-                <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-                <link href='css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
-                <link href='css/bootstrap.min.css' rel='stylesheet'>
-                <link href='css/mdb.min.css' rel='stylesheet'>
-              </head>
-              <body>
-
-
-            <div class='container mt-n0'>
-                <div class='container-fluid  py-3 px-3'>
-                  <div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
-                    
-                    <div class='row' style='text-align: center;'>
-                      <img src='http://obraspublicas.morelia.gob.mx/Profesiolandia/imagenes/Logo_Profesionalia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
-                    </div>
-
-                    <strong>
-                             <h4 style='color: #007b5e'> <strong> Hola ". $nombre . "</strong> </h4>
-                    </strong>  
-                    <div class='row' style='text-align: center;'>
-                      Te enviamos este correo de <strong> Profesiolandia </strong> por que detectamos que olvidaste tu contraseña.<br>
-                    
-                      Para continuar con el proceso de cambio de la contraseña es necesario que puedas dar click en la sig liga.
-                    </div>
-                    
-                       <p style='text-align: center;'>
-
-                       <a href='www.profesiolandia.com/cambio_password.php?nombre=". $nombre ."&email=". $email ."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Cambia tu contraseña </strong> </a>
-                         
-                        </p>
-
-                    <div class='row'>
-                    <div class='col' style='text-align: center;'  >
-                      Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
-                    </div>
-                    <br>
-                    
-                    <div class='row' style='text-align: center; font-size: 14px; color: gray;'>
-                       <a href='www.profesiolandia.com/cancelacion.php?nombre=". $nombre ."&id=". $email ."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
-
-                    </div>
-
-
-                  </div>
-
-
-
-                </div>
-            </div>
-
-             </body>
-            </html>
-
-
-            ";
-             
-          $enviado = mail($to, $subject, $message, $headers);
-            if ($enviado)
+          
+          
+            if ($datosvista["enviado"])
             {
               // echo "\n\n\n\nEmail enviado correctamente";
             ?>
@@ -122,7 +28,7 @@
                 
                   <strong>
                         <br><br>  
-                           Hola <?php  echo $nombre ?>
+                           Hola <?php  echo $datosvista["nombre"] ?>
                   </strong>
                 
             
@@ -164,7 +70,7 @@
                 
                   <strong>
                           <br><br>
-                     <?php  echo $nombre ?> hubo un error en el registro de tu cuenta.
+                          <?php  echo $datosvista["nombre"] ?> hubo un error en el registro de tu cuenta.
                   </strong>
                 
            
