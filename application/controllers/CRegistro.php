@@ -106,7 +106,7 @@ class CRegistro extends CI_Controller {
 		 
 		//Establecemos esta configuración
 		  $this->email->initialize($config);
-		  $this->email->from("enrique.rocko@gmail.com", "Profesiolandia");
+		  $this->email->from("mast.32@gmail.com", "Profesiolandia");
 		  $this->email->to($postData['email'], $postData['usuario']);		
 		  $this->email->subject($subject);
 		  $this->email->message($message);
@@ -148,7 +148,22 @@ class CRegistro extends CI_Controller {
             $this->session->set_flashdata('message', 'No se puede activar la cuenta. El código no coincide');
         }
   
-        redirect('/');
+        /***************************************************************************************************/		
+		if (isset($this->session->gIdPerfil)) $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
+		else 								  $tabla = $this->MMenu->MenuRol(4);		
+
+		$dataf = array(			
+			'nombre'  => $user['usuario']
+		);
+        $data = array(
+            'seccion' => 'Activacion',
+			'vista' => 'VActivacion',
+			'data' => '',
+			'dataf' => $dataf,
+			'menu' => $tabla
+         );
+       
+		$this->load->view('mp/pagina_principal',$data);
   
     }
 
