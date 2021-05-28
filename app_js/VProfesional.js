@@ -51,6 +51,7 @@ $(function()
 		}			
 		get_redes_sociales();
 		get_reconocimientos();
+		get_publicaciones();
 		get_precios();
 		get_direccion_tel();
 		get_horario_atencion();		
@@ -128,6 +129,66 @@ function get_reconocimientos()
 
 			}  
 			$('#collapseTwo').html(html);  
+			
+		}
+	});
+}
+
+function get_publicaciones()
+{	
+	let method_profesion = 'CProfesional/publicaciones';
+	var post_url = baseUrl+method_profesion
+
+	var id_cat_profesional=$( "#id_cat_profesional" ).val();
+	
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_profesional":id_cat_profesional}, 			  
+		url: post_url,                          
+		success: function(data){                                
+			console.log(data);
+			html="";		
+			for (let i in data['publicaciones']) 				
+			{  			    
+				html+="<div class='card-body'>"+
+						"<div class='row'>"+
+							"<div class='col-md-12'>"+
+								"<div class='row' >"+
+
+									
+										"<div class='col-md-2' style='text-align: left;'>"+							
+										"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+
+											+data['publicaciones'][i].id_cat_publicacion+							
+										"</div>"+
+										
+										"<div class='col-md-5' style='text-align: left;'>"+
+										
+										"<h5 class='tituloV'><strong>Título:</strong></h5>"								
+											+data['publicaciones'][i].titulo+															
+										"</div>"+
+									
+
+									
+
+								"</div>"+
+								
+								"<div class='row'>"+
+									"<div class='col-md-12' style='text-align: justify;'>"+
+									"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+									+data['publicaciones'][i].resumen+
+									"<br>"+
+									"</div>"+                             
+									"<br>"+
+								"</div>"+
+								
+							"</div>"+						
+						"</div>"+
+						"</div>"+
+						"<hr>";	      							
+
+			}  
+			$('#collapseFour').html(html);  
 			
 		}
 	});

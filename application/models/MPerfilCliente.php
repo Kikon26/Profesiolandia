@@ -34,7 +34,7 @@ class MPerfilCliente extends CI_Model {
             d.cp,
             d.tel                                    
             from usuarios as p left join             
-            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario  left join 
+            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario and d.dom_particular=1  left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado
             where p.id_cat_usuario={$id_cat_usuario} "; 
 
@@ -82,13 +82,15 @@ class MPerfilCliente extends CI_Model {
 		'calle'  => $postData['calle'], 
 		'num'  => $postData['num'], 
 		'cp'  => $postData['cp'],         
-		'tel'  => $postData['telefono'],          
+		'tel'  => $postData['telefono'],     
+    'dom_particular' => 1,           
 		'activo' => 1
 		);      
 
     if ($postData['existe_direccion']=="si")
     {
       $sqlsrvDB->where('id_cat_usuario', $postData['id_cat_usuario']);      
+      $sqlsrvDB->where('dom_particular', '1');      
       $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
     }
     else 

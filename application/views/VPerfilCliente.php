@@ -42,7 +42,7 @@
 
                               <div class="card-header bg-light">
                                   <div class="row"> 
-                                      <div class="col-lg-3"> 
+                                      <div class="col-lg-12"> 
                                         <h6  class="m-b-0 text-black">Datos Personales</h6>                                                                
                                       </div>  
                                       <div class="col-lg-9 text-right">                                                                 
@@ -143,7 +143,7 @@
                         <div class="col-12">
                           <div class="card">
                               <div class="card-header bg-light">
-                                <h6 class="m-b-0 text-black">Dirección</h6>    
+                                <h6 class="m-b-0 text-black">Domicilio Personal</h6>    
                               </div>  
                               <div class="card-body">
                                   <h4 class="card-title"></h4>

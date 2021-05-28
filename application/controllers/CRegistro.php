@@ -106,7 +106,7 @@ class CRegistro extends CI_Controller {
 		 
 		//Establecemos esta configuración
 		  $this->email->initialize($config);
-		  $this->email->from("mast.32@gmail.com", "Profesiolandia");
+		  $this->email->from("soporte@profesiolandia.com", "Profesiolandia");
 		  $this->email->to($postData['email'], $postData['usuario']);		
 		  $this->email->subject($subject);
 		  $this->email->message($message);
