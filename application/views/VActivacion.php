@@ -17,7 +17,7 @@
           <h4 class="tituloV"> 
            <strong>
             <br><br>  
-               Bienvenido a Profesiolandia <?php  echo $datosvista["nombre"] ?>
+               Bienvenido a Profesiolandia "Nombre de Usuario"
           </strong>
          </h4>
 
