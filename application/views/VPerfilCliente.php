@@ -228,133 +228,51 @@
                   <div class="col"></div>
                 </div>
                 <hr>
-                <!-- Todas las publicaciones del Profesional - Inicio  -->
-                <!-- Modales de Publicaciones - Inicio  -->
-                <div class="card-body">
-                  <a href="#" data-toggle="modal" data-target="#2020.10.31"  style="color: #2e9ff4;"> 
-                    <div class="row" style="text-align: left;">
-                      <div class="col-md-2">
-                        <h5 class="tituloV"><strong> Area de interes:</strong> </h5>
-                        Salud
-                        <!-- Esta area de interes se extrae de la tabla de areas de interes donde esta catalogado el profesional -->
-                      </div>
-                      <div class="col-md-10">
-                        <h5 class="tituloV"><strong> Título:</strong> </h5>
-                        Titulo de la Publicacion
-                      </div>
+             
+                <div id="tbody_publicaciones"></div>             
+                <!--***********************************************************************************************************************************************-->
+                <!-- MODAL ADD -->
+                <form id="form_save_update_publicacion">
+                <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalle de la Publicación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12" style="text-align: justify;">
-                        <h5 class="tituloV"><strong>Resumen de la Publicacion:</strong></h5>
-                        En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                        <br>
-                      </div> 
-                      <br>
+                    <div class="modal-body">                                                                                      
+                      <form id="form_save" style="text-align: center;" target="_self">
+                        <div class="form-row"  style="text-align: left;">
+                          <div class="col-md-12">
+                              <label for="publicacionLabel1">Título de la Publicación:</label>
+                              <input type='hidden' name='id_cat_publicacion' id='id_cat_publicacion' value="-1">
+                              <input type="text" class="form-control" id="titulo" placeholder="Ingresa el Titulo de la Publicacion(s)" readonly>
+                          </div>
+
+                          <div class="col-md-12">
+                            <label for="resumenLabel1">Resúmen de la Publicación:</label>
+                            <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" readonly></textarea>
+                          </div>
+
+                          <div class="col-md-12">
+                            <label for="PublicacionLabel2">Publicación:</label>
+                            <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Ingresa la informacion de la publicación (10,000 caracteres maximo)" readonly></textarea>
+                          </div>
+                        </div>
+                        <br>                        
+                      </form>
+                            
                     </div>
-                  </a>
-                  <!-- Modal -->
-                  <div class="modal fade" id="2020.10.31" tabindex="-1" role="dialog" aria-labelledby="2020.10.31" aria-hidden="true">
-                    <div class="modal-dialog" role="document" style="max-width: 70%;">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="BcardLabel"> Salud - Titulo de la Publicacion</h5>
-                          <!-- Esta area de interes se extrae de la tabla de areas de interes donde esta catalogado el profesional -->
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-
-                        <div class="modal-body" style="text-align: center;">
-                          <!-- Texto-->
-                          <div class="col-md-12" style="text-align: justify; color: gray;">            
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            <br>
-                            <div class="row">
-                              Creado por: &nbsp;&nbsp; <strong> Nombre del Profesional</strong>
-                              <!-- Poner el nombre del Profesional en el articulo y poner link a su pagina de perfil -->
-                            </div>
-                          </div> 
-                        </div>
-
-                        <div class="modal-footer">
-                          <button type="button" class="btn my-0 border border-white" style="background: #0856c7;" data-dismiss="modal" >Cerrar</button>
-                        </div>
-
-                      </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                        
                     </div>
-                  </div>
+                    </div>
                 </div>
-
-                <div class="card-body">
-                  <a href="#" data-toggle="modal" data-target="#2020.11.01"  style="color: #2e9ff4;"> 
-                    <div class="row" style="text-align: left;">
-                      <div class="col-md-2">
-                        <h5 class="tituloV"><strong> Area de Interes:</strong> </h5>
-                          Finanzas
-                          <!-- Esta area de interes se extrae de la tabla de areas de interes donde esta catalogado el profesional -->
-                      </div>
-                    
-                      <div class="col-md-10">
-                        <h5 class="tituloV"><strong> Título:</strong> </h5>
-                        Titulo de la Publicacion
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12" style="text-align: justify;">
-                        <h5 class="tituloV"><strong>Resumen de la Publicacion:</strong></h5>
-                        En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                        <br>
-                      </div> 
-                      <br>
-                    </div>
-                  </a>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="2020.11.01" tabindex="-1" role="dialog" aria-labelledby="2020.11.01" aria-hidden="true">
-                    <div class="modal-dialog" role="document" style="max-width: 70%;">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="BcardLabel"> Finanzas - Titulo de la Publicacion</h5>
-                          <!-- Esta area de interes se extrae de la tabla de areas de interes donde esta catalogado el profesional -->
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body" style="text-align: center;">
-                          <!-- Texto-->
-                          <div class="col-md-12" style="text-align: justify; color: gray;">                
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. 
-                            <br>
-                            <br>
-                            <div class="row">
-                              Creado por: &nbsp;&nbsp; <strong> Nombre del Profesional</strong>
-                              <!-- Poner el nombre del Profesional en el articulo y poner link a su pagina de perfil -->
-                            </div>
-                          </div> 
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn my-0 border border-white" style="background: #0856c7;" data-dismiss="modal">Cerrar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <!-- Modales de Publicaciones - Fin  -->
-                <!-- Todas las publicaciones del Profesional - Fin  -->
+                </form>
+                <!--END MODAL ADD-->                 
               </div>
               <!--  Detalle tab  - Contenido de Interes - Fin  -->
              
