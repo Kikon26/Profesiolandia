@@ -34,7 +34,7 @@ class MPerfilCliente extends CI_Model {
             d.cp,
             d.tel                                    
             from usuarios as p left join             
-            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario and d.dom_particular=1  left join 
+            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario  left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado
             where p.id_cat_usuario={$id_cat_usuario} "; 
 
@@ -82,15 +82,13 @@ class MPerfilCliente extends CI_Model {
 		'calle'  => $postData['calle'], 
 		'num'  => $postData['num'], 
 		'cp'  => $postData['cp'],         
-		'tel'  => $postData['telefono'],     
-    'dom_particular' => 1,           
+		'tel'  => $postData['telefono'],          
 		'activo' => 1
 		);      
 
     if ($postData['existe_direccion']=="si")
     {
       $sqlsrvDB->where('id_cat_usuario', $postData['id_cat_usuario']);      
-      $sqlsrvDB->where('dom_particular', '1');      
       $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
     }
     else 
@@ -211,6 +209,41 @@ class MPerfilCliente extends CI_Model {
                
         return $where;
     }  
+
+    public function get_count_contenido_interes() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+        
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+    
+      return $sqlsrvDB->query($query)->num_rows();
+    }  
+
+    public function ListadoPublicaciones($limit, $start)
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+              //." limit ".$start.",".$limit;                        
+       
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    
+    }  
+    
+    public function get_publicacion() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+        
+      $query="select  p.* from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and id_cat_publicacion={$postData['id_cat_publicacion']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+    
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    }  
+
 
 }
 

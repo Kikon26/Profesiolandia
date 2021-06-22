@@ -75,18 +75,12 @@ $query_builder = TRUE;
 
 $db['dbProfesiolandia'] = array(
 	'dsn'	=> '',
-<<<<<<< HEAD
-	'hostname' => 'local',
-	'username' => 'local',
-	'password' => 'password',
-=======
 	'hostname' => 'localhost',
-	'username' => 'martin',
-	'password' => 'contrasena',
->>>>>>> 91f9050a298c1d2b31a55ef813bd7878b7e44e3e
+	'username' => 'root',
+	'password' => '',
 	'database' => 'profesiolandia',
 	'dbdriver' => 'mysqli',
-	'port'     => '3309',  
+	'port'     => '3306',  
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
