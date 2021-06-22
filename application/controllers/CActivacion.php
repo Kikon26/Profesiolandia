@@ -33,6 +33,12 @@ class CActivacion extends CI_Controller {
        
 		$this->load->view('mp/pagina_principal',$data);
 	}
+
+	public function Usuario(){
+		$resultado['usuario'] = $this->MActivacion->DetalleUsuario($this->input->get('id_cat_usuario'));				
+		echo json_encode($resultado);
+	}
+
 	
 
 }
