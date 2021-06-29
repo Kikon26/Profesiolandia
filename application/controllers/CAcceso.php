@@ -40,7 +40,7 @@ class CAcceso extends CI_Controller {
 		$tabla = $this->MMenu->MenuRol(4);		
         $data = array(
             'seccion' => 'acceso',
-			'vista' => 'VAcceso2',
+			'vista' => 'VAcceso',
 			'data' => '',
 			'dataf' => '',
 			'menu' => $tabla,

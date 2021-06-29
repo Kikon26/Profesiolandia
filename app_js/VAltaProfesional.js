@@ -38,7 +38,7 @@ $(function()
 	desbloqueaPantalla();
 
 	get_profesional();	
-	
+	/*
 	if ($("#informacion_completa").length > 0) {
 		tinymce.init({
 			selector: "textarea#informacion_completa",
@@ -50,14 +50,14 @@ $(function()
 				"save table contextmenu directionality emoticons template paste textcolor"
 			],
 			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-			/*
-			setup: function (editor) {
-				editor.on('change', function(e) {
-					console.log(editor.id);
-				    $("#"+editor.id).text(editor.getContent());
-				});
+			
+			// setup: function (editor) {
+			// 	editor.on('change', function(e) {
+			// 		console.log(editor.id);
+			// 	    $("#"+editor.id).text(editor.getContent());
+			// 	});
 				
-			  }*/
+			//   }
 			
 
 		});
@@ -92,7 +92,7 @@ $(function()
 			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
 
 		});
-	}  
+	} */ 
 
 
 	$("#button_delete_rec").hide();        
@@ -832,8 +832,8 @@ $("#form_info_gral").on("submit", function(){
 	var id_cat_profesion = $('#id_cat_profesion').val();		
 	var especialidad = $('#especialidad').val();
 	var descripcion = $('#descripcion').val();
-	//var informacion_completa = $('#informacion_completa').val();
-	var informacion_completa = tinymce.get("informacion_completa").getContent();
+	var informacion_completa = $('#informacion_completa').val();
+	//var informacion_completa = tinymce.get("informacion_completa").getContent();
 
 	var cedula_profesional = $('#cedula_profesional').val();
 	var cedula_profesional_postgrado = $('#cedula_profesional_postgrado').val();
@@ -880,11 +880,11 @@ $("#form_info_gral").on("submit", function(){
 $("#form_experiencia_titulos").on("submit", function(){ 
 		
 	var id_cat_profesional = $('#id_cat_profesional').val();		
-	//var experiencia_servicios_ofrecidos = $('#experiencia_servicios_ofrecidos').val();	
-	var experiencia_servicios_ofrecidos =tinymce.get("experiencia_servicios_ofrecidos").getContent();
+	var experiencia_servicios_ofrecidos = $('#experiencia_servicios_ofrecidos').val();	
+	//var experiencia_servicios_ofrecidos =tinymce.get("experiencia_servicios_ofrecidos").getContent();
 
-	//var preguntas_frecuentes = $('#preguntas_frecuentes').val();		
-	var preguntas_frecuentes = tinymce.get("preguntas_frecuentes").getContent();
+	var preguntas_frecuentes = $('#preguntas_frecuentes').val();		
+	//var preguntas_frecuentes = tinymce.get("preguntas_frecuentes").getContent();
 	
 	var formData = new FormData();
 	
