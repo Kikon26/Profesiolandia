@@ -45,7 +45,7 @@ class MBuscar extends CI_Model {
               
               from cat_profesionales as p inner join 
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
-              cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
+              cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
               cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional "
       
@@ -87,7 +87,7 @@ class MBuscar extends CI_Model {
               
               from cat_profesionales as p inner join 
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
-              cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
+              cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
               cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional  "
  

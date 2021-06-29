@@ -15,7 +15,7 @@
         <div class="container mt-n0 col-9">
           <div class="container-fluid py-0 pt-3" style="text-align: center;">
             <strong>
-              <h4 class="tituloV"> <strong> Bienvenido a tu cuenta "Nombre"</strong></h4>
+              <h4 class="tituloV"> <strong> Bienvenido a tu cuenta <?php echo $username ?></strong></h4>
             </strong>
 
             <!--Tabs de informacion del profesional inicio  -->
