@@ -43,7 +43,8 @@ $(function()
 
 	
 	$("#form_save").on("submit", function(){ 	 
-				
+		
+		
 		var email = $('#email').val();		
 		var id_cat_rol = $('#id_cat_rol').val();
 		var usuario = $('#usuario').val();

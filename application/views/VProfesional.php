@@ -108,7 +108,7 @@
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
-                <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia, Titulos & Publicaciones</a>
+                <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>
                 <a class="nav-item nav-link" id="nav-val-tab" data-toggle="tab" href="#nav-val" role="tab" aria-controls="nav-val" aria-selected="false" >Valoraciones</a>
                 <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
                 <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
@@ -190,7 +190,7 @@
                 <div class="row">
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                    
-                    <h4> Experiencia, Titulos y Publicaciones</h4>                   
+                    <h4> Experiencia y Titulos</h4>                   
                   </div>
                   <div class="col"></div>
                 </div>
@@ -220,21 +220,6 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#collapse_experiencia"></div>
                   </div>
-
-                  <div class="card">
-                    <div class="card-header" id="headingFour">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <h6 class="tituloV"><strong>Publicaciones</strong> </h6>
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia"></div>
-                  </div>
-                  
-
-
-
                   <div class="card">
                     <div class="card-header" id="headingThree">
                       <h2 class="mb-0">
