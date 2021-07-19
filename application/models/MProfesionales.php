@@ -31,6 +31,18 @@ class MProfesionales extends CI_Model {
         if ($resultado->num_rows()>0)
         {
         	$row = $resultado->row();
+
+          // generar código aleatorio simple
+			    $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			    $code = substr(str_shuffle($set), 0, 12);
+
+          $data = array(             
+            'code' => $code
+            );      
+    
+          $sqlsrvDB->where('id_cat_profesional', $row->id_cat_profesional);      
+          $resultado=$sqlsrvDB->update('cat_profesionales',$data);    
+          
         	return $row->id_cat_profesional;
         	//return 1;	
         }
@@ -52,7 +64,8 @@ class MProfesionales extends CI_Model {
               r.nombre as rol,
               u.imagen,
               concat(u.nombre,' ',u.paterno) as nombre_apellido,
-              u.email
+              u.email,
+              u.code
               from cat_profesionales as u inner join cat_roles as r on r.id_cat_rol=u.id_cat_rol and u.activo=1 and u.id_cat_profesional='{$id_cat_profesional}'";         
     
       $resultado = $sqlsrvDB->query($query);		

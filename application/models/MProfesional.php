@@ -138,6 +138,17 @@ class MProfesional extends CI_Model {
     //return $resultado->result();        
     } 
 
+    public function CatalogoPublicaciones()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="select * from cat_publicaciones where id_cat_profesional=".$postData['id_cat_profesional']." order by id_cat_publicacion";         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    }     
+
 }
 
 ?>
