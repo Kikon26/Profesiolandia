@@ -4,13 +4,15 @@ if ( ! function_exists('generaDatosSession'))
 {
     function generaDatosSession()
     {
+
+
     	$ci=& get_instance();
     	$ci->load->model('MUsuarios');
 
         $idUsuario= $ci->session->sisdato;
 
 		if ($idUsuario)
-		{
+		{			
 			$datosUsuario= $ci->MUsuarios->datosUsuario($idUsuario);
 			
 			$ci->session->set_userdata('gIdUsuario', $datosUsuario[0]->id_cat_usuario);
@@ -22,7 +24,7 @@ if ( ! function_exists('generaDatosSession'))
 			$ci->session->set_userdata('gNombreApellido', $datosUsuario[0]->nombre_apellido);			
 			$ci->session->set_userdata('gEmail', $datosUsuario[0]->email);									
 			$ci->session->set_userdata('sisdato', $idUsuario);
-	
+			$ci->session->set_userdata('code', $datosUsuario[0]->code);
 		}
 		else
 		{
@@ -54,6 +56,7 @@ if ( ! function_exists('generaDatosSession2'))
 			$ci->session->set_userdata('gNombreApellido', $datosUsuario[0]->nombre_apellido);			
 			$ci->session->set_userdata('gEmail', $datosUsuario[0]->email);									
 			$ci->session->set_userdata('sisdato', $idUsuario);
+			$ci->session->set_userdata('code', $datosUsuario[0]->code);
 	
 		}
 		else

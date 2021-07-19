@@ -50,7 +50,8 @@ $(function()
 			
 		}			
 		get_redes_sociales();
-		get_reconocimientos();
+		get_reconocimientos(); 
+		get_publicaciones();
 		get_precios();
 		get_direccion_tel();
 		get_horario_atencion();		
@@ -128,6 +129,68 @@ function get_reconocimientos()
 
 			}  
 			$('#collapseTwo').html(html);  
+			
+		}
+	});
+}
+
+function get_publicaciones()
+{	
+	let method_profesion = 'CProfesional/publicaciones';
+	var post_url = baseUrl+method_profesion
+
+	var id_cat_profesional=$( "#id_cat_profesional" ).val();
+	
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_profesional":id_cat_profesional}, 			  
+		url: post_url,                          
+		success: function(data){                                
+			console.log(data);
+			html="";		
+			for (let i in data['publicaciones']) 				
+			{  			    
+				html+="<div class='card-body'>"+
+						"<div class='row'>"+
+							"<div class='col-md-12'>"+
+								"<div class='row' >"+
+
+									
+										"<div class='col-md-2' style='text-align: left;'>"+							
+										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+										"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+
+											+data['publicaciones'][i].id_cat_publicacion+							
+										"</div>"+
+										"</a>"+	
+										"<div class='col-md-5' style='text-align: left;'>"+
+										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+										"<h5 class='tituloV'><strong>Título:</strong></h5>"								
+											+data['publicaciones'][i].titulo+	
+										"</a>"+																
+										"</div>"+
+									
+
+									
+
+								"</div>"+
+								"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+								"<div class='row'>"+
+									"<div class='col-md-12' style='text-align: justify;'>"+
+									"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+									+data['publicaciones'][i].resumen+
+									"<br>"+
+									"</div>"+                             
+									"<br>"+
+								"</div>"+
+								"</a>"+	
+							"</div>"+						
+						"</div>"+
+						"</div>"+
+						"<hr>";	      							
+
+			}  
+			$('#collapseThree').html(html);  
 			
 		}
 	});
@@ -396,3 +459,29 @@ $('#ancla_favorito').click(function(){
 });
 
 
+function verPublicacion(id_cat_publicacion)
+{	
+	let method_get_publicacion = 'CAltaProfesional/get_publicacion';
+	var post_url = baseUrl+method_get_publicacion
+
+	var id_cat_profesional=$( "#id_cat_profesional" ).val();		
+
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_profesional":id_cat_profesional,"id_cat_publicacion":id_cat_publicacion}, 			  
+		url: post_url,                          
+		success: function(data){                                										
+			$('#id_cat_publicacion').val(id_cat_publicacion);
+			$("#titulo").val(data['publicacion'][0].titulo);			 								
+			$("#resumen").val(data['publicacion'][0].resumen);			 								
+			$("#publicacion").val(data['publicacion'][0].publicacion);		
+			$("#btn_save_edit_publicacion").hide();
+			
+
+			$('#Modal_Add').modal('show');
+		}
+	});
+
+	
+}

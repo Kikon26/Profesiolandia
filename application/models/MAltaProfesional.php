@@ -170,7 +170,8 @@ class MAltaProfesional extends CI_Model {
       'calle'  => $postData['calle'], 
       'num'  => $postData['num'], 
       'cp'  => $postData['cp'],         
-      'tel'  => $postData['telefono'],          
+      'tel'  => $postData['telefono'],      
+      'dom_particular' => 0,          
       'activo' => 1
     );      
 
@@ -429,6 +430,79 @@ class MAltaProfesional extends CI_Model {
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();        
     } 
+
+    public function get_count() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+  
+      $query="select  * from cat_publicaciones where id_cat_profesional={$postData['id_cat_profesional']}  order by id_cat_publicacion";              
+    
+      return $sqlsrvDB->query($query)->num_rows();
+    }  
+
+    public function ListadoPublicaciones($limit, $start)
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+
+      $query="select  * from cat_publicaciones where id_cat_profesional={$postData['id_cat_profesional']}  order by id_cat_publicacion";              
+              //." limit ".$start.",".$limit;                        
+       
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    
+    }    
+
+    public function save_update_publicacion()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+          
+        $data = array(             
+            'id_cat_profesional'  => $postData['id_cat_profesional'], 
+            'titulo'  => $postData['titulo'], 
+            'resumen'  => $postData['resumen'],                    
+            'publicacion'  => $postData['publicacion'],             
+            'fecha_alta' => date("Y-m-d H:i:s"),
+            'activo' => "1"           
+        );
+     
+  
+      if ($postData['id_cat_publicacion']=="-1")
+        $resultado=$sqlsrvDB->insert('cat_publicaciones',$data);          
+      else
+        {
+          $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);
+          $sqlsrvDB->where('id_cat_publicacion', $postData['id_cat_publicacion']);
+          $resultado=$sqlsrvDB->update('cat_publicaciones',$data);
+        }
+      
+      return $resultado;   
+    } 
+
+    public function get_publicacion() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+  
+      $query="select  * from cat_publicaciones where id_cat_profesional={$postData['id_cat_profesional']} and id_cat_publicacion={$postData['id_cat_publicacion']}  order by id_cat_publicacion";              
+    
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    }  
+
+
+    public function delete_publicacion() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+
+      $sqlsrvDB->where('id_cat_publicacion', $postData['id_cat_publicacion']);
+      $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);      
+      
+      $resultado=$sqlsrvDB->delete('cat_publicaciones');
+    }      
 }
 
 ?>

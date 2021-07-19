@@ -14,6 +14,7 @@ const asyncGetReq = async (datos, url) => {
 $(function() 
 {
 	'use strict'; 
+	loadPagination(0);
 	//bloqueaPantalla();
   
 	/*
@@ -1288,3 +1289,190 @@ function validate(evt) {
         caret_pos = updated_len - original_len + caret_pos;
         input[0].setSelectionRange(caret_pos, caret_pos);
     }    	
+
+	function loadPagination(pagno)
+	{	
+		let method_pagination = 'CAltaProfesional/loadRecord';
+		var post_url = baseUrl+method_pagination;
+			
+		var id_cat_profesional=$( "#id_cat_profesional" ).val();
+					
+		$.ajax({
+		url: post_url,
+		type: 'POST',
+		dataType: 'json',
+		data : {"pagno":pagno,
+				"id_cat_profesional":id_cat_profesional
+				}, 			
+		success: function(response)
+		{
+			$('#pagination').html(response.links);
+			createTable(response.publicaciones,response.row);		 			
+		}
+		});
+
+	} 
+
+	function createTable(result,sno)
+	{     
+		sno = Number(sno);
+		$('#tbody_publicaciones').empty();
+		html="";
+		for(index in result)
+		{  	
+			html+="<div class='row'>"+
+					"<div class='col-md-12'>"+
+						"<div class='row' >"+
+
+							
+								"<div class='col-md-2' style='text-align: left;'>"+
+								"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+								"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+						
+								
+									+result[index].id_cat_publicacion+
+								"</a>"+	
+								"</div>"+
+								
+								"<div class='col-md-5' style='text-align: left;'>"+
+								"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+								"<h5 class='tituloV'><strong>Título:</strong></h5>"								
+									+result[index].titulo+								
+								"</a>"+		
+								"</div>"+
+							
+
+							"<div class='col-md-5 float-right' style='text-align: right;'>"+
+							"<button data-repeater-delete='' class='btn btn-danger waves-effect waves-light' id='button_delete_precio' type='button' onclick='deletePublicacion("+result[index].id_cat_publicacion+"); return false;'>"+                                                          
+								"<i class='ti-close'></i>"+                                                        
+							"</button>"+                                                                                                                
+							"</div>"+
+
+						"</div>"+
+						"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+						"<div class='row'>"+
+							"<div class='col-md-12' style='text-align: justify;'>"+
+							"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+							+result[index].resumen+
+							"<br>"+
+							"</div>"+                             
+							"<br>"+
+						"</div>"+
+						"</a>"+	
+					"</div>"+						
+				"</div>"+
+				"<hr>";	      			
+		} 
+		$('#tbody_publicaciones').append(html);   				
+	
+	
+	}	
+	function deletePublicacion(id_cat_publicacion)
+	{
+		let method_delete_publicacion = 'CAltaProfesional/delete_publicacion';
+		var post_url = baseUrl+method_delete_publicacion
+	
+		var id_cat_profesional=$( "#id_cat_profesional" ).val();		
+	
+		$.ajax({
+			type: "POST",   
+			dataType:'json',       
+			data : {"id_cat_profesional":id_cat_profesional,"id_cat_publicacion":id_cat_publicacion}, 			  
+			url: post_url,                          
+			success: function(data){                                										
+				
+				Swal.fire({
+					title: 'Publicación eliminada con exitó!',                        
+				}).then((result) => {
+					loadPagination(0);
+				})	
+			}
+		});		
+	
+	}
+	function savePublicacion(id_cat_publicacion)
+	{
+		$("#btn_save_edit_publicacion").html("Guardar");
+		$('#id_cat_publicacion').val("-1");
+		$('#titulo').val("");
+		$('#resumen').val("");
+		$('#publicacion').val("");				
+
+		$('#Modal_Add').modal('show');
+	}
+
+	function editarPublicacion(id_cat_publicacion)
+	{	
+		let method_get_publicacion = 'CAltaProfesional/get_publicacion';
+		var post_url = baseUrl+method_get_publicacion
+	
+		var id_cat_profesional=$( "#id_cat_profesional" ).val();		
+	
+		$.ajax({
+			type: "POST",   
+			dataType:'json',       
+			data : {"id_cat_profesional":id_cat_profesional,"id_cat_publicacion":id_cat_publicacion}, 			  
+			url: post_url,                          
+			success: function(data){                                										
+				$('#id_cat_publicacion').val(id_cat_publicacion);
+				$("#titulo").val(data['publicacion'][0].titulo);			 								
+				$("#resumen").val(data['publicacion'][0].resumen);			 								
+				$("#publicacion").val(data['publicacion'][0].publicacion);		
+				$("#btn_save_edit_publicacion").html("editar");
+				
+
+				$('#Modal_Add').modal('show');
+			}
+		});
+
+		
+	}
+
+	$("#form_save_update_publicacion").on("submit", function(){ 			
+		var id_cat_publicacion = $('#id_cat_publicacion').val();
+		var id_cat_profesional = $('#id_cat_profesional').val();
+
+		var titulo = $('#titulo').val();
+		var resumen = $('#resumen').val();
+		var publicacion = $('#publicacion').val();
+
+		var formData = new FormData();
+
+		formData.append("id_cat_publicacion", id_cat_publicacion);
+		formData.append("id_cat_profesional", id_cat_profesional);
+		formData.append("titulo", titulo);
+		formData.append("resumen", resumen);
+		formData.append("publicacion", publicacion);
+	
+				       
+		let method_data_save = 'CAltaProfesional/save_update_publicacion';
+		var post_url = baseUrl+method_data_save 
+		
+		$.ajax        
+		({
+            url: post_url,                       
+            type: "POST",               
+            dataType:'json',            
+            data:formData,            
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,      
+			success: function(data)
+			{	
+				$('#titulo').val("");
+				$('#resumen').val("");
+                $('#publicacion').val("");				
+				$('#Modal_Add').modal('hide');
+
+				Swal.fire({
+					title: 'Actualización realizada con exitó!',                        
+				}).then((result) => {
+					loadPagination(0);
+				})	
+			}
+		});
+		
+
+		 return false;
+		
+	});		
