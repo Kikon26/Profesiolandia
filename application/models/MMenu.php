@@ -8,10 +8,16 @@ class MMenu extends CI_Model {
       public function MenuRol($id_cat_rol){        
         
         $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+
         $query="select 
                 m.`id_cat_menu`,
                 m.`descripcion`,
-                m.accion,
+                case when (m.`id_cat_menu`=20) then  
+                  concat(m.accion,'/index/','{$id_cat_rol}/{$this->session->gIdUsuario}/{$this->session->code}')
+                else 	
+                  m.accion 
+                end 
+                  as accion,   
                 m.iconos,
                 m.padre,
                 m.orden, 

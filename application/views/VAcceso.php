@@ -1,102 +1,132 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Profesiolandia</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>template/dist/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>template/plugins/iCheck/square/blue.css">
+<div class="page-wrapper33" >
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <br> 
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+		<!-- ============================================================== -->
+    <div class="container-fluid33" >
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <?php
-    if ($xMensaje!="")
-    {
-      echo '<script language="javascript">alert("'.$xMensaje.'");</script>'; 
-    }
-  ?>
-
-
-</head>
-  <body class="hold-transition login-page">
-
-    <div class="login-box">
-      <div class="login-logo ">
-        <img src="<?php echo base_url(); ?>imagenessss/logo-profesiolandia.png" class="img-circle" alt="Mpio. de Morelia" width='40%'>
-        <div id="tit1" style="display:none;"> <b>Profesiolandia</b> </div>
-        <div id="tit2" style="display:none;position: relative"><b></b></div>
-      </div>
-  
-      <div id="cuadro" style="display:none;" class="login-box-body">
-        <p class="login-box-msg">Teclee los datos para validar el acceso</p>
-
-        <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
-          <div class="form-group has-feedback">
-            <input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        
+      <div class="container mt-n0">
+        <div class="container-fluid py-0 pt-3 col-xs-12 col-sm-6 col-md-6" style="text-align: center;">          
+          <div class="login-logo ">
+            <img src="<?php echo base_url(); ?>imagenes/Logo_Profesiolandia_perspectiva.png" class="img-circle" alt="Profesiolandia" width='60%' >
+            <div id="tit2" style="display:none;position: relative"><b></b></div>
           </div>
-          
-          <div class="form-group has-feedback">
-            <input id="txtPassw" name="txtPassw" type="password" class="form-control" placeholder="Contraseña">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label>
-                  <input type="checkbox"> Recuerdame
-                </label>
+          <!-- Formulario - Inicio -->
+          <div class="card">
+
+            <div class="card-header bg-light">
+              <div class="row"> 
+                <div class="col-md-12"> 
+                  <h6  class="m-b-0 text-black">Llene los datos para poder ingresar</h6>                                                                
+                </div>  
+              </div>                                
+            </div>
+
+            <div class="card-body">
+              <h4 class="card-title"></h4>
+              <h6 class="card-subtitle"></h6>
+              <div id="cuadro" style="display:none;">       
+                <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
+                  <div class="form-group has-feedback">
+                    <!--<input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Email" required value="<?php echo $tUsua ?>">-->
+                    <div class="controls">                                
+                      <input id="txtUsuario" name="txtUsuario" type="email" required data-validation-required-message="Esté campo es requerido" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">                
+                    </div>  
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                  
+                  <div class="form-group has-feedback">
+                    <input id="txtPassw" name="txtPassw" type="password" class="form-control" placeholder="Contraseña" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12" align="center">
+                      <div class="checkbox icheck">
+                        <label>
+                          <input type="checkbox"> Recuerdame
+                        </label>
+                      </div>
+                    </div>
+                  </div> 
+                    
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-success" id="button_guardar"> <i class="fa fa-check"></i> Ingresar</button>   
+                    </div>
+                  </div>
+                </form>
+
+                <br>
+                <div class="row">
+                  <div class="col-md-12" align="center">
+                    <a href="<?php echo base_url(); ?>CReset_Password" style="color: gray">  <u> Olvide mi contraseña </u></a><br>
+                  </div>
+                </div>
+                <!-- Formulario - Fin -->
               </div>
             </div>
-            
-            <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Accesar</button>
-            </div>
-            
           </div>
-        </form>
-        <a href="#">Olvide mi contraseña</a><br>
-      </div>
+        </div>
+      </div>  
+    </div>  
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->				
+  </div>  
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->		
+
+
+<script src="<?php echo base_url(); ?>template/bower_components/jquery/dist/jquery.min.js"></script>  
+<script src="<?php echo base_url(); ?>template/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
+<script src="<?php echo base_url(); ?>template/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () 
+  {
+    /*$('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional 
+      });*/
+
+      $("#tit1").fadeIn(700);
+      $("#tit2").fadeIn(1500);
+
+      $("#cuadro").fadeIn(2000).animate({top:'100px'});
       
-    </div>
-    
-    <div id="tit3" style="display:none;"> <b>Consultas Ejecutivas</b> </div>  
-    <script src="<?php echo base_url(); ?>template/bower_components/jquery/dist/jquery.min.js"></script>  
-    <script src="<?php echo base_url(); ?>template/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
-    <script src="<?php echo base_url(); ?>template/plugins/iCheck/icheck.min.js"></script>
-    <script>
-      $(function () 
-      {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional 
-          });
+  });
+</script>
 
-          $("#tit1").fadeIn(700);
-          $("#tit2").fadeIn(1500);
 
-          $("#cuadro").fadeIn(2000).animate({top:'100px'});
-          
-      });
-    </script>
-</body>
-</html> 
+
+
+<!--
+<link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">-->                
+
+<link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>template/bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>template/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>template/plugins/iCheck/square/blue.css">
+<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+<?php
+  if ($xMensaje!="")
+  {
+    echo '<script language="javascript">alert("'.$xMensaje.'");</script>'; 
+  }
+?>
+
+<link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">

@@ -17,6 +17,7 @@ $(function()
 	//bloqueaPantalla();
   
 	loadPagination(0);
+	loadPagination_contenido_interes(0);
 
 	let method = 'CPerfilCliente/Usuario?';
 	let criterios = {id_cat_usuario:$('#id_cat_usuario').val()};
@@ -35,7 +36,7 @@ $(function()
 		$('#usuario').val(data['usuario'][0].usuario);			
         
 		cat_estado(data['usuario'][0].id_cat_estado);
-
+        
 		if (data['usuario'][0].id_cat_estado!=null) 
 		{
 			$('#existe_direccion').val("si");
@@ -82,7 +83,7 @@ $(function()
 		var email = $('#email').val();		
 		
 		var usuario = $('#usuario').val();
-		var password = $('#password').val();		
+		
 		
 		var existe_direccion=$('#existe_direccion').val();
 		var id_cat_estado = $('#id_cat_estado').val();		
@@ -116,8 +117,7 @@ $(function()
 		formData.append("paterno", paterno);
 		formData.append("materno", materno);
 		formData.append("email", email);		
-		formData.append("usuario", usuario);
-		formData.append("password", password);		        
+		formData.append("usuario", usuario);		
 		formData.append("file", file);
 
 		formData.append("existe_direccion", existe_direccion);		        
@@ -145,10 +145,27 @@ $(function()
 			success: function(data)
 			{					
                 Swal.fire({
-					title: 'El registro ha sido creado!',                        
+					title: 'El registro ha sido actualizado!',                        
 				}).then((result) => {
-					
+									
+					var id_cat_usuario=$('#id_cat_usuario').val()
+					let method_usuario = 'CPerfilCliente/Usuario';
+					var post_url = baseUrl+method_usuario;
+						
+					$.ajax({
+					url: post_url,
+					type: 'GET',
+					dataType: 'json',
+					data : {"id_cat_usuario":id_cat_usuario}, 			
+					success: function(response)
+					{	
+						$("#imagen_perfil").attr('src',baseUrl+"assets/images/users/"+response['usuario'][0].imagen);						
+					}
+					});
+
 				})
+
+
 			}
 		});
 	
@@ -166,6 +183,7 @@ $('#pagination').on('click','a',function(e){
 	e.preventDefault(); 
 	var pageno = $(this).attr('data-ci-pagination-page');	
 	loadPagination(pageno);			
+	loadPagination_contenido_interes(pageno);	
   });
 
 
@@ -188,6 +206,26 @@ function loadPagination(pagno)
 	});
 
 }  
+
+function loadPagination_contenido_interes(pagno)
+{	
+	var id_cat_usuario=$('#id_cat_usuario').val()
+	let method_pagination = 'CPerfilCliente/loadRecord_contenido_interes';
+	var post_url = baseUrl+method_pagination;
+    
+	$.ajax({
+	url: post_url,
+	type: 'POST',
+	dataType: 'json',
+	data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario}, 			
+	success: function(response)
+	{  
+		 $('#pagination').html(response.links);
+		 createTable_contenido_interes(response.publicaciones,response.row);		 			
+	}
+	});
+
+} 
 
 function createTable(result,sno)
 {
@@ -295,6 +333,82 @@ function createTable(result,sno)
 	  }		 
 
 
+}
+
+function createTable_contenido_interes(result,sno)
+{     
+	sno = Number(sno);
+	$('#tbody_publicaciones').empty();
+	html="";
+	for(index in result)
+	{  	
+		html+="<div class='row'>"+
+				"<div class='col-md-12'>"+
+					"<div class='row' >"+
+
+						
+							"<div class='col-md-2' style='text-align: left;'>"+
+							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+						
+							
+								+result[index].id_cat_publicacion+
+							"</a>"+	
+							"</div>"+
+							
+							"<div class='col-md-5' style='text-align: left;'>"+
+							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							"<h5 class='tituloV'><strong>Título:</strong></h5>"								
+								+result[index].titulo+								
+							"</a>"+		
+							"</div>"+
+						
+					
+
+					"</div>"+
+					"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+					"<div class='row'>"+
+						"<div class='col-md-12' style='text-align: justify;'>"+
+						"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+						+result[index].resumen+
+						"<br>"+
+						"</div>"+                             
+						"<br>"+
+					"</div>"+
+					"</a>"+	
+				"</div>"+						
+			"</div>"+
+			"<hr>";	      			
+	} 
+	$('#tbody_publicaciones').append(html);   				
+
+
+}	
+
+function consultarPublicacion(id_cat_publicacion)
+{	
+	let method_get_publicacion = 'CPerfilCliente/get_publicacion';
+	var post_url = baseUrl+method_get_publicacion
+
+	var id_cat_usuario=$( "#id_cat_usuario" ).val();		
+
+	$.ajax({
+		type: "POST",   
+		dataType:'json',       
+		data : {"id_cat_usuario":id_cat_usuario,"id_cat_publicacion":id_cat_publicacion}, 			  
+		url: post_url,                          
+		success: function(data){                                										
+			$('#id_cat_publicacion').val(id_cat_publicacion);
+			$("#titulo").val(data['publicacion'][0].titulo);			 								
+			$("#resumen").val(data['publicacion'][0].resumen);			 								
+			$("#publicacion").val(data['publicacion'][0].publicacion);		
+			$("#btn_save_edit_publicacion").html("editar");
+			
+
+			$('#Modal_Add').modal('show');
+		}
+	});
+
+	
 }
 
 

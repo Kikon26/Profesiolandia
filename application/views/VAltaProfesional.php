@@ -15,7 +15,7 @@
         <div class="container mt-n0 col-9">
           <div class="container-fluid py-0 pt-3" style="text-align: center;">
             <strong>
-              <h4 class="tituloV"> <strong> Bienvenido a la pagina de registro de datos de Profesiolandia</strong></h4>
+              <h4 class="tituloV"> <strong> Bienvenido a la pagina de registro de datos de Profesiolandia <?php echo $username ?></strong></h4>
             </strong>
 
             <!--Tabs de informacion del profesional inicio  -->
@@ -23,6 +23,7 @@
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">                
                 <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
                 <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>                
+                <a class="nav-item nav-link" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>                
                 <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
                 <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
                 <a class="nav-item nav-link" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
@@ -165,13 +166,83 @@
                   <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;">Guardar</button>
                 </form>   
               </div>  
+
+              <div class="tab-pane fade" id="nav-pub" role="tabpanel" aria-labelledby="nav-pub-tab">
+                <br>
+                <div class="row">
+                  <div class="col"></div>
+                  <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">
+                    <h4> Publicaciones</h4>
+                  </div>
+                  <div class="col"></div>
+                </div>
+                <hr>     
+
+                <div class="col-xs-4 col-sm-8 col-md-12" style="text-align: center;">                      
+                  Quieres hacer una publicación de valor para tu audiencia y llegar a mas usuarios, da click en el sig link
+                  <br>                  
+                  <a href="#" onclick="savePublicacion();"  >                   
+                    <span data-toggle="tooltip" data-placement="top" title="Crear Publicación">
+                      Crear Publicación
+                    </span>
+                  </a> 
+                </div>          
+
+                <div id="tbody_publicaciones"></div>             
+                <!--***********************************************************************************************************************************************-->
+                <!-- MODAL ADD -->
+                <form id="form_save_update_publicacion">
+                <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crea una Publicación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">                                                                                      
+                      <form id="form_save" style="text-align: center;" target="_self">
+                        <div class="form-row"  style="text-align: left;">
+                          <div class="col-md-12">
+                              <label for="publicacionLabel1">Título de la Publicación:</label>
+                              <input type='hidden' name='id_cat_publicacion' id='id_cat_publicacion' value="-1">
+                              <input type="text" class="form-control" id="titulo" placeholder="Ingresa el Titulo de la Publicacion(s)" required="">
+                          </div>
+
+                          <div class="col-md-12">
+                            <label for="resumenLabel1">Resúmen de la Publicación:</label>
+                            <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" required></textarea>
+                          </div>
+
+                          <div class="col-md-12">
+                            <label for="PublicacionLabel2">Publicación:</label>
+                            <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Ingresa la informacion de la publicación (10,000 caracteres maximo)" required></textarea>
+                          </div>
+                        </div>
+                        <br>                        
+                      </form>
+                            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" id="btn_save_edit_publicacion" class="btn btn-primary">Guardar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                </form>
+                <!--END MODAL ADD-->    
+      
+                <!--***********************************************************************************************************************************************-->           
+              </div>                
               
               <div class="tab-pane fade" id="nav-dir" role="tabpanel" aria-labelledby="nav-dir-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">
-                    <h4> Datos de contacto</h4>
+                    <h4> Domicilio Laboral</h4>
                   </div>
                   <div class="col"></div>
                 </div>
