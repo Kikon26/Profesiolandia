@@ -37,7 +37,7 @@
                   <div class="form-group has-feedback">
                     <!--<input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Email" required value="<?php echo $tUsua ?>">-->
                     <div class="controls">                                
-                      <input id="txtUsuario" name="txtUsuario" type="email" required data-validation-required-message="Esté campo es requerido" class="form-control" placeholder="Usuario" value="<?php echo $tUsua ?>">                
+                      <input id="txtUsuario" name="txtUsuario" type="email" required data-validation-required-message="Esté campo es requerido" class="form-control" placeholder="Email" value="<?php echo $tUsua ?>">                
                     </div>  
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
