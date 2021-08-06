@@ -11,38 +11,43 @@ class MReset_Password extends CI_Model {
 	public function index()
 	{	
 	
-    }
+  }
 
-	public function DetalleUsuario($id_cat_usuario)
+  public function GetUser($email)
   {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $postData = $this->input->post();
 
-    $query="select  
-            s.nombre as estado,                                    
-			p.usuario,
-            p.nombre,
-			p.paterno,
-			p.materno,
-			p.email,
-			p.imagen,
-            d.id_cat_estado,
-            d.municipio,
-            d.colonia,
-            d.calle,
-            d.num,
-            d.cp,
-            d.tel                                    
-            from usuarios as p inner join             
-            cat_direcciones as d on d.id_cat_usuario=p.id_cat_usuario and p.id_cat_usuario={$id_cat_usuario} left join 
-            cat_estados as s on s.id_cat_estado=d.id_cat_estado"; 
+    $query="select * from 
+            (
+              select id_cat_usuario as id_usuario_profesional, id_cat_rol,usuario, email from usuarios union
+              select id_cat_profesional as id_usuario_profesional,id_cat_rol,usuario, email from cat_profesionales
+            ) as t where t.email='{$email}'";         
+    
+    $resultado = $sqlsrvDB->query($query);		                
+    return $resultado->row_array();
+    
+  }
 
-  
-    $resultado = $sqlsrvDB->query($query);		
-    return $resultado->result();    
-  }  
+  public function update_usuario($id_cat_rol,$id_usuario_profesional,$code)
+  {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);        
+    $data = array(                  
+      'fecha_alta' => date("Y-m-d H:i:s"),
+      'code'  => $code,              
+      'activo' => 0
+    );
 
-	
+    if ($id_cat_rol==2)  
+      {
+        $sqlsrvDB->where('id_cat_profesional', $id_usuario_profesional);      
+        $resultado=$sqlsrvDB->update('cat_profesionales',$data);      
+      }  
+    else 
+    {
+      $sqlsrvDB->where('id_cat_usuario', $id_usuario_profesional);      
+      $resultado=$sqlsrvDB->update('usuarios',$data);      
+    }      
+  } 
 
 }
 

@@ -34,15 +34,7 @@ class CEnvio_Password extends CI_Controller {
 		$this->load->view('mp/pagina_principal',$data);
 	}
 
-	public function Usuario(){
-		$resultado['usuario'] = $this->MEnvio_Password->DetalleUsuario($this->input->get('id_cat_usuario'));				
-		echo json_encode($resultado);
-	}
-
-	
-
 }
-
 
 
 
