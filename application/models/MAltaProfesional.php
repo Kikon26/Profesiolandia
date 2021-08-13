@@ -19,7 +19,8 @@ class MAltaProfesional extends CI_Model {
     $postData = $this->input->post();
 
     $query="select  
-            s.nombre as estado,            
+            s.nombre as estado,   
+            e.id_cat_profesion,         
             e.nombre as profesion,
             p.especialidad,
             p.descripcion,
@@ -452,7 +453,75 @@ class MAltaProfesional extends CI_Model {
       $resultado = $sqlsrvDB->query($query);		
       return $resultado->result();
     
-    }    
+    }   
+    
+    public function get_count_preguntas() 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+        
+      $query="SELECT  
+                      p.id_cat_pregunta,
+                      p.pregunta,
+                      r.id_cat_respuesta,
+                      r.respuesta,
+                      r.carrera,
+                      r.profesional, 
+                      r.imagen
+                      FROM 
+                      (SELECT * FROM cat_preguntas WHERE id_cat_profesion={$postData['id_cat_profesion']} ) AS p LEFT JOIN
+                      (
+                        SELECT 
+                        r.id_cat_pregunta,
+                        r.id_cat_respuesta,
+                        r.respuesta,
+                        pe.nombre AS carrera,
+                        CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
+                        pr.imagen
+                        FROM                 
+                        cat_respuestas AS r   INNER JOIN 
+                        cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
+                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
+                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta";
+    
+      return $sqlsrvDB->query($query)->num_rows();
+    }  
+
+    public function ListadoPreguntas($limit, $start)
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+
+      $query="SELECT  
+                      p.id_cat_pregunta,
+                      p.pregunta,
+                      r.id_cat_respuesta,
+                      r.respuesta,
+                      r.carrera,
+                      r.profesional, 
+                      r.imagen
+                      FROM 
+                      (SELECT * FROM cat_preguntas WHERE id_cat_profesion={$postData['id_cat_profesion']} ) AS p LEFT JOIN
+                      (
+                        SELECT 
+                        r.id_cat_pregunta,
+                        r.id_cat_respuesta,
+                        r.respuesta,
+                        pe.nombre AS carrera,
+                        CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
+                        pr.imagen
+                        FROM                 
+                        cat_respuestas AS r   INNER JOIN 
+                        cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
+                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
+                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta";
+
+              //." limit ".$start.",".$limit;                        
+       
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    
+    }  
 
     public function save_update_publicacion()
     {
@@ -503,6 +572,55 @@ class MAltaProfesional extends CI_Model {
       
       $resultado=$sqlsrvDB->delete('cat_publicaciones');
     }      
+
+    public function GetProfesional($id_cat_profesional) 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+  
+      $query="select  * from cat_profesionales where id_cat_profesional={$id_cat_profesional} and activo=1";              
+    
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    }  
+
+    public function GetUsuario($id_cat_pregunta) 
+    { 
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+      $postData = $this->input->post();
+  
+      $query="select  u.* from cat_preguntas as p inner join usuarios as u on p.id_cat_pregunta={$id_cat_pregunta} and p.id_cat_usuario=u.id_cat_usuario";              
+    
+      $resultado = $sqlsrvDB->query($query);		
+      return $resultado->result();
+    }  
+
+    public function save_update_respuesta()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+          
+        $data = array(             
+            'id_cat_pregunta'  => $postData['id_cat_pregunta'], 
+            'id_cat_profesional'  => $postData['id_cat_profesional'], 
+            'respuesta'  => $postData['respuesta'],             
+            'fecha_alta' => date("Y-m-d H:i:s")            
+        );
+     
+  
+      if ($postData['id_cat_respuesta']=="-1")
+        $resultado=$sqlsrvDB->insert('cat_respuestas',$data);          
+      else
+        {
+          $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);
+          $sqlsrvDB->where('id_cat_respuesta', $postData['id_cat_respuesta']);
+          $resultado=$sqlsrvDB->update('cat_respuestas',$data);
+        }
+      
+      return $resultado;   
+    } 
+
+    
 }
 
 ?>
