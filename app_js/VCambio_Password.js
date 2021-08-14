@@ -60,11 +60,11 @@ $(function()
 			async:false,      
 			success: function(data)
 			{	
-				//console.log(data['enviado']);
+				console.log(data['enviado']);
 				Swal.fire({
 					title: 'Se Actualizo de manera exitosa la contraseña!',                        
 				}).then((result) => {
-					location.href=baseUrl + "CAcceso";	
+					location.href=baseUrl + "CInicio";	
 				})					
 			}
 		});

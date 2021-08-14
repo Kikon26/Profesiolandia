@@ -60,38 +60,22 @@
                                 </div>
 
                             </div>    
-                                        
+                            
 
-                            <div class="row"> 
-                                <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="form-group col-md-2">
                                   <label class="col-form-label">Usuario</label>
                                   <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" onkeypress="return AvoidSpace(event)" required>
                                 </div>  
 
-                                <div class="form-group col-md-4">
-                                    <label class="col-form-label">Password</label>                                      
-                                    <div class="controls">
-                                        <input type="password" name="password" id="password" class="form-control">                                         
-                                    </div>                                 
-                                </div>   
-
-                                <div class="form-group col-md-4">
-                                    <label class="col-form-label">Confirma tu Password</label>                                      
-                                    <div class="controls">
-                                        <input type="password" name="password2" id="password2" data-validation-match-match="password" class="form-control">
-                                    </div>  
-                                </div>                                                    
-                            </div>  
-
-                            <div class="form-group row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                   <label class="col-form-label">Email</label>                                      
                                   <div class="controls">
                                     <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido"> 
                                   </div>  
                                 </div>
                                 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <label class="col-form-label">Telefono</label>
                                   <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Telefono" required>
                                 </div>                                  

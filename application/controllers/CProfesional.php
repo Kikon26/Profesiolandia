@@ -74,6 +74,7 @@ class CProfesional extends CI_Controller {
 		$resultado['publicaciones'] = $this->MProfesional->CatalogoPublicaciones();				
 		echo json_encode($resultado);
 	}
+
 }
 
 

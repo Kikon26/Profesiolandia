@@ -23,14 +23,15 @@ class CCambio_Password extends CI_Controller {
 	
 		// obtener los detalles del usuario
 		$user = $this->MCambio_Password->GetUser($id_cat_rol,$id_usuario_profesional);		
+			
 		
 		if($user['code'] == $code)
-		{
+		{   
 			$dataf = array(			
 				'id_cat_rol'  => $user['id_cat_rol'],
 				'id_usuario_profesional' => $id_usuario_profesional		
 			);
-				
+			
 			$data = array(
 				'seccion' => 'Cambio_Password',
 				'vista' => 'VCambio_Password',

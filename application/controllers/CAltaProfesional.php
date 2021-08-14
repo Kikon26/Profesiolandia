@@ -12,7 +12,6 @@ class CAltaProfesional extends CI_Controller {
 		
 		$this->load->model('MAltaProfesional');
 		$this->load->model('MMenu');
-
     }
     public function index(){
 		if (isset($this->session->gIdPerfil)) 
@@ -273,6 +272,63 @@ class CAltaProfesional extends CI_Controller {
 		echo json_encode($pagination_data);
 	}	
 
+	public function loadRecord_preguntas()
+	{		
+		$rowno=$this->input->post('pagno');
+
+		$config = array();
+        $config["base_url"] = base_url() . "CAltaProfesional";
+        $config["total_rows"] = $this->MAltaProfesional->get_count_preguntas(); 
+        $config["per_page"] = 20;
+		$config["uri_segment"] = 2;		
+		
+		// custom paging configuration
+		$config['num_links'] = 4;
+		$config['use_page_numbers'] = TRUE;
+		$config['reuse_query_string'] = TRUE;
+		 
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		 
+		$config['first_link'] = 'First Page';
+		$config['first_tag_open'] = '<span class="firstlink">';
+		$config['first_tag_close'] = '</span>';
+		 
+		$config['last_link'] = 'Last Page';
+		$config['last_tag_open'] = '<span class="lastlink">';
+		$config['last_tag_close'] = '</span>';
+		 
+		$config['next_link'] = 'Next Page';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$config['prev_link'] = 'Prev Page';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="page-item">';
+		$config['cur_tag_close'] = '</li>';
+
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		
+		$config['attributes'] = array('class' => 'page-link');
+        		
+		$this->pagination->initialize($config);
+
+		// Row position
+		if($rowno != 0){
+			$rowno = ($rowno-1) * $config["per_page"];			
+		}
+        
+		$page = $rowno;
+		$pagination_data["links"] = $this->pagination->create_links();
+		$pagination_data['preguntas'] = $this->MAltaProfesional->ListadoPreguntas($config["per_page"], $page);	
+		$pagination_data['row'] = $rowno;
+		
+		echo json_encode($pagination_data);
+	}	
+
 	public function save_update_publicacion(){
 		$resultado['save_update'] = $this->MAltaProfesional->save_update_publicacion();				
 		echo json_encode($resultado);
@@ -285,6 +341,156 @@ class CAltaProfesional extends CI_Controller {
 
 	public function delete_publicacion(){
 		$resultado['delete'] = $this->MAltaProfesional->delete_publicacion();				
+		echo json_encode($resultado);
+	}
+
+	public function save_update_respuesta(){
+
+		/***************************************************************************************************/
+		$postData = $this->input->post();				 
+		$this->load->library('email');
+	   
+		 $config['protocol'] = 'mail';		  
+	   //   $config["smtp_host"] = 'smtp.gmail.com';		   		 
+	   //   $config["smtp_user"] = 'usuario';
+	   //   $config["smtp_pass"] = 'password';   
+	   //   $config["smtp_port"] = '25';
+		 $config['charset'] = 'utf-8';   		 
+		 $config['wordwrap'] = TRUE;
+		 $config['validate'] = true;	
+		 $config['mailtype'] = 'html';
+		  
+		
+		/***************************************************************************************************/		
+		/*************************Envio de respuesta*********************************/
+		$profesional = $this->MAltaProfesional->GetProfesional($postData['id_cat_profesional']);					
+
+		$subject = "Notificación Profesiolandia - Respuesta";	  
+				
+		$message = "
+		<html lang='en'>
+		<head>
+			
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+		</head>
+		<body>
+		<div class='container mt-n0'>
+			<div class='container-fluid  py-3 px-3'>
+			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
+				
+				<div class='row' style='text-align: center;'>
+				<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+				</div>
+				<strong>
+						<h4 style='color: #007b5e'> <strong> Hola ". $profesional['usuario'] . "</strong> </h4>
+				</strong>  
+				<div class='row' style='text-align: center;'>
+				Te enviamos este correo de <strong> Profesiolandia </strong> para confirmar alta de la respuesta a la pregunta <strong>".$postData['pregunta']."</strong>   :<br>
+				<strong>".$postData['respuesta']."</strong><br>
+				Para consultar la pregunta con sus posibles respuetsas puedes dar click en la sig liga.
+				</div>
+				
+				<p style='text-align: center;'>
+					<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+					</p>
+				<div class='row'>
+				<div class='col' style='text-align: center;'  >
+				Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+				</div>
+				<br>
+				
+				<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
+					<a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+				</div>
+			</div>
+			</div>
+		</div>
+		</body>
+		</html>
+		";
+		
+
+		//Establecemos esta configuración
+		$this->email->initialize($config);
+		$this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		$this->email->to($profesional['email'], $profesional['nombre']." ".$profesional['paterno']." ".$profesional['materno']);		
+		$this->email->subject($subject);
+		$this->email->message($message);
+				
+		$enviado=false;
+		
+		if($this->email->send())		$enviado=true;
+		//***************************************************************************************************		
+		//***************************************************************************************************		
+		$usuario = $this->MAltaProfesional->GetUsuario($postData['id_cat_pregunta']);				
+
+		$subject = "Notificación Profesiolandia - Respuesta";	  
+				
+		$message = "
+		<html lang='en'>
+		<head>
+			
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+		</head>
+		<body>
+		<div class='container mt-n0'>
+			<div class='container-fluid  py-3 px-3'>
+			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
+				
+				<div class='row' style='text-align: center;'>
+				<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+				</div>
+				<strong>
+						<h4 style='color: #007b5e'> <strong> Hola ". $usuario['usuario'] . "</strong> </h4>
+				</strong>  
+				<div class='row' style='text-align: center;'>
+				Te enviamos este correo de <strong> Profesiolandia </strong> para notificarte que tu pregunta <strong>".$postData['pregunta']."</strong>   fue contestada por un Profesional:<br>
+				<strong>".$postData['respuesta']."</strong><br>
+				Para consultar la pregunta con sus posibles respuetsas puedes dar click en la sig liga.
+				</div>
+				
+				<p style='text-align: center;'>
+					<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+					</p>
+				<div class='row'>
+				<div class='col' style='text-align: center;'  >
+				Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+				</div>
+				<br>
+				
+				<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
+					<a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+				</div>
+			</div>
+			</div>
+		</div>
+		</body>
+		</html>
+		";
+		
+
+		//Establecemos esta configuración
+		$this->email->initialize($config);
+		$this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		$this->email->to($usuario['email'], $usuario['nombre']." ".$usuario['paterno']." ".$usuario['materno']);		
+		$this->email->subject($subject);
+		$this->email->message($message);
+				
+		$enviado=false;
+		
+		if($this->email->send())		$enviado=true;
+        
+		/***************************************************************************************************/		
+		/***************************************************************************************************/		
+		$resultado['save_update'] = $this->MAltaProfesional->save_update_respuesta();						
 		echo json_encode($resultado);
 	}
 }

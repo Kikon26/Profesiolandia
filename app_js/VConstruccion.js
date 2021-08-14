@@ -14,20 +14,26 @@ const asyncGetReq = async (datos, url) => {
 $(function() 
 {
 	'use strict'; 
-		
+	//bloqueaPantalla();
+  
+	/*
+	let method = 'CKike/Usuario?';
+	let criterios = {id_cat_usuario:$('#id_cat_usuario').val()};
 	
-	/*let method = 'CInicio/Profesiones?';
-  	let criterios = {d:'1'};
-  	
-  	asyncGetReq(criterios, baseUrl + method).then(data => { //Funcion callback``
-    
+	asyncGetReq(criterios, baseUrl + method).then(data => 
+	{ //Funcion callback``	
+	
+        	
+	  desbloqueaPantalla();
+  	}).catch(e => { console.error(e); desbloqueaPantalla();});
+	//fin dle proceso
 
+	*/  
 
-  
-  		desbloqueaPantalla();
-  }).catch(e => { console.error(e); desbloqueaPantalla();});*/
-  
-   desbloqueaPantalla(); 
+	desbloqueaPantalla();
 
 });
+
+
+
 

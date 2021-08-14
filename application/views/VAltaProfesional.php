@@ -15,7 +15,7 @@
         <div class="container mt-n0 col-9">
           <div class="container-fluid py-0 pt-3" style="text-align: center;">
             <strong>
-              <h4 class="tituloV"> <strong> Bienvenido a la pagina de registro de datos de Profesiolandia</strong></h4>
+              <h4 class="tituloV"> <strong> Bienvenido a la pagina de registro de datos de Profesiolandia <?php echo $username ?></strong></h4>
             </strong>
 
             <!--Tabs de informacion del profesional inicio  -->
@@ -23,7 +23,8 @@
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">                
                 <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
                 <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>                
-                <a class="nav-item nav-link" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>                
+                <a class="nav-item nav-link" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>    
+                <a class="nav-item nav-link" id="nav-quest-tab" data-toggle="tab" href="#nav-quest" role="tab" aria-controls="nav-quest" aria-selected="false">Preguntas</a>            
                 <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
                 <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
                 <a class="nav-item nav-link" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
@@ -47,7 +48,7 @@
                     <div class="form-row" style="text-align: left;">
                       <div class="form-group col-md-6">
                         <label for="titulo">Título</label>
-                        <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >  
+                        <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >                          
                         <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
                         <input type="hidden" name="existe_direccion" id="existe_direccion" value="no" >  
                         <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
@@ -232,13 +233,27 @@
                 </div>
                 </div>
                 </form>
-            <!--END MODAL ADD-->
-    
-
-    
+                <!--END MODAL ADD-->    
       
                 <!--***********************************************************************************************************************************************-->           
-              </div>                
+              </div>   
+              <!--  Detalle tab  - Preguntas - Inicio  -->
+              <div class="tab-pane fade" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
+                <br>
+                <div class="row">
+                  <div class="col"></div>
+                  <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                    
+                    <h4> Preguntas </h4>                    
+                  </div>
+                  <div class="col"></div>
+                </div>
+                
+                <hr>
+
+                <div id="tbody_preguntas"></div>    
+                <!--***********************************************************************************************************************************************-->  
+              </div>
+              
               
               <div class="tab-pane fade" id="nav-dir" role="tabpanel" aria-labelledby="nav-dir-tab">
                 <br>
@@ -612,8 +627,66 @@
 
 
     
-    </div>
-</div>
+          </div>
+
+                <!--***********************************************************************************************************************************************-->
+                <!-- MODAL ADD -->
+                <form id="form_save_update_respuesta">
+                <div class="modal fade" id="Modal_Add_Respuesta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Responder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">                                                                                      
+                      <div class="row">
+            
+                        <div class="col-md-7">
+                          <br>
+                          <h5 class="tituloV"><strong>Aporta valor a un Usuario</strong> </h5>
+                          <p class="text-justify">
+                            Tu respuesta sera canalizada al usuario <br>
+                            Los usuarios tardan aproximadamente 48 horas en ver tu respuesta<br>
+                            Recibiras una notificacion cuando tu respuesta sea consultada
+                          </p>
+                        </div>
+
+                        <div class="col-md-5" style="text-align: center;">
+                          <img src="<?php echo base_url(); ?>imagenes/questions.png" style="height: 200px; width: 200px;" alt="Pregunta">
+                        </div>
+                      </div>
+
+                      <div class="container" style="border-radius: 25px; background: #ded7d7;">
+                        <br>                         
+                          <div class="container" style="text-align: left;">
+                            <label for="id_cat_profesion" class="form-label"><strong style="color: #333030;">&nbsp;Pregunta</strong></label>
+                            <input type="text" class="form-control" id="pregunta" placeholder="pregunta" readonly>
+                          </div>                          
+                        <br>                         
+                          <div class="container" style="text-align: left;">
+                            <label for="pregunta1" class="form-label"><strong style="color: #333030;">&nbsp;Cual es tu respuesta?</strong></label>
+                            <input type='hidden' name='id_cat_pregunta' id='id_cat_pregunta' value="-1">
+                            <input type='hidden' name='id_cat_respuesta' id='id_cat_respuesta' value="-1">
+                            <input type="text" class="form-control" id="respuesta" placeholder="Escribe tu respuesta...">
+                          </div>                          
+                        <br>
+                      </div>                      
+                      <br>                              
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" id="btn_save_edit_respuesta" class="btn btn-primary">Enviar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                </form>
+                <!--END MODAL ADD-->    
+                <!--***********************************************************************************************************************************************-->
+      </div>
       
 
     </div>

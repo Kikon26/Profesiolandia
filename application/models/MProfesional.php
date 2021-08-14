@@ -147,7 +147,7 @@ class MProfesional extends CI_Model {
     
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();        
-    } 
+    }     
 
 }
 

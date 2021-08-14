@@ -66,9 +66,6 @@ class MProfesionalAdministraCuenta extends CI_Model {
       $data['imagen'] = $file_name;
     }		
 
-    if ( $postData['password']<>"")  
-      $data['password']= sha1($postData['password']); 
-
     $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);      
     $resultado=$sqlsrvDB->update('cat_profesionales',$data);  		
     /*************************************************************************/

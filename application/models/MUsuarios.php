@@ -30,8 +30,22 @@ class MUsuarios extends CI_Model {
         //var_dump($resultado);
 
         if ($resultado->num_rows()>0)
-        {
-        	$row = $resultado->row();
+        { 
+          
+          $row = $resultado->row();
+
+          // generar código aleatorio simple
+			    $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			    $code = substr(str_shuffle($set), 0, 12);
+
+          $data = array(             
+            'code' => $code
+            );      
+              
+          $sqlsrvDB->where('id_cat_usuario', $row->id_cat_usuario);      
+          $resultado=$sqlsrvDB->update('usuarios',$data);    
+                     
+        	
         	return $row->id_cat_usuario;
         	//return 1;	
         }
@@ -54,7 +68,7 @@ class MUsuarios extends CI_Model {
     public function datosUsuario($id_cat_usuario)
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select u.id_cat_usuario,u.usuario,u.nombre,u.paterno,r.id_cat_rol,r.nombre as rol,u.imagen,concat(u.nombre,' ',u.paterno) as nombre_apellido,u.email
+      $query="select u.id_cat_usuario,u.usuario,u.nombre,u.paterno,r.id_cat_rol,r.nombre as rol,u.imagen,concat(u.nombre,' ',u.paterno) as nombre_apellido,u.email,u.code
               from usuarios as u inner join cat_roles as r on r.id_cat_rol=u.id_cat_rol and u.activo=1 and u.id_cat_usuario='{$id_cat_usuario}'";         
     
       $resultado = $sqlsrvDB->query($query);		
@@ -126,7 +140,7 @@ class MUsuarios extends CI_Model {
         $data['imagen'] = $file_name;
       }  
 
-    $sqlsrvDB->where('id_cat_usuario', $postData['usuario_id_cat_usuario']);
+      $sqlsrvDB->where('id_cat_usuario', $postData['usuario_id_cat_usuario']);
       
       $resultado=$sqlsrvDB->update('usuarios',$data);
       return $resultado;              

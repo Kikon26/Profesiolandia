@@ -190,13 +190,14 @@
                 <div class="row">
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                    
-                    <h4> Experiencia, Titulos y Publicaciones</h4>                   
+                    <h4> Experiencia Titulos y Publicaciones</h4>                   
                   </div>
                   <div class="col"></div>
                 </div>
                 <hr>
 
                 <div class="accordion" id="collapse_experiencia">
+
                   <div class="card">
                     <div class="card-header" id="headingOne">
                       <h2 class="mb-0">
@@ -210,6 +211,7 @@
                       <div class="card-body" id="experiencia_servicios_ofrecidos"></div>
                     </div>
                   </div>
+                  
                   <div class="card">
                     <div class="card-header" id="headingTwo">
                       <h2 class="mb-0">
@@ -222,32 +224,78 @@
                   </div>
 
                   <div class="card">
-                    <div class="card-header" id="headingFour">
+                    <div class="card-header" id="headingThree">
                       <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <h6 class="tituloV"><strong>Publicaciones</strong> </h6>
                         </button>
                       </h2>
                     </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia"></div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapse_experiencia">                      
+                    </div>
+                    <!--***********************************************************************************************************************************************-->
+                    <!-- MODAL ADD -->                    
+                    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detalle Publicación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">                                                                                      
+                          
+                            <div class="row"  style="text-align: left;">
+                              <div class="col-md-12">
+                                  <label for="publicacionLabel1">Título de la Publicación:</label>
+                                  <input type='hidden' name='id_cat_publicacion' id='id_cat_publicacion' value="-1">
+                                  <input type="text" class="form-control" id="titulo" placeholder="Ingresa el Titulo de la Publicacion(s)"  readonly>
+                              </div>
+
+                              <div class="col-md-12">
+                                <label for="resumenLabel1">Resúmen de la Publicación:</label>
+                                <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" readonly ></textarea>
+                              </div>
+
+                              <div class="col-md-12">
+                                <label for="PublicacionLabel2">Publicación:</label>
+                                <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Ingresa la informacion de la publicación (10,000 caracteres maximo)" readonly></textarea>
+                              </div>
+                            </div>
+                            <br>                        
+                          
+                                
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" id="btn_save_edit_publicacion" class="btn btn-primary">Guardar</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!--END MODAL ADD-->    
+          
+                    <!--***********************************************************************************************************************************************-->                                       
+
+
                   </div>
-                  
-
-
 
                   <div class="card">
-                    <div class="card-header" id="headingThree">
+                    <div class="card-header" id="headingFour">
                       <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             <h6 class="tituloV"><strong>Preguntas Frecuentes</strong> </h6>
                         </button>
                       </h2>
                     </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapse_experiencia">
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia">
                       <div class="card-body"id="preguntas_frecuentes">
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-val" role="tabpanel" aria-labelledby="nav-val-tab">

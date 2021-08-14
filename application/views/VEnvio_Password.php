@@ -127,5 +127,3 @@
 <!-- tinymce -->    
 <!-- ============================================================== -->                
 <script src="<?php echo base_url(); ?>assets/libs/tinymce/tinymce.min.js"></script>
-
-

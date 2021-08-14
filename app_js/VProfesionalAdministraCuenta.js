@@ -80,8 +80,7 @@ $(function()
 		var materno = $('#materno').val();
 		var email = $('#email').val();		
 		
-		var usuario = $('#usuario').val();
-		var password = $('#password').val();		
+		var usuario = $('#usuario').val();		
 		
 		var existe_direccion=$('#existe_direccion').val();
 		var id_cat_estado = $('#id_cat_estado').val();		
@@ -115,8 +114,7 @@ $(function()
 		formData.append("paterno", paterno);
 		formData.append("materno", materno);
 		formData.append("email", email);		
-		formData.append("usuario", usuario);
-		formData.append("password", password);		        
+		formData.append("usuario", usuario);		
 		formData.append("file", file);
 
 		formData.append("existe_direccion", existe_direccion);		        
@@ -144,9 +142,23 @@ $(function()
 			success: function(data)
 			{					
                 Swal.fire({
-					title: 'El registro ha sido creado!',                        
+					title: 'El registro se ha actualizado!',                        
 				}).then((result) => {
-					
+
+					var id_cat_profesional=$('#id_cat_profesional').val()
+					let method_usuario = 'CProfesionalAdministraCuenta/Usuario';
+					var post_url = baseUrl+method_usuario;
+						
+					$.ajax({
+					url: post_url,
+					type: 'GET',
+					dataType: 'json',
+					data : {"id_cat_profesional":id_cat_profesional}, 			
+					success: function(response)
+					{	
+						$("#imagen_perfil").attr('src',baseUrl+"assets/images/profesionales/"+response['usuario'][0].imagen);						
+					}
+					});
 				})
 			}
 		});

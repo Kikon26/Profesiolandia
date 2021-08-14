@@ -1,4 +1,5 @@
 
+
 <div class="page-wrapper33">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -90,5 +91,3 @@
 <!-- tinymce -->    
 <!-- ============================================================== -->                
 <script src="<?php echo base_url(); ?>assets/libs/tinymce/tinymce.min.js"></script>
-
-

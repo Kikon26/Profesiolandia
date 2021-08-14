@@ -20,10 +20,10 @@
                             <h6 class="card-title">Servicios</h6>
                             <p class="card-text" style="text-align: left;">
                             
-                                <a href="#" style="padding: 10px;">Quienes somos</a><br>
-                                <a href="#" style="padding: 10px;">Contacto</a><br>
-                                <a href="#" style="padding: 10px;">Planes y costos</a><br>
-                                <a href="#" style="padding: 10px;">Reporta algun problema del sistema</a><br>
+                                <a href="CQuienes_somos" style="padding: 10px;">Quienes somos</a><br>
+                                <a href="CConstruccion" style="padding: 10px;">Contacto</a><br>
+                                <a href="CConstruccion" style="padding: 10px;">Planes y costos</a><br>
+                                <a href="CConstruccion" style="padding: 10px;">Reporta algun problema del sistema</a><br>
                             
                             </p>
                         </div>
@@ -34,11 +34,11 @@
                         <h6 class="card-title">Usuarios</h6>
                         <p class="card-text"  style="text-align: left;">
                             
-                            <a href="#" style="padding: 10px;">Busca profesionales</a><br>
-                            <a href="#" style="padding: 10px;">Pregunta a un experto</a><br>
-                            <a href="#" style="padding: 10px;">Agenda una cita</a><br>
-                            <a href="#" style="padding: 10px;">Servicios</a><br>
-                            <a href="#" style="padding: 10px;">Contenido</a><br>
+                            <a href="CBuscar" style="padding: 10px;">Busca profesionales</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Pregunta a un experto</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Servicios</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Contenido</a><br>
                             
                         </p>
                         </div>
@@ -49,9 +49,9 @@
                         <h6 class="card-title">Profesionistas</h6>
                         <p class="card-text"  style="text-align: left;">
                             
-                            <a href="#" style="padding: 10px;">Inicia Sesion</a><br>
-                            <a href="#" style="padding: 10px;">Calendario de citas</a><br>
-                            <a href="#" style="padding: 10px;">Agenda una cita</a><br>
+                            <a href="CAcceso" style="padding: 10px;">Inicia Sesion</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Calendario de citas</a><br>
+                            <a href="CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
                             
                         </p>
                         </div>

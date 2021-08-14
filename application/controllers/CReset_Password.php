@@ -62,27 +62,23 @@ class CReset_Password extends CI_Controller {
 		  $subject = "Instucciones Profesiolandia - Cambio de contrasena";	  
 		  
 		  $message = "
-
 		  <html lang='en'>
 			<head>
 			  
 			  <meta charset='utf-8'>
 			  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
-			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/bootstrap.min.css' rel='stylesheet'>
-			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/mdb.min.css' rel='stylesheet'>
+			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
+			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
+			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
 			</head>
 			<body>
-
-
 		  <div class='container mt-n0'>
 			  <div class='container-fluid  py-3 px-3'>
 				<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				  
 				  <div class='row' style='text-align: center;'>
-					<img src='http://obraspublicas.morelia.gob.mx/Profesiolandia/imagenes/Logo_Profesionalia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+					<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				  </div>
-
 				  <strong>
 						   <h4 style='color: #007b5e'> <strong> Hola ". $user['usuario'] . "</strong> </h4>
 				  </strong>  
@@ -95,7 +91,6 @@ class CReset_Password extends CI_Controller {
 					<p style='text-align: center;'>
 					   <a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Cambia tu contraseña </strong> </a>					      
   				    </p>
-
 				  <div class='row'>
 				  <div class='col' style='text-align: center;'  >
 					Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
@@ -104,20 +99,12 @@ class CReset_Password extends CI_Controller {
 				  
 				  <div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
 					 <a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
-
 				  </div>
-
-
 				</div>
-
-
-
 			  </div>
 		  </div>
-
 		   </body>
 		  </html>
-
 		  ";
 		   
 
@@ -157,7 +144,5 @@ class CReset_Password extends CI_Controller {
     }
 
 }
-
-
 
 

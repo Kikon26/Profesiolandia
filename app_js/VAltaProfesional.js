@@ -14,7 +14,7 @@ const asyncGetReq = async (datos, url) => {
 $(function() 
 {
 	'use strict'; 
-	loadPagination(0);
+	loadPagination(0);	
 	//bloqueaPantalla();
   
 	/*
@@ -38,7 +38,7 @@ $(function()
 	desbloqueaPantalla();
 
 	get_profesional();	
-	
+	/*
 	if ($("#informacion_completa").length > 0) {
 		tinymce.init({
 			selector: "textarea#informacion_completa",
@@ -50,14 +50,14 @@ $(function()
 				"save table contextmenu directionality emoticons template paste textcolor"
 			],
 			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-			/*
-			setup: function (editor) {
-				editor.on('change', function(e) {
-					console.log(editor.id);
-				    $("#"+editor.id).text(editor.getContent());
-				});
+			
+			// setup: function (editor) {
+			// 	editor.on('change', function(e) {
+			// 		console.log(editor.id);
+			// 	    $("#"+editor.id).text(editor.getContent());
+			// 	});
 				
-			  }*/
+			//   }
 			
 
 		});
@@ -92,7 +92,7 @@ $(function()
 			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
 
 		});
-	}  
+	} */ 
 
 
 	$("#button_delete_rec").hide();        
@@ -416,7 +416,9 @@ function get_profesional()
 	  data : {"id_cat_profesional":id_cat_profesional}, 			
 	  success: function(data)
 	  {  
-		cat_profesion(data['profesional'][0].profesion);
+		cat_profesion(data['profesional'][0].profesion);		
+		loadPagination_preguntas(0,data['profesional'][0].id_cat_profesion);	
+
 		$('#especialidad').val(data['profesional'][0].especialidad);
 		$('#descripcion').val(data['profesional'][0].descripcion);
 		$('#informacion_completa').html(data['profesional'][0].informacion_completa);
@@ -832,8 +834,8 @@ $("#form_info_gral").on("submit", function(){
 	var id_cat_profesion = $('#id_cat_profesion').val();		
 	var especialidad = $('#especialidad').val();
 	var descripcion = $('#descripcion').val();
-	//var informacion_completa = $('#informacion_completa').val();
-	var informacion_completa = tinymce.get("informacion_completa").getContent();
+	var informacion_completa = $('#informacion_completa').val();
+	//var informacion_completa = tinymce.get("informacion_completa").getContent();
 
 	var cedula_profesional = $('#cedula_profesional').val();
 	var cedula_profesional_postgrado = $('#cedula_profesional_postgrado').val();
@@ -880,11 +882,11 @@ $("#form_info_gral").on("submit", function(){
 $("#form_experiencia_titulos").on("submit", function(){ 
 		
 	var id_cat_profesional = $('#id_cat_profesional').val();		
-	//var experiencia_servicios_ofrecidos = $('#experiencia_servicios_ofrecidos').val();	
-	var experiencia_servicios_ofrecidos =tinymce.get("experiencia_servicios_ofrecidos").getContent();
+	var experiencia_servicios_ofrecidos = $('#experiencia_servicios_ofrecidos').val();	
+	//var experiencia_servicios_ofrecidos =tinymce.get("experiencia_servicios_ofrecidos").getContent();
 
-	//var preguntas_frecuentes = $('#preguntas_frecuentes').val();		
-	var preguntas_frecuentes = tinymce.get("preguntas_frecuentes").getContent();
+	var preguntas_frecuentes = $('#preguntas_frecuentes').val();		
+	//var preguntas_frecuentes = tinymce.get("preguntas_frecuentes").getContent();
 	
 	var formData = new FormData();
 	
@@ -1126,7 +1128,10 @@ function cat_profesion(profesion)
 			for (let i in data['profesion']) 				{  
 				    
 					if (data['profesion'][i].nombre==profesion)                                                  
-					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].id_cat_profesion+'.-'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
+					  {
+						  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].id_cat_profesion+'.-'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
+						  $('#id_cat_profesion_temp').val(data['profesion'][i].id_cat_profesion);		
+					  }	  
 					else  
 					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].id_cat_profesion+'.-'+data['profesion'][i].nombre+'</option>';                   
 				}    
@@ -1290,13 +1295,6 @@ function validate(evt) {
         input[0].setSelectionRange(caret_pos, caret_pos);
     }    	
 
-	// Detect pagination click
-	$('#pagination').on('click','a',function(e){
-		e.preventDefault(); 
-		var pageno = $(this).attr('data-ci-pagination-page');	
-		loadPagination(pageno);			
-	});
-
 	function loadPagination(pagno)
 	{	
 		let method_pagination = 'CAltaProfesional/loadRecord';
@@ -1312,13 +1310,32 @@ function validate(evt) {
 				"id_cat_profesional":id_cat_profesional
 				}, 			
 		success: function(response)
-		{
+		{ 
 			$('#pagination').html(response.links);
 			createTable(response.publicaciones,response.row);		 			
 		}
 		});
 
 	} 
+
+	function loadPagination_preguntas(pagno,id_cat_profesion)
+{	
+	var id_cat_profesional=$('#id_cat_profesional').val();	
+	let method_pagination = 'CAltaProfesional/loadRecord_preguntas';
+	var post_url = baseUrl+method_pagination;
+    
+	$.ajax({
+	url: post_url,
+	type: 'POST',
+	dataType: 'json',
+	data : {"pagno":pagno,"id_cat_profesional":id_cat_profesional,"id_cat_profesion":id_cat_profesion}, 			
+	success: function(response)
+	{   
+		$('#pagination').html(response.links);
+		createTable_preguntas(response.preguntas,response.row);		 			
+	}
+	});
+} 
 
 	function createTable(result,sno)
 	{     
@@ -1372,7 +1389,75 @@ function validate(evt) {
 		$('#tbody_publicaciones').append(html);   				
 	
 	
-	}	
+	}
+	
+	function createTable_preguntas(result,sno)
+	{     
+		sno = Number(sno);
+		$('#tbody_preguntas').empty();
+		html="";
+		id_cat_pregunta_temp=0;
+		for(index in result)
+		{ 
+			if(id_cat_pregunta_temp!=result[index].id_cat_pregunta)
+			{
+				id_cat_pregunta_temp=result[index].id_cat_pregunta;
+				html+=" <!--  Preguntas Collapse -->"+  
+						"<div class='row' style='text-align: left;'>"+
+							"<div class='col-md-8' style='border-radius: 25px; border-color: black; background-color: #f1efef;'>"+
+							"<br>"+
+							"<a data-toggle='collapse' href='#collapsePregunta"+result[index].id_cat_pregunta+"' role='button' aria-expanded='false' aria-controls='collapsePregunta"+result[index].id_cat_pregunta+"'>"
+								+result[index].pregunta+
+								"<br>"+
+								"<br>"+
+							"</a>"+
+							"</div>"+
+							"<div class='col-md-4'>"+
+								"<a href='#' onclick='ContestarPregunta("+result[index].id_cat_pregunta+",\""+result[index].pregunta+"\");'  >"+                   
+									"<span data-toggle='tooltip' data-placement='top' title='Responde a un Usuario'>"+                   
+									"Responder"+                   
+									"</span>"+                   
+								"</a>"+                     
+							"</div>"+
+
+
+						"</div>"+
+
+						
+	
+						"<div class='collapse' id='collapsePregunta"+result[index].id_cat_pregunta+"'>";
+			}
+			if (result[index].id_cat_respuesta!=null) 
+			{ 
+			html+=	
+	
+							"<br>"+
+							"<!-- Respuestas  -->"+
+							"<div class='row'>"+                    
+								"<div class='col-md-4'>"+
+									"<a href='profesional.php=id=1111' target='_self'>"+        
+										"<img src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' style='max-height: 40px; max-height: 40px; position: absolute; bottom: 5px; right: 5px; border-radius: 40%;' data-toggle='tooltip' data-placement='top' title='"+result[index].carrera+" "+result[index].profesional+"'>"+
+									"</a>"+                        
+								"</div>"+
+								"<div class='col-md-8' style='border-radius: 25px; background: #dddddd;'>"+	
+									"<br>"
+									+result[index].respuesta+
+									"<br>"+
+									"<br>"+
+								"</div>"+
+							"</div>";
+			}				
+			
+			
+			if ( (typeof(result[parseInt(index)+1]) != 'undefined' ) && id_cat_pregunta_temp!=result[parseInt(index)+1].id_cat_pregunta)
+			{
+				html+=	"</div>"+
+						 "<br> ";
+			}		
+		} 
+		$('#tbody_preguntas').append(html);   				
+	}		
+
 	function deletePublicacion(id_cat_publicacion)
 	{
 		let method_delete_publicacion = 'CAltaProfesional/delete_publicacion';
@@ -1475,6 +1560,65 @@ function validate(evt) {
 					title: 'Actualización realizada con exitó!',                        
 				}).then((result) => {
 					loadPagination(0);
+				})	
+			}
+		});
+		
+
+		 return false;
+		
+	});		
+
+	function ContestarPregunta(id_cat_pregunta,pregunta)
+	{
+		$("#btn_save_edit_respuesta").html("Guardar");		
+		$('#pregunta').val(pregunta);
+		$('#id_cat_pregunta').val(id_cat_pregunta);
+		$('#respuesta').val("");		
+
+		
+		$('#Modal_Add_Respuesta').modal('show');
+	}
+
+	$("#form_save_update_respuesta").on("submit", function(){ 			
+		var id_cat_profesional=$( "#id_cat_profesional" ).val();		
+		var id_cat_pregunta = $('#id_cat_pregunta').val();			
+		var pregunta = $('#pregunta').val();			
+		var id_cat_respuesta = $('#id_cat_respuesta').val();			
+		var respuesta = $('#respuesta').val();
+		
+		var formData = new FormData();
+
+		formData.append("id_cat_profesional", id_cat_profesional);				
+		formData.append("id_cat_pregunta", id_cat_pregunta);
+		formData.append("pregunta", pregunta);
+		formData.append("id_cat_respuesta", id_cat_respuesta);		
+		formData.append("respuesta", respuesta);
+
+
+				       
+		let method_data_save = 'CAltaProfesional/save_update_respuesta';
+		var post_url = baseUrl+method_data_save 
+		
+		$.ajax        
+		({
+            url: post_url,                       
+            type: "POST",               
+            dataType:'json',            
+            data:formData,            
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,      
+			success: function(data)
+			{					
+				$('#pregunta').val("");								
+				$('#Modal_Add_Respuesta').modal('hide');
+
+				Swal.fire({
+					title: 'Actualización realizada con exitó!',                        
+				}).then((result) => {
+					loadPagination_preguntas(0,$( "#id_cat_profesion" ).val());					
 				})	
 			}
 		});
