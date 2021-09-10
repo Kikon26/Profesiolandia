@@ -170,9 +170,13 @@
                   <div class="row" style="text-align: left;">                       
                     <div class="col-md-12">
                       <h5 class="tituloV"><strong>Resumen del servicio:</strong></h5>
+<<<<<<< HEAD
                       <div id="descripcion">
                         <textarea id="txta_descripcion" readonly rows="4" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
                       </div>  
+=======
+                      Soy especialista en asesoria para pequeñas y medianas empresas, egresada de la Universidad de Guadalajara. Mi especialidad es trabajar con niños de todas las edades 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </div> 
                   </div>
                   <br>
@@ -180,9 +184,13 @@
                     <div class="col-md-12">
                       <h5 class="tituloV"><strong>Informacion completa del Servicio:</strong></h5>
                       
+<<<<<<< HEAD
                       <div id="informacion_completa">
                         <textarea id="txta_informacion_completa" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
                       </div> 
+=======
+                      <div id="informacion_completa"></div> 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                         
                     </div> 
                     <br>
@@ -212,9 +220,13 @@
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#collapse_experiencia">
+<<<<<<< HEAD
                       <div class="card-body" id="experiencia_servicios_ofrecidos">
                         <textarea id="txta_experiencia_servicios_ofrecidos" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
                       </div>
+=======
+                      <div class="card-body" id="experiencia_servicios_ofrecidos"></div>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </div>
                   </div>
                   
@@ -298,7 +310,10 @@
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia">
                       <div class="card-body"id="preguntas_frecuentes">
+<<<<<<< HEAD
                         <textarea id="txta_preguntas_frecuentes" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                       </div>
                     </div>
                   </div>

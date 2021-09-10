@@ -26,6 +26,7 @@
   color: #007b5e ;
 }
 
+<<<<<<< HEAD
 
 .texto-Areas
 {
@@ -34,6 +35,8 @@ font-weight: lighter;
 font-family: sans-serif arial;
 }
 
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 .imagenes
 {
     width: 120px; 
@@ -44,11 +47,20 @@ font-family: sans-serif arial;
 
 .cards
 {
+<<<<<<< HEAD
    min-height: 312px;  
 }
 
 
 /*   Estilos para flip card*/
+=======
+   min-height: 312px;
+    
+}
+
+
+/*   Estuilos para flip card*/
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
@@ -128,7 +140,10 @@ section .section-title {
     position: absolute;
     top: 0;
     left: 0;
+<<<<<<< HEAD
     bottom: 0;
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
     background: white;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
@@ -161,7 +176,10 @@ section .section-title {
 .frontside .card,
 .backside .card {
     min-height: 312px;
+<<<<<<< HEAD
     
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 }
 
 .backside .card a {
@@ -183,6 +201,10 @@ section .section-title {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 /* Estilo rating  */
 .rating {
       float:left;

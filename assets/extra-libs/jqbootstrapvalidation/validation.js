@@ -151,7 +151,11 @@
                             $this.data("validationNumberDecimal", decimal);
                         }
                         if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "email") {
+<<<<<<< HEAD
                             message = "No es una direccion de correo valida<!-- data-validation-email-message to override -->";
+=======
+                            message = "Not a valid email address<!-- data-validation-email-message to override -->";
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                             if ($this.data("validationEmailMessage")) {
                                 message = $this.data("validationEmailMessage");
                             }
@@ -501,7 +505,11 @@
                     if (regexString === undefined) {
                         $.error("Can't find regex for '" + name + "' validator on '" + $this.attr("name") + "'");
                     }
+<<<<<<< HEAD
                     var message = "No es un formato esperado";
+=======
+                    var message = "Not in the expected format";
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     if ($this.data("validation" + name + "Message")) {
                         message = $this.data("validation" + name + "Message");
                     }
@@ -518,7 +526,11 @@
                 , init: function ($this, name) {
                     var result = {};
                     result.regex = regexFromString('[a-zA-Z0-9.!#$%&\u2019*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}');
+<<<<<<< HEAD
                     var message = "No es una direccion de correo valida";
+=======
+                    var message = "Not a valid email address";
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     if ($this.data("validation" + name + "Message")) {
                         message = $this.data("validation" + name + "Message");
                     }
@@ -533,7 +545,11 @@
             , required: {
                 name: "required"
                 , init: function ($this, name) {
+<<<<<<< HEAD
                     var message = "Favor de llenar los datos";
+=======
+                    var message = "This is required";
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     if ($this.data("validation" + name + "Message")) {
                         message = $this.data("validation" + name + "Message");
                     }
@@ -563,7 +579,11 @@
                     if ($element.length === 0) {
                         $.error("Can't find field '" + elementName + "' to match '" + $this.attr("name") + "' against in '" + name + "' validator");
                     }
+<<<<<<< HEAD
                     var message = "Debe de coincidir";
+=======
+                    var message = "Must match";
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     var $label = null;
                     if (($label = $form.find("label[for=\"" + elementName + "\"]")).length) {
                         message += " '" + $label.text() + "'";
@@ -778,7 +798,11 @@
             , required: {
                 name: "Required"
                 , type: "required"
+<<<<<<< HEAD
                 , message: "Informacion requerida<!-- data-validator-required-message to override -->"
+=======
+                , message: "This is required<!-- data-validator-required-message to override -->"
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
             }
             , checkone: {
                 name: "Checkone"

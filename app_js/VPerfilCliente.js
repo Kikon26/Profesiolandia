@@ -266,6 +266,7 @@ function createTable(result,sno)
 				
 							"<div class='frontside'>"+
 								"<div class='card'>"+
+<<<<<<< HEAD
 									"<div class='card-body text-center'>";
 									if (result[index].imagen == null)
 										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
@@ -273,6 +274,11 @@ function createTable(result,sno)
 										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
 								
 									html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+=======
+									"<div class='card-body text-center'>"+
+										"<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>"+
+										"<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 										"<p class='card-text'>"+
 											"<strong> "+result[index].profesion+"</strong><br>"+
 											"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
@@ -280,8 +286,12 @@ function createTable(result,sno)
 										"</p>"+
 										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
 
+<<<<<<< HEAD
 										//"<div class='card-footer'>"+							
 										"<div style='background-color: #eeeeee;'>"+	
+=======
+										"<div class='card-footer'>"+							
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 											"<div class='pull-left pr-2'>"+
 												"<span class='fa fa-star checked'></span>"+
 												"<span class='fa fa-star checked'></span>"+
@@ -374,6 +384,7 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row' >"+
 
 						
+<<<<<<< HEAD
 							"<div class='col-md-5' style='text-align: left;'>"+
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 							"<h5 class='tituloV'>"+"<strong>Area Interes:</strong></h5>"						
@@ -382,6 +393,17 @@ function createTable_contenido_interes(result,sno)
 							"</div>"+
 							
 							"<div class='col-md-7' style='text-align: left;'>"+
+=======
+							"<div class='col-md-2' style='text-align: left;'>"+
+							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+						
+							
+								+result[index].id_cat_publicacion+
+							"</a>"+	
+							"</div>"+
+							
+							"<div class='col-md-5' style='text-align: left;'>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 							"<h5 class='tituloV'><strong>Título:</strong></h5>"								
 								+result[index].titulo+								
@@ -395,7 +417,11 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row'>"+
 						"<div class='col-md-12' style='text-align: justify;'>"+
 						"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+<<<<<<< HEAD
 						+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4; font-weight: lighter;'>"+result[index].resumen+"</textarea>"+
+=======
+						+result[index].resumen+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 						"<br>"+
 						"</div>"+                             
 						"<br>"+
