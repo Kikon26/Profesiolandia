@@ -336,7 +336,6 @@ class MPerfilCliente extends CI_Model {
           
         $data = array(             
             'id_cat_usuario'  => $postData['id_cat_usuario'], 
-            'id_cat_profesion'  => $postData['id_cat_profesion'], 
             'pregunta'  => $postData['pregunta'],             
             'fecha_alta' => date("Y-m-d H:i:s")            
         );
@@ -376,34 +375,6 @@ class MPerfilCliente extends CI_Model {
       
       $resultado=$sqlsrvDB->delete('cat_preguntas');
     }  
-
-    public function CatalogoProfesiones()
-    {
-		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $query="select * from cat_profesiones where activo=1 order by nombre";         
-        $resultado = $sqlsrvDB->query($query);		
-		return $resultado->result();        
-    }
-
-    public function GetCorreos()
-    {
-		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $postData = $this->input->post();
-    $query="select * from cat_profesionales where activo=1 and id_cat_profesion={$postData['id_cat_profesion']} order by nombre";         
-        $resultado = $sqlsrvDB->query($query);		
-		return $resultado->result();        
-    }
-
-  public function GetUser($id_cat_usuario)
-  {
-    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-
-    $query="select * from usuarios where id_cat_usuario='{$id_cat_usuario}'";         
-    
-    $resultado = $sqlsrvDB->query($query);		                
-    return $resultado->row_array();
-    
-  }
 
 
 }
