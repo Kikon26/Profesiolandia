@@ -1,5 +1,5 @@
 //bloqueaPantalla();
-const baseUrl = $('#url').val();
+const baseUrl = $('#url').val();
 
 //PETICION ASINCRONA GET
 const asyncGetReq = async (datos, url) => {
@@ -27,9 +27,13 @@ $(function()
 	  desbloqueaPantalla();
   	}).catch(e => { console.error(e); desbloqueaPantalla();});
 	//fin dle proceso
+
 	*/  
 
 	desbloqueaPantalla();
 
 });
+
+
+
 

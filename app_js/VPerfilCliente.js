@@ -249,8 +249,6 @@ function loadPagination_preguntas(pagno)
 
 function createTable(result,sno)
 {
-	cat_profesion('');
-
 	sno = Number(sno);
 	$('#tbody_profesionistas_favoritos').empty();
 	html="";
@@ -560,11 +558,9 @@ function cat_estado(id_cat_estado)
 function savePregunta()
 	{
 		$("#btn_save_edit_pregunta").html("Guardar");
-		//$('#id_cat_profesion').val("-1");		
 		$('#id_cat_pregunta').val("-1");
 		$('#pregunta').val("");		
 
-		
 		$('#Modal_Add_Pregunta').modal('show');
 	}
 
@@ -593,18 +589,13 @@ function savePregunta()
 	}
 
 	$("#form_save_update_pregunta").on("submit", function(){ 			
-		var id_cat_usuario=$( "#id_cat_usuario" ).val();
-		var id_cat_profesion=$( "#id_cat_profesion" ).val();		
-		var profesion=$( "#id_cat_profesion").find(':selected').data('nombre');
-
+		var id_cat_usuario=$( "#id_cat_usuario" ).val();		
 		var id_cat_pregunta = $('#id_cat_pregunta').val();			
 		var pregunta = $('#pregunta').val();
 		
 		var formData = new FormData();
 
 		formData.append("id_cat_usuario", id_cat_usuario);
-		formData.append("id_cat_profesion", id_cat_profesion);
-		formData.append("profesion", profesion);
 		formData.append("id_cat_pregunta", id_cat_pregunta);
 		formData.append("pregunta", pregunta);
 	
@@ -623,14 +614,15 @@ function savePregunta()
             cache:false,
             async:false,      
 			success: function(data)
-			{					
-				$('#pregunta').val("");								
+			{	
+				$('#pregunta').val("");				
+				$('#pregunta').val("");				
 				$('#Modal_Add_Pregunta').modal('hide');
 
 				Swal.fire({
 					title: 'Actualización realizada con exitó!',                        
 				}).then((result) => {
-					loadPagination_preguntas(0);					
+					loadPagination_preguntas(0);
 				})	
 			}
 		});
@@ -639,36 +631,3 @@ function savePregunta()
 		 return false;
 		
 	});			
-
-	function cat_profesion(profesion)
-{
-
-	let method_profesion = 'CPerfilCliente/profesion';
-	var post_url = baseUrl+method_profesion
-
-	$.ajax({
-		type: "POST",   
-		dataType:'json',         
-		url: post_url,                          
-		success: function(data){                                
-			var html = '<option value="">Selecciona Profesión</option>';                
-			for (let i in data['profesion']) 				{  
-				    
-					if (data['profesion'][i].nombre==profesion)                                                  
-					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
-					else  
-					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
-				}    
-			
-			$('#id_cat_profesion').html(html);	
-			$('#id_cat_profesion').select2({
-				 dropdownParent: $('#Modal_Add_Pregunta'),
-				
-			});
-			// $('#id_cat_profesion').change();  				
-
-			
-		}
-	});
-
-}

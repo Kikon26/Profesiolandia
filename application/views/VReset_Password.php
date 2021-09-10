@@ -1,5 +1,4 @@
 
-
 <div class="page-wrapper33">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -25,7 +24,7 @@
             <div class="container">
                 <div class="container-fluid  py-0 pt-3">
                   
-                  <form id="form_reset_password" action="<?php echo base_url(); ?>CReset_Password/enviar_email_reset" method="post">   
+                  <form id="form_registro" action="<?php echo base_url(); ?>CEnvio_Password" method="post">   
                        
                     <div class="card">
 
@@ -41,11 +40,9 @@
                           <div class="card-body">
                               <h4 class="card-title"></h4>
                               <h6 class="card-subtitle"></h6>
-                              <div class="row"> 
-                                <div class="form-group col-md-12">        
-                                  <div class="controls">                                
-                                    <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido" placeholder="Ingresa tu email">                           
-                                  </div>
+                              <div class="row">         
+                                <div class="col-md-12">                                
+                                  <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
                                 </div>
                               </div>
                               <br>
@@ -91,3 +88,5 @@
 <!-- tinymce -->    
 <!-- ============================================================== -->                
 <script src="<?php echo base_url(); ?>assets/libs/tinymce/tinymce.min.js"></script>
+
+
