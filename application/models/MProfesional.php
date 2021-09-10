@@ -143,7 +143,13 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
 
+<<<<<<< HEAD
+   $query="select * from cat_publicaciones as p  inner join  
+            cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional and p.id_cat_profesional=".$postData['id_cat_profesional']."  inner join 
+            cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion ";       
+=======
     $query="select * from cat_publicaciones where id_cat_profesional=".$postData['id_cat_profesional']." order by id_cat_publicacion";         
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
     
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();        

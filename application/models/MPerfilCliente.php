@@ -213,8 +213,18 @@ class MPerfilCliente extends CI_Model {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
         
+<<<<<<< HEAD
+        
+   $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
+              order by p.id_cat_publicacion";           
+    
+
+=======
       $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
     
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
       return $sqlsrvDB->query($query)->num_rows();
     }  
 
@@ -223,7 +233,14 @@ class MPerfilCliente extends CI_Model {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
 
+<<<<<<< HEAD
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
+              order by p.id_cat_publicacion";            
+=======
       $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
               //." limit ".$start.",".$limit;                        
        
       $resultado = $sqlsrvDB->query($query);		

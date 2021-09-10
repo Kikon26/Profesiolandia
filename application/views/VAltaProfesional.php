@@ -187,8 +187,15 @@
                       Crear Publicación
                     </span>
                   </a> 
+<<<<<<< HEAD
+                </div>     
+
+                
+                
+=======
                 </div>          
 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                 <div id="tbody_publicaciones"></div>             
                 <!--***********************************************************************************************************************************************-->
                 <!-- MODAL ADD -->
@@ -213,12 +220,24 @@
 
                           <div class="col-md-12">
                             <label for="resumenLabel1">Resúmen de la Publicación:</label>
+<<<<<<< HEAD
+                            <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Recomendaciones: 
+                            Titulos deben ir en mayusculas, y los parrafos de informacion en minusculas con sus separaciones por cambio de linea.
+                            Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" required></textarea>
+=======
                             <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" required></textarea>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                           </div>
 
                           <div class="col-md-12">
                             <label for="PublicacionLabel2">Publicación:</label>
+<<<<<<< HEAD
+                            <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Recomendaciones: 
+                            Titulos deben ir en mayusculas, y los parrafos de informacion en minusculas con sus separaciones por cambio de linea.
+                            Ingresa la informacion de la publicación (10,000 caracteres maximo)" required></textarea>
+=======
                             <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Ingresa la informacion de la publicación (10,000 caracteres maximo)" required></textarea>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                           </div>
                         </div>
                         <br>                        
@@ -226,8 +245,12 @@
                             
                     </div>
                     <div class="modal-footer">
+<<<<<<< HEAD
+                        <button type="submit" class="btn btn-info waves-effect waves-light">Guardar</button>
+=======
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button type="submit" id="btn_save_edit_publicacion" class="btn btn-primary">Guardar</button>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </div>
                     </div>
                 </div>
@@ -700,7 +723,11 @@
 <!-- ============================================================== -->		
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
+<<<<<<< HEAD
+<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">  
+=======
 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 
 <!-- ============================================================== -->	        
 <!-- tinymce -->    

@@ -72,6 +72,19 @@
             </div>
             <footer class="footer text-center">
                 <div class="row d-flex justify-content-center">
+<<<<<<< HEAD
+                    <div class="col-3" style="text-align: left;">
+                        <a href="<?php echo base_url(); ?>CPolitica_Privacidad" style="color:gray;"> Politica de Privacidad </a>    | <a href="<?php echo base_url(); ?>CCondiciones_Servicio" style="color:gray;">Condiciones del servicio</a>
+                    </div>
+                    <div class="col-3" style="text-align: center;">
+                        © 2020 Profesionalia, derechos reservados
+                    </div>
+                    <div class="col-2" style="text-align: center;">
+                        
+                    </div>
+                    <div class="col-1" style="text-align: right;">
+                        
+=======
                     <div class="col-4" style="text-align: center;">
                         <h4>Política de privacidad | Términos y condiciones</h4>
                     </div>
@@ -80,6 +93,7 @@
                     </div>
                     <div class="col-2">
                         <div class="row">                            
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                             <a href="http://www.facebook.com" target="_blank"> 
                               <img src="<?php echo base_url(); ?>imagenes/facebook_mini.png" style="height: 25px; width: 25px;" alt="...">
                             </a>
@@ -89,7 +103,11 @@
                             <a href="http://www.twitter.com" target="_blank">
                               <img src="<?php echo base_url(); ?>imagenes/twitter_mini.png" style="height: 25px; width: 25px;"  alt="...">
                             </a>
+<<<<<<< HEAD
+                        
+=======
                         </div>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </div>
                 </div>  
             </footer>
