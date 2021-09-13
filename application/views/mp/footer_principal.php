@@ -450,6 +450,12 @@
     <script src="<?php echo base_url(); ?>assets/libs/timepicker/jquery.timepicker.js"></script>
     <link  href="<?php echo base_url(); ?>assets/libs/timepicker/jquery.timepicker.css" rel="stylesheet"/>	
 
+    <!-- ============================================================== -->	        
+    <!-- rating -->    
+    <!-- ============================================================== -->
+    <script src="<?php echo base_url(); ?>assets/libs/raty-js/lib/jquery.raty.js"></script>
+    <script src="<?php echo base_url(); ?>assets/extra-libs/raty/rating-init.js"></script>
+
 
 	<?php
 			$this->load->view('mp/seccionfooter',$data);

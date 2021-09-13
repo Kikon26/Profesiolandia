@@ -28,8 +28,7 @@ $(function()
 			var html = "<option value=''>Profesional</option>";                
 			for (let i in data['profesiones']) 
 				{ 
-					html += '<option value='+data['profesiones'][i].id_cat_profesion+'  >'+
-								data['profesiones'][i].id_cat_profesion+'.-'+
+					html += '<option value='+data['profesiones'][i].id_cat_profesion+'  >'+								
 								data['profesiones'][i].nombre+'</option>';                   
 				}    
 			
@@ -46,7 +45,7 @@ $(function()
 					var html = "<option value=''>Selecciona Estado</option>";                
 					for (let i in data['estados']) 
 						{ 
-							html += '<option value='+data['estados'][i].id_cat_estado+'>'+data['estados'][i].id_cat_estado+'.-'+data['estados'][i].nombre+'</option>';                   
+							html += '<option value='+data['estados'][i].id_cat_estado+'>'+data['estados'][i].nombre+'</option>';                   
 						}    
 					
 					$('#id_cat_estado').html(html);
@@ -291,3 +290,38 @@ function filtar()
 
 
 
+$('#ancla_pregunta_experto').click(function(){	
+
+	if($('#id_cat_rol').val()=="3")	 
+	{
+		location.href=baseUrl + "CPreguntaExperto";
+	}	
+	else
+	{
+		
+
+		/*********/
+		Swal.fire({
+			title: "Para poder dejar una pregunta a los  profesionales es necesario que estes registrado como usuario",
+			//text: "No se podra recuperar!",
+			//type: "advertencia",
+			showCancelButton: true,
+			confirmButtonColor: '#DD6B55',
+			confirmButtonText: 'Si, registrarme!',
+			cancelButtonText: "No!"/*,
+			closeOnConfirm: false,
+			closeOnCancel: false*/
+		}).then((result) => {
+			
+			if (result.value)
+			{											
+								
+				location.href=baseUrl + "CRegistro/index/3";
+			}
+			
+		})
+
+	} 
+
+	return false;	
+});

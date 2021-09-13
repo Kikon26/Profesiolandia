@@ -28,31 +28,36 @@ const asyncGetReq = async (datos, url) => {
 			var html = "<option value=''>Cliente</option>";                
 			for (let i in data['clientes']) 
 				{ 
-					html += '<option value='+data['clientes'][i].id_cat_cliente+'  >'+
-								data['clientes'][i].id_cat_cliente+'.-'+
+					html += '<option value='+data['clientes'][i].id_cat_usuario+'  >'+								
 								data['clientes'][i].nombre+'</option>';                   
 				}    
 			
-			$('#id_cat_cliente').html(html);                		
+			$('#id_cat_usuario').html(html);                 
+            $('#id_cat_usuario').select2({
+                dropdownParent: $('#Modal_Add'),
+               
+           });     
+            
 			
         }	
 
         $('#starttime').timepicker({ 
             'disableTimeRanges':[], 
             
-              'minTime': '8:30am',
-              'maxTime': '16:00pm',                    
+              'minTime': '8:00am',
+              'maxTime': '20:00pm',                    
               'timeFormat': 'H:i'  
           });                  
 
         $('#endtime').timepicker({ 
             'disableTimeRanges':[], 
             
-            'minTime': '8:30am',
-            'maxTime': '16:00pm',                    
+            'minTime': '8:00am',
+            'maxTime': '20:00pm',                    
             'timeFormat': 'H:i'  
-        });        
-
+        });   
+     
+        
 	  desbloqueaPantalla();
   }).catch(e => { console.error(e); desbloqueaPantalla();});
 	//fin dle proceso
@@ -135,14 +140,19 @@ const asyncGetReq = async (datos, url) => {
         });*/
         clean_inputs();
 
-        $('#label_action').html("Reservar Cita");
-        
+        $("#id_cat_dia").val(start.day());
+        $("#id_cat_cita").val("-1");
+
+        get_horario_atencion();        
+
+        $('#label_action').html("Reservar Cita");        
         $("#FecInicio").val(moment(start).format('YYYY-MM-DD'));                                                 
         $("#FecTermino").val(moment(start).format('YYYY-MM-DD'));                                                 
 
         $("#starttime").val(moment(start).format('HH:mm:ss'));                                                 
         //$("#endtime").val(moment(start).format('HH:mm:ss'));                                                 
         $('#btn_delete').hide();
+        $('#btn_save').html("Guardar");            
         $('#Modal_Add').modal('show');		
         $this.$calendarObj.fullCalendar('unselect');
     },
@@ -183,9 +193,26 @@ const asyncGetReq = async (datos, url) => {
             slotDuration: '00:30:00',
             /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
-            maxTime: '19:00:00',
+            maxTime: '20:00:00',
             defaultView: 'month',
             handleWindowResize: true,
+
+            // hiddenDays: [ 2, 4 ],           
+
+            validRange: function(nowDate) {
+                return {
+                  start: new Date(y, m, d+1)                  
+                };
+              },
+
+            //   businessHours: {
+            //     // days of week. an array of zero-based day of week integers (0=Sunday)
+            //     dow: [ 1, 2, 3, 4, 5], // Monday - Thursday              
+            //     startTime: '08:00', // a start time (10am in this example)
+            //     endTime: '20:00', // an end time (6pm in this example)
+            //   },
+              selectConstraint: "businessHours",
+
 
             header: {
                 left: 'prev,next today',
@@ -193,8 +220,8 @@ const asyncGetReq = async (datos, url) => {
                 right: 'month,agendaWeek,agendaDay'
             },
             events: [],				  
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar !!!
+            editable: false,            
+            droppable: false, // this allows things to be dropped onto the calendar !!!
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
             drop: function(date) { $this.onDrop($(this), date); },
@@ -204,36 +231,10 @@ const asyncGetReq = async (datos, url) => {
         });
 
         //***********************************************************************************************
+        set_businessHours();
+        render_events(); 
+
         
-        let method_cita = 'CCalendario/Citas';
-        var post_url = baseUrl+method_cita;
-                
-        var id_cat_profesional=$("#id_cat_profesional").val();
-                    
-        $.ajax({
-            url: post_url,
-            type: 'POST',
-            dataType: 'json',
-            data : {"id_cat_profesional":id_cat_profesional}, 			
-            success: function(data)
-            {                   
-                if(typeof(data['citas'][0]) != 'undefined' )
-                { 
-                  for (let i in data['citas']) 
-                    {
-                        var id_cat_cita=data["citas"][i].id_cat_cita;
-                        var title=data["citas"][i].asunto;
-                        var start=data["citas"][i].start;
-                        var end=data["citas"][i].end;					  
-                        var className= data["citas"][i].color
-                        
-                        var event={id:id_cat_cita,title: title,start:start,end:end,className:className};
-                        $("#calendar_profesional").fullCalendar('renderEvent', event,true);   
-                    }
-                    
-                }
-            }
-        });
         //***********************************************************************************************        
 
 
@@ -275,7 +276,7 @@ $("#form_reservar").on("submit", function()
     { 	
         var id_cat_cita=$("#id_cat_cita").val();
         var id_cat_profesional=$("#id_cat_profesional").val();
-        var id_cat_cliente=$("#id_cat_cliente").val();
+        var id_cat_usuario=$("#id_cat_usuario").val();
         var starttime=$("#starttime").val();
         var endtime=$("#endtime").val();
 
@@ -288,29 +289,33 @@ $("#form_reservar").on("submit", function()
         let method_data_save = 'CCalendario/save';
         var post_url = baseUrl+method_data_save       
         
-        
+                
         $.ajax
         ({
             type: "POST",   
             dataType:'json',         
             url: post_url,           
-            data : {"id_cat_cita":id_cat_cita,"id_cat_profesional":id_cat_profesional,"id_cat_cliente":id_cat_cliente,"asunto":asunto,"color":categoryClass,"start":fecha_hora_inicio,"end":fecha_hora_termino}, 
+            data : {"id_cat_cita":id_cat_cita,"id_cat_profesional":id_cat_profesional,"id_cat_usuario":id_cat_usuario,"asunto":asunto,"color":categoryClass,"start":fecha_hora_inicio,"end":fecha_hora_termino}, 
             success: function(data)
-            {	               
-               if(id_cat_cita !="-1") 
+            { 
+              if(id_cat_cita !="-1") 
                {
-                    $("#calendar_profesional").fullCalendar('renderEvent', {
+                    $("#calendar_profesional").fullCalendar('updateEvent', {
                         id:data['id_cat_cita'],
                         title: asunto,
                         start: fecha_hora_inicio,
                         end: fecha_hora_termino,
                         allDay: false,
                         className: categoryClass
-                    }, true);
+                    });
+                    console.log("updateee");
                 }
                 else     
-                  console.log("elseeeeeeeee");
-                
+                  console.log("newww");
+                 
+                /**************************************/ 
+                 $('#calendar_profesional').fullCalendar('removeEvents');                 
+                 render_events();                    
             }
         });    
         
@@ -334,14 +339,16 @@ $("#form_reservar").on("submit", function()
           data : {"id_cat_cita":id_cat_cita}, 			
           success: function(response)
           {           
-            
-            
             $('#label_action').html("Editar Reservación");
 
-            $('#id_cat_cliente').val(response.detalle_cita[0].id_cat_cliente);
-            $('#id_cat_cliente').select2().trigger('change');     
+            $('#id_cat_usuario').val(response.detalle_cita[0].id_cat_usuario);
+            $('#id_cat_usuario').select2().trigger('change');     
 
             $('#FecInicio').val( moment(response.detalle_cita[0].start).format('YYYY-MM-DD'));
+            
+            $('#id_cat_dia').val( moment($('#FecInicio').val()).day() );
+            get_horario_atencion();
+
             $('#FecTermino').val( moment(response.detalle_cita[0].end).format('YYYY-MM-DD'));
 
             $('#starttime').val( moment(response.detalle_cita[0].start).format('HH:mm'));
@@ -365,8 +372,8 @@ $("#form_reservar").on("submit", function()
 
       function clean_inputs()
       {
-        $('#id_cat_cliente').val("");                  
-        $('#id_cat_cliente').select2().trigger('change');     
+        $('#id_cat_usuario').val("");                  
+        $('#id_cat_usuario').select2().trigger('change');     
 
         $("#FecInicio").val("");
         $("#FecTermino").val("");
@@ -378,6 +385,193 @@ $("#form_reservar").on("submit", function()
 
       $('#btn_delete').on('click', function(event) {        
         
+        var id_cat_cita=$("#id_cat_cita").val();        
+        let method_data_delete = 'CCalendario/delete';
+        var post_url = baseUrl+method_data_delete;
+                
+        $.ajax
+        ({
+            type: "POST",   
+            dataType:'json',         
+            url: post_url,           
+            data : {"id_cat_cita":id_cat_cita}, 
+            success: function(data)
+            {	   
+                Swal.fire({
+                    title: 'Se elimino con exitó!',                        
+                }).then((result) => {                
+                    $('#calendar_profesional').fullCalendar('removeEvents');                 
+                    render_events();    
+                })	
+                
+            }
+        });    
+        
+        $('#Modal_Add').modal('hide');		
+
         event.preventDefault(); // To prevent following the link (optional)
         
       });   
+
+      $('#starttime').change(function(e) {	      
+        
+        $('#endtime').val( moment( $("#FecInicio").val()+" "+$("#starttime").val()+":00" ).add(30,"minutes").format('HH:mm'));
+        return false;	
+    });
+
+
+    $('#FecInicio').change(function(e) {	      
+        
+        $('#FecTermino').val( $('#FecInicio').val() );             
+        $('#id_cat_dia').val( moment($('#FecInicio').val()).day() );
+        get_horario_atencion();
+        return false;	
+    });
+
+
+function set_businessHours()
+{
+    let method_cita = 'CCalendario/get_dias_atencion';
+    var post_url = baseUrl+method_cita;
+            
+    var id_cat_profesional=$("#id_cat_profesional").val();
+                
+    $.ajax({
+        url: post_url,
+        type: 'POST',
+        dataType: 'json',
+        data : {"id_cat_profesional":id_cat_profesional}, 			
+        success: function(data)
+        {                   
+
+             let businessHours=[];
+
+             len = data['get_dias_atencion'].length;
+             for(var i=0; i<len; i++)
+                {
+                    var id_cat_dia = data['get_dias_atencion'][i].id_cat_dia;
+                    businessHours.push(id_cat_dia);                                                                                                       
+                } 
+
+            console.log(businessHours);    
+            $('#calendar_profesional').fullCalendar('option', {
+                businessHours: [
+                        {
+                            dow: businessHours,
+                            start: '09:00',
+                            end: '11:00'
+                        }             
+                    ]
+                });
+        }
+    });       
+    
+}
+
+
+function render_events()
+{
+    let method_cita = 'CCalendario/Citas';
+    var post_url = baseUrl+method_cita;
+            
+    var id_cat_profesional=$("#id_cat_profesional").val();
+                
+    $.ajax({
+        url: post_url,
+        type: 'POST',
+        dataType: 'json',
+        data : {"id_cat_profesional":id_cat_profesional}, 			
+        success: function(data)
+        {                   
+            if(typeof(data['citas'][0]) != 'undefined' )
+            { 
+                for (let i in data['citas']) 
+                {
+                    var id_cat_cita=data["citas"][i].id_cat_cita;
+                    var title=data["citas"][i].asunto;
+                    var start=data["citas"][i].start;
+                    var end=data["citas"][i].end;					  
+                    var className= data["citas"][i].color
+                    
+                    var event={id:id_cat_cita,title: title,start:start,end:end,className:className};
+                    $("#calendar_profesional").fullCalendar('renderEvent', event,true);   
+                }
+                
+            }
+        }
+    });    
+}      
+
+
+function get_horario_atencion()
+{
+    let method_get_horario_atencion = 'CCalendario/get_horario_atencion';
+    var post_url = baseUrl+method_get_horario_atencion;
+            
+    var id_cat_profesional=$("#id_cat_profesional").val();
+    var id_cat_dia=$("#id_cat_dia").val();
+
+    
+    $.ajax({
+        url: post_url,
+        type: 'POST',
+        dataType: 'json',
+        data : {"id_cat_profesional":id_cat_profesional,"id_cat_dia":id_cat_dia}, 			
+        success: function(data)
+        { 
+            if (data['horario_atencion'] != null) 
+            {
+                let disableTimeRanges=[];
+                var len = data['horario_atencion']['before'].length;
+                var range=[];
+                for(var i=0; i<len; i++)
+                {
+                    // var min = data['horario_atencion'][i].min;
+                    // var max = data['horario_atencion'][i].max;
+
+                    var min = "00:00";
+                    var max = data['horario_atencion']['before'][i].min;
+
+                    if($("#id_cat_cita").val()=="-1") 
+                      {
+                          $("#starttime").val(  moment( $("#FecInicio").val()+" "+data['horario_atencion']['before'][i].min ).add(1,"minutes").format('HH:mm') );                                                 
+                          $('#endtime').val( moment( $("#FecInicio").val()+" "+$("#starttime").val()+":00" ).add(30,"minutes").format('HH:mm'));
+                      }    
+
+                    range[i]=[min, max];
+                    disableTimeRanges.push(range[i]);                                                                                   
+                }                 
+                
+                
+                len = data['horario_atencion']['after'].length;
+                for(var i=0; i<len; i++)
+                {
+                    var min = data['horario_atencion']['after'][i].max;
+                    var max = "23:59";
+
+                    range[i]=[min, max];
+                    disableTimeRanges.push(range[i]);                                                                                                       
+                } 
+                
+                if (data['horario_atencion']['citas'] != null) 
+                {
+                    len = data['horario_atencion']['citas'].length;
+                    for(var i=0; i<len; i++)
+                    {
+                        var min = data['horario_atencion']['citas'][i].min;
+                        var max = data['horario_atencion']['citas'][i].max;
+
+                        range[i]=[min, max];
+                        disableTimeRanges.push(range[i]);                                                                                   
+                      
+                    } 
+                }    
+                
+                $('#starttime').timepicker('option', 'disableTimeRanges', disableTimeRanges); 
+                $('#endtime').timepicker('option', 'disableTimeRanges', disableTimeRanges); 
+            }   
+        }
+    });
+}
+
+

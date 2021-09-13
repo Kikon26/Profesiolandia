@@ -13,6 +13,22 @@ class CPerfilCliente extends CI_Controller {
 		$this->load->model('MMenu');
     }
     public function index(){
+
+		if ($this->uri->segment(5)==null) $tab="1";
+		else 							   
+			{
+				$id_cat_rol = $this->uri->segment(3);
+				$id_cat_usuario =  $this->uri->segment(4);        
+				$tab = $this->uri->segment(5);
+				
+				$this->session->set_userdata('sisdato', $id_cat_usuario);
+				generaDatosSession();
+			}	
+		$dataf = array(
+			'tab'  => $tab			
+		); 	
+		/***************************************************************/	
+
 		if (isset($this->session->gIdPerfil)) 
 		 {
 			 $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
@@ -22,14 +38,14 @@ class CPerfilCliente extends CI_Controller {
 		 }
 		else 								  
 			$tabla = $this->MMenu->MenuRol(4);		
-
-
+		
+        
 
         $data = array(
             'seccion' => 'perfilcliente',
 			'vista' => 'VPerfilCliente',
 			'data' => '',
-			'dataf' => '',
+			'dataf' => $dataf,
 			'menu' => $tabla
          );
        
@@ -271,6 +287,8 @@ class CPerfilCliente extends CI_Controller {
 		 $config['wordwrap'] = TRUE;
 		 $config['validate'] = true;	
 		 $config['mailtype'] = 'html';
+
+		 
 		  
 		 $data['correos'] = $this->MPerfilCliente->GetCorreos($postData['id_cat_profesion']);					 			
 		 $contador=0;
@@ -307,7 +325,7 @@ class CPerfilCliente extends CI_Controller {
 						</div>
 						
 						<p style='text-align: center;'>
-							<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Dar Respuesta </strong> </a>					      
+							<a href='".base_url()."CAltaProfesional/index/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Dar Respuesta </strong> </a>					      
 							</p>
 						<div class='row'>
 						<div class='col' style='text-align: center;'  >
@@ -316,7 +334,7 @@ class CPerfilCliente extends CI_Controller {
 						<br>
 						
 						<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
-							<a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+							<a href='".base_url()."CRegistro/cancel/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/4' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
 						</div>
 					</div>
 					</div>
@@ -374,7 +392,7 @@ class CPerfilCliente extends CI_Controller {
 				</div>
 				
 				<p style='text-align: center;'>
-					<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+					<a href='".base_url()."CPerfilCliente/index/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
 					</p>
 				<div class='row'>
 				<div class='col' style='text-align: center;'  >
@@ -383,7 +401,7 @@ class CPerfilCliente extends CI_Controller {
 				<br>
 				
 				<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
-					<a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+					<a href='".base_url()."CRegistro/cancel/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/4' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
 				</div>
 			</div>
 			</div>

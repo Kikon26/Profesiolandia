@@ -1,41 +1,25 @@
 
-<div class="page-wrapper">
+<div class="page-wrapper33">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <div class="page-breadcrumb">
-      <div class="row">
-        <div class="col-5 align-self-center">
-          <h4 class="page-title">Calendario.</h4>
-          <div class="d-flex align-items-center"></div>
-				</div>
-					
-        <div class="col-7 align-self-center">
-            <div class="d-flex no-block justify-content-end align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="./CAcceso/principal">Principal</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Calendario</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-      </div>
-		</div>
+    <!-- ============================================================== -->    
     <br>
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
-    <div class="container-fluid">	                  		                       
+    <div class="container-fluid33">	                  		                       
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
+        <div class="container mt-n0">
+          <div class="container-fluid py-0 p-3" style="color: #008000; text-align: center;">              
+            <h5>Citas</h5>              
+          </div>
+        </div>
   
         <!--***********************************************************************************************************************************************-->
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row  d-flex justify-content-center">
+          <div class="col-md-9">
               <div class="card">
                   <div class="">
                       <div class="row">
@@ -77,90 +61,91 @@
         <!--***********************************************************************************************************************************************-->
         <!-- BEGIN MODAL -->
         <form id="form_reservar">
-        <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">        
-          <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title"><strong id="label_action">Reservar Cita</strong></h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">                                                                                                
-                            <div class="form-group">	
-                            <input type="hidden" name="id_cat_cita" id="id_cat_cita" value="-1" >                                               														
-                            <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo $idUsuario ?>" >                                               														
-                            <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_cliente" name="id_cat_cliente" data-placeholder="" tabindex="1" required>                                                                                                                                                                                                        
-                            </select>                                              
-                            </div>
-                        </div>
+            <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">        
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong id="label_action">Reservar Cita</strong></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">                                                                                                
-                            <div class="form-group">		
-                                <label class="control-label">Dia Inicio   </label>													
-                                <input type="date" id="FecInicio" name="FecInicio" class="form-control"  required>
-                            </div>
-                        </div>                                
-                        <div class="col-md-6">                                                                                                
-                            <div class="form-group">															
-                                <label class="control-label">Hora Inicio   </label>													
-                                <input id="starttime" name="starttime" type="text" class="form-control time" placeholder="Hora Inicio" required/>            
-                            </div>
-                        </div>                                
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6">                                                                                                
-                            <div class="form-group">		
-                                <label class="control-label">Dia Termino   </label>													
-                                <input type="date" id="FecTermino" name="FecTermino" class="form-control"  required>
-                            </div>
-                        </div>                                
-                        <div class="col-md-6">                                                                                                
-                            <div class="form-group">															
-                                <label class="control-label">Hora Termino   </label>													
-                                <input id="endtime" name="endtime" type="text" class="form-control time" placeholder="Hora Termino" required/>            
-                            </div>
-                        </div>                                
-                    </div>
-                
-                    <div class="row">
+                    <div class="modal-body">
                         
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Asunto    </label>
-                                <input class="form-control" placeholder="Asunto" type="text" name="asunto" id="asunto">
+                        <div class="row">
+                            <div class="col-md-12">                                                                                                
+                                <div class="form-group">	
+                                <input type="hidden" name="id_cat_cita" id="id_cat_cita" value="-1" >                                               														
+                                <input type="hidden" name="id_cat_dia" id="id_cat_dia" value="-1" >                                               														
+                                <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo $idUsuario ?>" >                                               														
+                                <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_usuario" name="id_cat_usuario" data-placeholder="" tabindex="1" required>                                                                                                                                                                                                        
+                                </select>                                              
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Color</label>
-                                <select class="form-control" name="color" id="color">
-                                    <option value="">Selecciona Color</option>
-                                    <option value="bg-danger">Danger</option>
-                                    <option value="bg-success">Success</option>
-                                    <option value="bg-primary">Primary</option>
-                                    <option value="bg-info">Info</option>
-                                    <option value="bg-warning">Warning</option>
-                                </select>
-                            </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">                                                                                                
+                                <div class="form-group">		
+                                    <label class="control-label">Dia    </label>													
+                                    <input type="date" id="FecInicio" name="FecInicio" class="form-control"  required>
+                                </div>
+                            </div>                                
+                            <div class="col-md-6">                                                                                                
+                                <div class="form-group">															
+                                    <label class="control-label">Hora    </label>													
+                                    <input id="starttime" name="starttime" type="text" class="form-control time" placeholder="Hora Inicio" required/>            
+                                </div>
+                            </div>                                
                         </div>
-                    </div>
-                    
 
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" id="btn_close" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>                      
-                      <button type="submit" id="btn_save" class="btn btn-success save-event waves-effect waves-light">Guardar</button>
-                      <button type="button" id="btn_delete" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                  </div>
-              </div>
-          </div>
-        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">                                                                                                
+                                <div class="form-group">		
+                                    <label class="control-label">Dia Termino   </label>													
+                                    <input type="date" id="FecTermino" name="FecTermino" class="form-control"  readonly>
+                                </div>
+                            </div>                                
+                            <div class="col-md-6">                                                                                                
+                                <div class="form-group">															
+                                    <label class="control-label">Hora Termino   </label>													
+                                    <input id="endtime" name="endtime" type="text" class="form-control time" placeholder="Hora Termino" readonly/>            
+                                </div>
+                            </div>                                
+                        </div>
+                    
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Asunto    </label>
+                                    <input class="form-control" placeholder="Asunto" type="text" name="asunto" id="asunto">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Color</label>
+                                    <select class="form-control" name="color" id="color">
+                                        <option value="">Selecciona Color</option>
+                                        <option value="bg-danger">Danger</option>
+                                        <option value="bg-success">Success</option>
+                                        <option value="bg-primary">Primary</option>
+                                        <option value="bg-info">Info</option>
+                                        <option value="bg-warning">Warning</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn_close" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>                      
+                        <button type="submit" id="btn_save" class="btn btn-success save-event waves-effect waves-light">Guardar</button>
+                        <button type="button" id="btn_delete" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+            </div>
         </form>  
         <!--***********************************************************************************************************************************************-->
         <!-- Modal Add Category -->

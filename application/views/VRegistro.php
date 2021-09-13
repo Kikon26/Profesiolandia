@@ -72,7 +72,8 @@
                     <br>
             
                     <div class="form-group row">                                    
-                        <div class="col-md-12">                                    
+                        <div class="col-md-12"> 
+                          <input type="hidden" id="id_cat_rol_temp" value="<?php echo $datosvista["id_cat_rol"] ?>" >                                                             
                           <select class="form-control custom-select" style="width: 100%;" id="id_cat_rol" name="id_cat_rol" data-placeholder="Selecciona Rol" required>                                                         
                           </select>
                         </div>

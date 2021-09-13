@@ -125,8 +125,7 @@ class MPerfilCliente extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion, 
-              ifnull(o.calificacion,0) as calificacion,
+              o.opinion,               
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion                           
               from 
@@ -135,11 +134,11 @@ class MPerfilCliente extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional "
+              cat_valoraciones as o on o.id_cat_profesional=p.id_cat_profesional "
       
-              .$this->obtener($array_where)
+              .$this->obtener($array_where);
 
-              ." order by calificacion desc ";         
+              //." order by calificacion desc ";         
     
       return $sqlsrvDB->query($query)->num_rows();
     }  
@@ -164,8 +163,7 @@ class MPerfilCliente extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion,
-              ifnull(o.calificacion,0) as calificacion,
+              o.opinion,              
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion             
               
@@ -175,11 +173,11 @@ class MPerfilCliente extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional  "
+              cat_valoraciones as o on o.id_cat_profesional=p.id_cat_profesional  "
  
-              .$this->obtener($array_where)
+              .$this->obtener($array_where);
 
-              ." order by calificacion desc ";         
+              //." order by calificacion desc ";         
             //   ." limit ".$start.",".$limit;         
                
        
@@ -213,7 +211,10 @@ class MPerfilCliente extends CI_Model {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
         
-      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
+              order by p.id_cat_publicacion";             
     
       return $sqlsrvDB->query($query)->num_rows();
     }  
@@ -222,8 +223,11 @@ class MPerfilCliente extends CI_Model {
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
-
-      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+      
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion 
+              order by p.id_cat_publicacion";             
               //." limit ".$start.",".$limit;                        
        
       $resultado = $sqlsrvDB->query($query);		
@@ -259,7 +263,9 @@ class MPerfilCliente extends CI_Model {
                   cat_respuestas AS r   INNER JOIN 
                   cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional INNER JOIN 
                   cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
-                ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta ";
+                ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta 
+                order by  p.id_cat_pregunta desc
+                ";
     
       return $sqlsrvDB->query($query)->num_rows();
     }  
@@ -275,6 +281,7 @@ class MPerfilCliente extends CI_Model {
                 r.id_cat_respuesta,
                 r.respuesta,
                 r.carrera,
+                r.id_cat_profesional,
                 r.profesional, 
                 r.imagen
                 from 
@@ -285,6 +292,7 @@ class MPerfilCliente extends CI_Model {
                   r.id_cat_respuesta,
                   r.respuesta,
                   pe.nombre AS carrera,
+                  pr.id_cat_profesional,
                   CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
                   pr.imagen
                   FROM 
@@ -292,7 +300,9 @@ class MPerfilCliente extends CI_Model {
                   cat_respuestas AS r   INNER JOIN 
                   cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional INNER JOIN 
                   cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
-                ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta ";
+                ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta 
+                order by  p.id_cat_pregunta desc
+                ";
 
               //." limit ".$start.",".$limit;                        
        

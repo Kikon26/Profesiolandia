@@ -34,9 +34,9 @@ $(function()
 				{ 
 
 					if (data['profesiones'][i].id_cat_profesion==id_cat_profesion_temp)                                                  
-					  html += '<option value='+data['profesiones'][i].id_cat_profesion+'  selected>'+data['profesiones'][i].id_cat_profesion+'.-'+data['profesiones'][i].nombre+'</option>';                   
+					  html += '<option value='+data['profesiones'][i].id_cat_profesion+'  selected>'+data['profesiones'][i].nombre+'</option>';                   
 					else 
-					  html += '<option value='+data['profesiones'][i].id_cat_profesion+'  >'+data['profesiones'][i].id_cat_profesion+'.-'+data['profesiones'][i].nombre+'</option>';                   
+					  html += '<option value='+data['profesiones'][i].id_cat_profesion+'  >'+data['profesiones'][i].nombre+'</option>';                   
 				}    
 			
 			$('#id_cat_profesion').html(html);                
@@ -56,9 +56,9 @@ $(function()
 					for (let i in data['estados']) 
 						{ 
 							if (data['estados'][i].id_cat_estado==id_cat_estado_temp)                                                  
-							  html += '<option value='+data['estados'][i].id_cat_estado+' selected>'+data['estados'][i].id_cat_estado+'.-'+data['estados'][i].nombre+'</option>';                   
+							  html += '<option value='+data['estados'][i].id_cat_estado+' selected>'+data['estados'][i].nombre+'</option>';                   
 							else 
-							  html += '<option value='+data['estados'][i].id_cat_estado+'>'+data['estados'][i].id_cat_estado+'.-'+data['estados'][i].nombre+'</option>';                     
+							  html += '<option value='+data['estados'][i].id_cat_estado+'>'+data['estados'][i].nombre+'</option>';                     
 						}    
 					
 					$('#id_cat_estado').html(html);

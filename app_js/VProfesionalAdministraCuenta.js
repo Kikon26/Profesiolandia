@@ -202,9 +202,9 @@ function cat_estado(id_cat_estado)
 			for (let i in data['estado']) 				{  
 				    
 					if (data['estado'][i].id_cat_estado==id_cat_estado)                                                  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'" selected>'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                                                                                                     					  
+					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'" selected>'+data['estado'][i].nombre+'</option>';                                                                                                     					  
 					else  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'">'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                   
+					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'">'+data['estado'][i].nombre+'</option>';                   
 				}    
 			
 			$('#id_cat_estado').html(html);			

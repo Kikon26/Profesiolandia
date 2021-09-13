@@ -18,11 +18,18 @@ class CRegistro extends CI_Controller {
     public function index(){
 		if (isset($this->session->gIdPerfil)) $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
 		else 								  $tabla = $this->MMenu->MenuRol(4);		
+
+		$dataf = array(
+			'id_cat_rol'  => $this->uri->segment(3)
+		);
+
+
+
         $data = array(
             'seccion' => 'Registro',
 			'vista' => 'VRegistro',
 			'data' => '',
-			'dataf' => '',
+			'dataf' => $dataf,
 			'menu' => $tabla
          );
        

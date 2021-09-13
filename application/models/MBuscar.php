@@ -39,7 +39,7 @@ class MBuscar extends CI_Model {
               p.imagen,
               p.id_cat_profesional,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion,
+              v.opinion,
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion              
               
@@ -47,7 +47,7 @@ class MBuscar extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional "
+              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional "
       
               .$this->obtener($array_where);
     
@@ -81,7 +81,7 @@ class MBuscar extends CI_Model {
               p.imagen,
               p.id_cat_profesional,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion,
+              v.opinion,
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion              
               
@@ -89,7 +89,7 @@ class MBuscar extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional  "
+              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional  "
  
               .$this->obtener($array_where)
 
@@ -125,7 +125,7 @@ class MBuscar extends CI_Model {
     public function ListadoProfesiones()
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select * from cat_profesiones where activo=1";               
+      $query="select * from cat_profesiones where activo=1 order by nombre";               
     
       $resultado = $sqlsrvDB->query($query);		
 	    return $resultado->result();    
@@ -134,7 +134,7 @@ class MBuscar extends CI_Model {
     public function ListadoEstados()
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select * from cat_estados where activo=1";         
+      $query="select * from cat_estados where activo=1 order by nombre";         
     
       $resultado = $sqlsrvDB->query($query);		
 	    return $resultado->result();    
