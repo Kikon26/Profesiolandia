@@ -12,6 +12,7 @@ class CProfesional extends CI_Controller {
 		
 		$this->load->model('MProfesional');
 		$this->load->model('MAltaProfesional');
+		$this->load->model('MCalendario');
 		$this->load->model('MMenu');
     }
     public function index($id_cat_profesional){
@@ -36,7 +37,7 @@ class CProfesional extends CI_Controller {
 	public function Profesional(){
 		Sesion::establecer('id_cat_profesional',$this->input->get('id_cat_profesional'));		
 
-		$resultado['profesional'] = $this->MProfesional->DetalleProfesional($this->input->get('id_cat_profesional'));				
+		$resultado['profesional'] = $this->MProfesional->DetalleProfesional($this->input->get('id_cat_profesional') );				
 		echo json_encode($resultado);
 	}
 
@@ -74,6 +75,42 @@ class CProfesional extends CI_Controller {
 		$resultado['publicaciones'] = $this->MProfesional->CatalogoPublicaciones();				
 		echo json_encode($resultado);
 	}
+
+	public function save_update_valoracion(){
+		$resultado['save_update'] = $this->MProfesional->save_update_valoracion();				
+		echo json_encode($resultado);
+	}
+
+	public function get_valoracion(){
+		$resultado['valoracion'] = $this->MProfesional->get_valoracion();				
+		echo json_encode($resultado);
+	}
+
+	public function get_valoracion_gral(){
+		$resultado['valoraciones'] = $this->MProfesional->get_valoracion_gral();				
+		echo json_encode($resultado);
+	}
+
+	public function opiniones_positivas(){
+		$resultado['opiniones_positivas'] = $this->MProfesional->get_opiniones_positivas();				
+		echo json_encode($resultado);
+	}
+
+	public function opiniones_negativas(){
+		$resultado['opiniones_negativas'] = $this->MProfesional->get_opiniones_negativas();				
+		echo json_encode($resultado);
+	}
+
+	public function opiniones_neutras(){
+		$resultado['opiniones_neutras'] = $this->MProfesional->get_opiniones_neutras();				
+		echo json_encode($resultado);
+	}
+
+	public function opiniones_todas(){
+		$resultado['opiniones_todas'] = $this->MProfesional->get_opiniones_todas();				
+		echo json_encode($resultado);
+	}
+	
 
 }
 

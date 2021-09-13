@@ -22,15 +22,23 @@ $(function()
 	asyncGetReq(criterios, baseUrl + method).then(data => 
 	{ //Funcion callback``	
 	
+	var id_cat_rol_temp = $('#id_cat_rol_temp').val();		
 	
 	if (data['rol']) 
 	{   
 		var html = "<option value=''>Tipo de Registro</option>";                
 		for (let i in data['rol']) 
 			{ 
-				html += '<option value='+data['rol'][i].id_cat_rol+'  >'+
+				if(id_cat_rol_temp==data['rol'][i].id_cat_rol)
+
+					html += '<option value='+data['rol'][i].id_cat_rol+'  selected>'+
 							//data['rol'][i].id_cat_rol+'.-'+
 							data['rol'][i].descripcion+'</option>';                   
+				else			
+
+					html += '<option value='+data['rol'][i].id_cat_rol+'  >'+
+					//data['rol'][i].id_cat_rol+'.-'+
+					data['rol'][i].descripcion+'</option>';                   
 			}    
 		
 		$('#id_cat_rol').html(html);     

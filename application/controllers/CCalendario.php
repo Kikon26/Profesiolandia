@@ -22,7 +22,7 @@ class CCalendario extends CI_Controller {
 			'menu' => $tabla
          );
        
-		$this->load->view('mp/pagina',$data);
+		$this->load->view('mp/pagina_principal',$data);
 	}
 	
 	public function listado(){
@@ -49,6 +49,22 @@ class CCalendario extends CI_Controller {
 		$resultado['detalle_cita'] = $this->MCalendario->DetalleCita();				
 		echo json_encode($resultado);
 	}
+
+	public function get_horario_atencion(){
+		$resultado['horario_atencion'] = $this->MCalendario->get_horario_atencion();						
+		echo json_encode($resultado);
+	}
+
+	public function delete(){		
+		$resultado['id_cat_cita']=$this->MCalendario->delete_reservation();                
+	    echo json_encode($resultado);
+	}
+
+	public function get_dias_atencion(){
+		$resultado['get_dias_atencion'] = $this->MCalendario->get_dias_atencion();						
+		echo json_encode($resultado);
+	}
+	
 
 }
 

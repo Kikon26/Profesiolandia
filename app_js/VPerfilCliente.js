@@ -221,7 +221,7 @@ function loadPagination_contenido_interes(pagno)
 	dataType: 'json',
 	data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario}, 			
 	success: function(response)
-	{  
+	{    
 		 $('#pagination').html(response.links);
 		 createTable_contenido_interes(response.publicaciones,response.row);		 			
 	}
@@ -371,9 +371,8 @@ function createTable_contenido_interes(result,sno)
 						
 							"<div class='col-md-2' style='text-align: left;'>"+
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+						
-							
-								+result[index].id_cat_publicacion+
+							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"		
+								+result[index].area_interes+
 							"</a>"+	
 							"</div>"+
 							
@@ -438,7 +437,7 @@ function createTable_preguntas(result,sno)
 						"<!-- Respuestas  -->"+
 						"<div class='row'>"+                    
 							"<div class='col-md-4'>"+
-								"<a href='profesional.php=id=1111' target='_self'>"+        
+								"<a href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"' target='_self'>"+        
 									"<img src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' style='max-height: 40px; max-height: 40px; position: absolute; bottom: 5px; right: 5px; border-radius: 40%;' data-toggle='tooltip' data-placement='top' title='"+result[index].carrera+" "+result[index].profesional+"'>"+
 								"</a>"+                        
 							"</div>"+
@@ -516,9 +515,9 @@ function cat_estado(id_cat_estado)
 			for (let i in data['estado']) 				{  
 				    
 					if (data['estado'][i].id_cat_estado==id_cat_estado)                                                  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'" selected>'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                                                                                                     					  
+					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'" selected>'+data['estado'][i].nombre+'</option>';                                                                                                     					  
 					else  
-					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'">'+data['estado'][i].id_cat_estado+'.-'+data['estado'][i].nombre+'</option>';                   
+					  html += '<option value='+data['estado'][i].id_cat_estado+' data-nombre="'+data['estado'][i].nombre+'">'+data['estado'][i].nombre+'</option>';                   
 				}    
 			
 			$('#id_cat_estado').html(html);			

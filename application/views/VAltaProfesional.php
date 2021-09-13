@@ -21,18 +21,18 @@
             <!--Tabs de informacion del profesional inicio  -->
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">                
-                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
-                <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>                
-                <a class="nav-item nav-link" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>    
-                <a class="nav-item nav-link" id="nav-quest-tab" data-toggle="tab" href="#nav-quest" role="tab" aria-controls="nav-quest" aria-selected="false">Preguntas</a>            
-                <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
-                <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
-                <a class="nav-item nav-link" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '1' ? 'show active' : '' ?>" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Información General</a>               
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="true">Experiencia & Titulos</a>                
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '3' ? 'show active' : '' ?>" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>    
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '4' ? 'show active' : '' ?>" id="nav-quest-tab" data-toggle="tab" href="#nav-quest" role="tab" aria-controls="nav-quest" aria-selected="false">Preguntas</a>            
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '6' ? 'show active' : '' ?>" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '7' ? 'show active' : '' ?>" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">    
                              
-              <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '1' ? 'show active' : '' ?>" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                 <div class="container-fluid">
                   <br>
                   <div class="row">
@@ -88,7 +88,7 @@
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="nav-exp" role="tabpanel" aria-labelledby="nav-exp-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-exp" role="tabpanel" aria-labelledby="nav-exp-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -168,7 +168,7 @@
                 </form>   
               </div>  
 
-              <div class="tab-pane fade" id="nav-pub" role="tabpanel" aria-labelledby="nav-pub-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '3' ? 'show active' : '' ?>" id="nav-pub" role="tabpanel" aria-labelledby="nav-pub-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -238,7 +238,7 @@
                 <!--***********************************************************************************************************************************************-->           
               </div>   
               <!--  Detalle tab  - Preguntas - Inicio  -->
-              <div class="tab-pane fade" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '4' ? 'show active' : '' ?>" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -255,7 +255,7 @@
               </div>
               
               
-              <div class="tab-pane fade" id="nav-dir" role="tabpanel" aria-labelledby="nav-dir-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-dir" role="tabpanel" aria-labelledby="nav-dir-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -510,7 +510,7 @@
                 </form> 
               </div>
               
-              <div class="tab-pane fade" id="nav-precio" role="tabpanel" aria-labelledby="nav-precio-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '6' ? 'show active' : '' ?>" id="nav-precio" role="tabpanel" aria-labelledby="nav-precio-tab">
                 
                 <form id="form_precios" tyle="text-align: center;">
 
@@ -678,7 +678,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" id="btn_save_edit_respuesta" class="btn btn-primary">Enviar</button>
+                        <button type="submit" id="btn_save_edit_respuesta" class="btn btn-primary">Responder</button>
                     </div>
                     </div>
                 </div>

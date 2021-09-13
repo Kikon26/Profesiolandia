@@ -21,17 +21,17 @@
             <!--Tabs de informacion del profesional inicio  -->
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Mis Datos</a> 
-                <a class="nav-item nav-link" id="nav-fav-tab" data-toggle="tab" href="#nav-fav" role="tab" aria-controls="nav-fav" aria-selected="false">Mis Favoritos</a>
-                <a class="nav-item nav-link" id="nav-int-tab" data-toggle="tab" href="#nav-int" role="tab" aria-controls="nav-int" aria-selected="false" >Contenido de interés</a>
-                <a class="nav-item nav-link" id="nav-quest-tab" data-toggle="tab" href="#nav-quest" role="tab" aria-controls="nav-quest" aria-selected="false">Preguntas</a>
-                <a class="nav-item nav-link" id="nav-pref-tab" data-toggle="tab" href="#nav-pref" role="tab" aria-controls="nav-pref" aria-selected="false">Preferencias</a>
-                <a class="nav-item nav-link" id="nav-apo-tab" data-toggle="tab" href="#nav-apo" role="tab" aria-controls="nav-apo" aria-selected="false">Calendario de Citas</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '1' ? 'show active' : '' ?>" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Mis Datos</a> 
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-fav-tab" data-toggle="tab" href="#nav-fav" role="tab" aria-controls="nav-fav" aria-selected="false">Mis Favoritos</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '3' ? 'show active' : '' ?>" id="nav-int-tab" data-toggle="tab" href="#nav-int" role="tab" aria-controls="nav-int" aria-selected="false" >Contenido de interés</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '4' ? 'show active' : '' ?>" id="nav-quest-tab" data-toggle="tab" href="#nav-quest" role="tab" aria-controls="nav-quest" aria-selected="false">Preguntas</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-pref-tab" data-toggle="tab" href="#nav-pref" role="tab" aria-controls="nav-pref" aria-selected="false">Preferencias</a>
+                <a class="nav-item nav-link <?=$datosvista["tab"] === '6' ? 'show active' : '' ?>" id="nav-apo-tab" data-toggle="tab" href="#nav-apo" role="tab" aria-controls="nav-apo" aria-selected="false">Calendario de Citas</a>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">              
               <!--  Detalle tab  - Mis Datos - Inicio   -->
-              <div class="tab-pane fade show active" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">                  
+              <div class="tab-pane fade <?=$datosvista["tab"] === '1' ? 'show active' : '' ?>" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">                  
                 
                   <div class="container-fluid  py-0 pt-3">
 
@@ -185,7 +185,7 @@
               <!--  Detalle tab  - Mis Datos - Fin  -->
 
               <!--  Detalle tab  - Mis Favoritos- Inicio  -->
-              <div class="tab-pane fade" id="nav-fav" role="tabpanel" aria-labelledby="nav-fav-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-fav" role="tabpanel" aria-labelledby="nav-fav-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -201,7 +201,7 @@
               <!--  Detalle tab  - Mis Favoritos- Fin  -->
 
               <!--  Detalle tab  - Contenido de Interes- Inicio  -->
-              <div class="tab-pane fade" id="nav-int" role="tabpanel" aria-labelledby="nav-int-tab"><br>
+              <div class="tab-pane fade <?=$datosvista["tab"] === '3' ? 'show active' : '' ?>" id="nav-int" role="tabpanel" aria-labelledby="nav-int-tab"><br>
                 <div class="row">
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                    
@@ -260,7 +260,7 @@
              
 
               <!--  Detalle tab  - Preguntas - Inicio  -->
-              <div class="tab-pane fade" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '4' ? 'show active' : '' ?>" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
                 <br>
                 <div class="row">
                   <div class="col"></div>
@@ -291,7 +291,7 @@
               <!--  Detalle tab  - Preguntas - Fin  -->
 
               <!--  Detalle tab  - Preferencias - Inicio  -->
-              <div class="tab-pane fade" id="nav-pref" role="tabpanel" aria-labelledby="nav-pref-tab">
+              <div class="tab-pane fade <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-pref" role="tabpanel" aria-labelledby="nav-pref-tab">
                 <br>
                   <div class="row">
                     <div class="col"></div>
@@ -315,7 +315,7 @@
 
 
               <!--  Detalle tab  - Calendario de  Citas - Inicio  -->
-              <div class="tab-pane fade" id="nav-apo" role="tabpanel" aria-labelledby="nav-apo-tab"><br>
+              <div class="tab-pane fade <?=$datosvista["tab"] === '6' ? 'show active' : '' ?>" id="nav-apo" role="tabpanel" aria-labelledby="nav-apo-tab"><br>
                 <div class="row">
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                    
@@ -390,7 +390,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" id="btn_save_edit_pregunta" class="btn btn-primary">Enviar</button>
+                        <button type="submit" id="btn_save_edit_pregunta" class="btn btn-primary">Preguntar</button>
                     </div>
                     </div>
                 </div>

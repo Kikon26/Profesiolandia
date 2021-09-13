@@ -1,7 +1,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <input type="hidden" id="url" value="http://localhost/Profesiolandia/"/>
+        <input type="hidden" id="url" value="http://localhost/Desarrollo/Profesiolandia/"/>
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">

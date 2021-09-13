@@ -31,7 +31,8 @@
                               <div class="col-md-2">                                                                                                
                                 <div class="form-group">															
                                   <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="" tabindex="1" >                                                                                                                                                                                                        
-                                  </select>                                              
+                                  </select>   
+                                  <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  isset($id_perfil)?$id_perfil:4 ?>" >                                             
                                 </div>
                               </div>
 
@@ -126,7 +127,7 @@
                   <div class="card-body px-2">
                     <img src="<?php echo base_url(); ?>imagenes/ask_icon.png" style="width: 50px; height: 50px;" class="card-img-top" alt="...">
                     <h5 class="card-title small">
-                      <a href="#" style="padding: 10px;">Pregunta a un experto</a>
+                      <a href="#" id="ancla_pregunta_experto" style="padding: 10px;">Pregunta a un experto</a>
                     </h5>
                     <p class="card-text">Los profesionales en la materia te pueden dar un consejo de algún tema en particular. Pregunta a un experto tus dudas</p>              
                   </div>
@@ -153,7 +154,7 @@
  
         
 
-     </div>
+    </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

@@ -27,8 +27,8 @@ class MAltaProfesional extends CI_Model {
             p.costo_consulta,
             p.imagen,
             concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-            o.opinion,
-            ifnull(o.calificacion,0) as calificacion,              
+            v.opinion,
+            
             concat(d.calle,' ',d.num,', ',d.colonia ) as direccion,
 
             d.id_cat_estado,
@@ -61,7 +61,7 @@ class MAltaProfesional extends CI_Model {
             cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
             cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-            cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional left join
+            cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional left join
             cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
             where p.id_cat_profesional={$postData['id_cat_profesional']} ";               
   
@@ -179,6 +179,7 @@ class MAltaProfesional extends CI_Model {
     if ($postData['existe_direccion']=="si")
     {
       $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);      
+      $sqlsrvDB->where('dom_particular', '0');      
       $resultado=$sqlsrvDB->update('cat_direcciones',$data);    
     }
     else 
@@ -482,7 +483,9 @@ class MAltaProfesional extends CI_Model {
                         cat_respuestas AS r   INNER JOIN 
                         cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
                         cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
-                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta";
+                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta
+                      order by  p.id_cat_pregunta desc
+                      ";
     
       return $sqlsrvDB->query($query)->num_rows();
     }  
@@ -498,6 +501,7 @@ class MAltaProfesional extends CI_Model {
                       r.id_cat_respuesta,
                       r.respuesta,
                       r.carrera,
+                      r.id_cat_profesional,
                       r.profesional, 
                       r.imagen
                       FROM 
@@ -508,13 +512,16 @@ class MAltaProfesional extends CI_Model {
                         r.id_cat_respuesta,
                         r.respuesta,
                         pe.nombre AS carrera,
+                        pr.id_cat_profesional,
                         CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
                         pr.imagen
                         FROM                 
                         cat_respuestas AS r   INNER JOIN 
                         cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
                         cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
-                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta";
+                      ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta
+                      order by  p.id_cat_pregunta desc
+                      ";
 
               //." limit ".$start.",".$limit;                        
        
@@ -581,7 +588,8 @@ class MAltaProfesional extends CI_Model {
       $query="select  * from cat_profesionales where id_cat_profesional={$id_cat_profesional} and activo=1";              
     
       $resultado = $sqlsrvDB->query($query);		
-      return $resultado->result();
+      return $resultado->row_array();
+      
     }  
 
     public function GetUsuario($id_cat_pregunta) 
@@ -592,7 +600,7 @@ class MAltaProfesional extends CI_Model {
       $query="select  u.* from cat_preguntas as p inner join usuarios as u on p.id_cat_pregunta={$id_cat_pregunta} and p.id_cat_usuario=u.id_cat_usuario";              
     
       $resultado = $sqlsrvDB->query($query);		
-      return $resultado->result();
+      return $resultado->row_array();
     }  
 
     public function save_update_respuesta()

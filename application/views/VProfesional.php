@@ -170,7 +170,7 @@
                   <div class="row" style="text-align: left;">                       
                     <div class="col-md-12">
                       <h5 class="tituloV"><strong>Resumen del servicio:</strong></h5>
-                      Soy especialista en asesoria para pequeñas y medianas empresas, egresada de la Universidad de Guadalajara. Mi especialidad es trabajar con niños de todas las edades 
+                      <div id="descripcion1"></div> 
                     </div> 
                   </div>
                   <br>
@@ -310,9 +310,9 @@
                 <div class="row" style="text-align: center;">
                   <div class="col"></div>
                   <div class="col-xs-8 col-sm-3 col-md-3">
-                    <h1> <span class="badge" style="background: #158151;"> 5 </span></h1>
+                    <h1> <span class="badge" style="background: #158151;" id='valoracion_general'> 0 </span></h1>
                     <h5 class="tituloV"><strong> Valoracion General:</strong> </h5>
-                    <h6 style="color: #007b5e;">  ☆☆☆☆☆ 4/5 / 250 valoraciones </h6> 
+                    <h6 id='valoracion_general_texto' style="color: #007b5e;">  ☆☆☆☆☆ 0/5 / 0 valoraciones </h6> 
                   </div>
                   <div class="col-xs-4 col-sm-3 col-md-3" style="text-align: left;">
                     <div class="row">
@@ -320,7 +320,7 @@
                         <h5 class="tituloV"><strong>&nbsp;&nbsp; Atencion:</strong></h5>
                       </div>
                       <div class="col" style="text-align: left;">
-                        <h5><span class="badge" style="background: #158151;"> 4 </span> </h5>
+                        <h5><span class="badge" style="background: #158151;" id="atencion"> 0 </span> </h5>
                       </div>
                     </div>
 
@@ -329,7 +329,7 @@
                         <h5 class="tituloV"><strong>&nbsp;&nbsp; Calidad:</strong></h5>
                       </div>
                       <div class="col" style="text-align: left;">
-                        <h5><span class="badge" style="background: #158151;"> 4 </span> </h5>
+                        <h5><span class="badge" style="background: #158151;"  id="calidad"> 0 </span> </h5>
                       </div>
                     </div>
 
@@ -338,7 +338,7 @@
                         <h5 class="tituloV"><strong>&nbsp;&nbsp; Puntualidad:</strong></h5>
                       </div>
                       <div class="col" style="text-align: left;">
-                        <h5><span class="badge" style="background: #158151;"> 4 </span> </h5>
+                        <h5><span class="badge" style="background: #158151;"  id="puntualidad"> 0 </span> </h5>
                       </div>
                     </div>
 
@@ -347,7 +347,7 @@
                         <h5 class="tituloV"><strong>&nbsp;&nbsp; Instalaciones:</strong></h5>
                       </div>
                       <div class="col" style="text-align: left;">
-                        <h5><span class="badge" style="background: #158151;"> 4 </span> </h5>
+                        <h5><span class="badge" style="background: #158151;"  id="instalaciones"> 0 </span> </h5>
                       </div>
                     </div>
 
@@ -357,7 +357,7 @@
                         <h5 class="tituloV"><strong>&nbsp;&nbsp;Recomendacion:</strong></h5>
                       </div>
                       <div class="col" style="text-align: left;">
-                        <h5><span class="badge" style="background: #158151;"> 4 </span> </h5>
+                        <h5><span class="badge" style="background: #158151;"  id="recomendacion"> 0 </span> </h5>
                       </div>
                     </div>  
 
@@ -379,13 +379,14 @@
                   <div class="col"></div>
                   <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center; text-align: justify-all;">                    
                     Opina de los servicios que recibiste, tu valoración es de gran ayuda para toda la comunidad y para el profesional es importante.
-                    <br>
-                    <a href="#" data-toggle="modal" data-target="#valoracion1"> 
+                    <br>                    
+                    <a href="#"  id="ancla_valoracion">
                       <span data-toggle="tooltip" data-placement="top" title="Valoración del Profesional">
                         Escribir una opinión
                       </span>
                     </a>  
                         
+                    <form id="form_valoracion">
                     <div class="modal fade" id="valoracion1" tabindex="-1" role="dialog" aria-labelledby="ValoracionLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -400,7 +401,8 @@
                               <div class="form-row"  style="text-align: left;">
                                 <div class="col-md-12">
                                   <label for="valoracionTextarea1">Cual es tu opinion:</label>
-                                  <textarea class="form-control" maxlength="250" rows="2" id="valoracionTextarea1" placeholder="Ingresa tu opinión del profesional (250 caracteres maximo)" required></textarea>
+                                  <input type='hidden' name='id_cat_valoracion' id='id_cat_valoracion' value="-1">
+                                  <textarea class="form-control" maxlength="250" rows="2" id="opinion" placeholder="Ingresa tu opinión del profesional (250 caracteres maximo)" required></textarea>
                                 </div> 
                               </div>
                               <br>
@@ -410,7 +412,7 @@
                                     <div class="col-6">Atención: </div>
                                     <div class="6">
                                       <div class="rating">
-                                        <input type="radio" id="Astar5" name="Arating" value="5" /><label for="Astar5" title="Excelente">5 stars</label>
+                                        <input type="radio" id="Astar5" name="Arating" value="5"/><label for="Astar5" title="Excelente">5 stars</label>
                                         <input type="radio" id="Astar4" name="Arating" value="4" /><label for="Astar4" title="Bueno">4 stars</label>
                                         <input type="radio" id="Astar3" name="Arating" value="3" /><label for="Astar3" title="Mas o menos">3 stars</label>
                                         <input type="radio" id="Astar2" name="Arating" value="2" /><label for="Astar2" title="Malo">2 stars</label>
@@ -494,13 +496,16 @@
                               </div>
                               -->
                               <br>
-                              <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;">Guardar</button>
+                              <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;" id="button_valoracion">Guardar</button>
                               <button type="button" class="btn my-0 border border-white" data-dismiss="modal" style="background: #aaabaa;" >Cerrar</button>
                             </form>
                           </div>                          
                         </div>
                       </div>
                     </div>
+                    </form>
+
+
                   </div>
                   <div class="col"></div>
                 </div>
@@ -519,47 +524,7 @@
                         </div>
 
                         <div id="collapseOne_val_pos" class="collapse" aria-labelledby="headingOne" data-parent="#collapse_valoracion">
-                          <div class="card-body">
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario +1</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario +2</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-                             
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7  ;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario +N</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>                             
-                          </div>
+                          <div id="tbody_opiniones_positivas" class="card-body"></div>                          
                         </div>
                       </div>
 
@@ -572,48 +537,7 @@
                           </h2>
                         </div>
                         <div id="collapseTwo_val_neg" class="collapse" aria-labelledby="headingTwo" data-parent="#collapse_valoracion">
-                          <div class="card-body">
-                            
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario -1</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario -2</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario -N</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                          </div>
+                          <div id="tbody_opiniones_negativas" class="card-body"></div>                        
                         </div>                     
                       </div>
                       <div class="card">
@@ -625,48 +549,7 @@
                           </h2>
                         </div>
                         <div id="collapseThree_val_neu" class="collapse" aria-labelledby="headingThree" data-parent="#collapse_valoracion">
-                          <div class="card-body">
-                            
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario -+1</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario +-2</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario +-N</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                          </div>
+                          <div id="tbody_opiniones_neutras" class="card-body"></div>                        
                         </div>
                       </div>
 
@@ -679,49 +562,7 @@
                           </h2>
                         </div>
                         <div id="collapseFour_val_all" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_valoracion">
-                          <div class="card-body">                            
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario $1</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario $2</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-
-                            <div class="row px-1 py-1 mx-1 my-1" style="background-color: #f7fff7;">
-                              <div class="col-xs-12 col-md-6">
-                                <strong> Nombre Usuario $N</strong>
-                                <br>
-                                Usuario
-                                <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 20px; width: 70px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                              </div>
-                              <div class="col-xs-12 col-md-6" style="text-align: right;">
-                                <span style="color: #007b5e;"> ☆☆☆☆☆</span>
-                              </div>
-                              Excelente atención. Se nota que es un doctor que está preparando, resolvió el problema por el que iba, además de que detecto oportunamente otros problemas de los cuales no me había dado cuenta y los resolvió.
-                            </div>
-
-                          </div>
-
+                          <div id="tbody_opiniones_todas" class="card-body"></div>                        
                         </div>
                       </div>
   
@@ -831,6 +672,176 @@
                   <div class="col"></div>
                 </div>
                 <hr>
+
+                <div class="row  d-flex justify-content-center">
+                  <div class="col-md-12">
+                      <div class="card">
+                          <div class="">
+                              <div class="row">
+                                
+                                  <!-- <div class="col-lg-3 border-right p-r-0">
+                                      <div class="card-body border-bottom">
+                                          <h4 class="card-title m-t-10">Drag & Drop Event</h4>
+                                      </div>
+                                      <div class="card-body">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div id="calendar-events" class="">
+                                                      <div class="calendar-events m-b-20" data-class="bg-info"><i class="fa fa-circle text-info m-r-10"></i>Event One</div>
+                                                      <div class="calendar-events m-b-20" data-class="bg-success"><i class="fa fa-circle text-success m-r-10"></i> Event Two</div>
+                                                      <div class="calendar-events m-b-20" data-class="bg-danger"><i class="fa fa-circle text-danger m-r-10"></i>Event Three</div>
+                                                      <div class="calendar-events m-b-20" data-class="bg-warning"><i class="fa fa-circle text-warning m-r-10"></i>Event Four</div>
+                                                  </div>
+                                                  
+                                                  <div class="custom-control custom-checkbox">
+                                                      <input type="checkbox" class="custom-control-input" id="drop-remove">
+                                                      <label class="custom-control-label" for="drop-remove">Remove after drop</label>
+                                                  </div>
+                                                  <a href="javascript:void(0)" data-toggle="modal" data-target="#add-new-event" class="btn m-t-20 btn-info btn-block waves-effect waves-light">
+                                                          <i class="ti-plus"></i> Add New Event
+                                                      </a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div> -->
+
+                                  <div class="col-lg-12">
+                                      <div class="card-body b-l calender-sidebar">
+                                          <div id="calendar_profesional"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>    
+
+                <!--***********************************************************************************************************************************************-->
+                <!-- BEGIN MODAL -->
+                <form id="form_reservar">                    
+                    <div class="modal fade" id="Modal_Reservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">        
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><strong id="label_action">Reservar Cita</strong></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                
+                                <div class="row">
+                                    <div class="col-md-12">                                                                                                
+                                        <div class="form-group">	
+                                        <input type="hidden" name="id_cat_cita" id="id_cat_cita" value="-1" >                                               														
+                                        <input type="hidden" name="id_cat_dia" id="id_cat_dia" value="-1" >                                               														
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">                                                                                                
+                                        <div class="form-group">		
+                                            <label class="control-label">Dia    </label>													
+                                            <input type="date" id="FecInicio" name="FecInicio" class="form-control"  required>
+                                        </div>
+                                    </div>                                
+                                    <div class="col-md-6">                                                                                                
+                                        <div class="form-group">															
+                                            <label class="control-label">Hora    </label>													
+                                            <input id="starttime" name="starttime" type="text" class="form-control time" placeholder="Hora Inicio" required/>            
+                                        </div>
+                                    </div>                                
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">                                                                                                
+                                        <div class="form-group">		
+                                            <label class="control-label">Dia Termino   </label>													
+                                            <input type="date" id="FecTermino" name="FecTermino" class="form-control"  readonly>
+                                        </div>
+                                    </div>                                
+                                    <div class="col-md-6">                                                                                                
+                                        <div class="form-group">															
+                                            <label class="control-label">Hora Termino   </label>													
+                                            <input id="endtime" name="endtime" type="text" class="form-control time" placeholder="Hora Termino" readonly/>            
+                                        </div>
+                                    </div>                                
+                                </div>
+                            
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Asunto    </label>
+                                            <input class="form-control" placeholder="Asunto" type="text" name="asunto" id="asunto">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Color</label>
+                                            <select class="form-control" name="color" id="color">
+                                                <option value="">Selecciona Color</option>
+                                                <option value="bg-danger">Danger</option>
+                                                <option value="bg-success">Success</option>
+                                                <option value="bg-primary">Primary</option>
+                                                <option value="bg-info">Info</option>
+                                                <option value="bg-warning">Warning</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btn_close" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>                      
+                                <button type="submit" id="btn_save" class="btn btn-success save-event waves-effect waves-light">Guardar</button>
+                                <button type="button" id="btn_delete" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>  
+                <!--***********************************************************************************************************************************************-->
+                <!-- Modal Add Category -->
+                <div class="modal fade none-border" id="add-new-event">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><strong>Agregar</strong> Nueva Categoría</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Nombre</label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Seleccione color de Categoría</label>
+                                            <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                <option value="success">Success</option>
+                                                <option value="danger">Danger</option>
+                                                <option value="info">Info</option>
+                                                <option value="primary">Primary</option>
+                                                <option value="warning">Warning</option>
+                                                <option value="inverse">Inverse</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MODAL -->     
+                <!--***********************************************************************************************************************************************-->                            
+                
               </div>
             </div>
             <!--Tabs de informacion del profesional Fin  -->              
@@ -872,6 +883,11 @@
 
 strong{
  font-weight:bold;
+}
+
+.swal2-popup {
+  font-size: 1rem !important;
+  font-family: Georgia, serif;
 }
 </style>
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                

@@ -38,19 +38,18 @@ class MInicio extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion, 
-              ifnull(o.calificacion,0) as calificacion,
+              v.opinion,               
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion                           
               from cat_profesionales as p inner join 
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional "
+              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional "
       
               .$this->obtener($array_where)
 
-              ." order by calificacion desc limit 3";         
+              ." limit 3";         
     
       return $sqlsrvDB->query($query)->num_rows();
     }  
@@ -81,8 +80,7 @@ class MInicio extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              o.opinion,
-              ifnull(o.calificacion,0) as calificacion,
+              v.opinion,              
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion             
               
@@ -90,11 +88,11 @@ class MInicio extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional  "
+              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional  "
  
               .$this->obtener($array_where)
 
-              ." order by calificacion desc limit 3";         
+              ."  limit 3";         
               //." limit ".$start.",".$limit;         
                
        
@@ -127,7 +125,7 @@ class MInicio extends CI_Model {
     public function ListadoProfesiones()
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select * from cat_profesiones where activo=1";               
+      $query="select * from cat_profesiones where activo=1 order by nombre";               
     
       $resultado = $sqlsrvDB->query($query);		
 	    return $resultado->result();    
@@ -136,7 +134,7 @@ class MInicio extends CI_Model {
     public function ListadoEstados()
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select * from cat_estados where activo=1";         
+      $query="select * from cat_estados where activo=1 order by nombre";         
     
       $resultado = $sqlsrvDB->query($query);		
 	    return $resultado->result();    

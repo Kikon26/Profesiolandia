@@ -24,9 +24,7 @@ class MProfesional extends CI_Model {
             p.descripcion,
             p.costo_consulta,
             p.imagen,
-            concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-            o.opinion,
-            ifnull(o.calificacion,0) as calificacion,              
+            concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,                        
             concat(d.calle,' ',d.num,', ',d.colonia ) as direccion,
             d.tel,
             p.informacion_completa,
@@ -35,13 +33,22 @@ class MProfesional extends CI_Model {
             p.experiencia_servicios_ofrecidos,
             p.preguntas_frecuentes,
             ifnull(p.metodos_pago,'') as metodos_pago,              
-            p.email
+            p.email,
+            v.id_cat_valoracion,
+            
+            r.google_maps,
+            r.whatsapp,
+            r.facebook,
+            r.instagram,
+            r.twitter,
+            r.pagina_web  
             
             from cat_profesionales as p left join 
             cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
             cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-            cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional 
+            cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional left join
+            cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
             where p.id_cat_profesional={$id_cat_profesional} ";               
   
     $resultado = $sqlsrvDB->query($query);		
@@ -95,7 +102,7 @@ class MProfesional extends CI_Model {
             d.cp) as direccion,
             tel
             from  cat_direcciones as d inner join 
-            cat_estados as e on e.id_cat_estado=d.id_cat_estado 
+            cat_estados as e on e.id_cat_estado=d.id_cat_estado and d.dom_particular=0
             and d.id_cat_profesional=".$postData['id_cat_profesional'];
     
     $resultado = $sqlsrvDB->query($query);		
@@ -142,8 +149,121 @@ class MProfesional extends CI_Model {
     {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
+    
+    $query="select * from cat_publicaciones as p  inner join  
+            cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional and p.id_cat_profesional=".$postData['id_cat_profesional']."  inner join 
+            cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion ";
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    }     
 
-    $query="select * from cat_publicaciones where id_cat_profesional=".$postData['id_cat_profesional']." order by id_cat_publicacion";         
+    public function save_update_valoracion()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+          
+        $data = array(             
+            'id_cat_profesional'  => $postData['id_cat_profesional'], 
+            'id_cat_usuario'  => $postData['id_cat_usuario'], 
+            'atencion'  => $postData['Arating'], 
+            'calidad'  => $postData['Crating'], 
+            'puntualidad'  => $postData['Prating'], 
+            'instalaciones'  => $postData['Irating'], 
+            'recomendacion'  => $postData['Rrating'], 
+            'opinion'  => $postData['opinion'],                                
+            'fecha_alta' => date("Y-m-d H:i:s")            
+        );
+     
+  
+      if ($postData['id_cat_valoracion']=="-1")
+        $resultado=$sqlsrvDB->insert('cat_valoraciones',$data);          
+      else
+        {
+          $sqlsrvDB->where('id_cat_profesional', $postData['id_cat_profesional']);
+          $sqlsrvDB->where('id_cat_usuario', $postData['id_cat_usuario']);
+          $resultado=$sqlsrvDB->update('cat_valoraciones',$data);
+        }
+      
+      return $resultado;   
+    } 
+
+    public function get_valoracion()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="select * from cat_valoraciones where id_cat_usuario=".$postData['id_cat_usuario']." and id_cat_profesional=".$postData['id_cat_profesional'];         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    } 
+
+    public function get_valoracion_gral()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="select * from cat_valoraciones where  id_cat_profesional=".$postData['id_cat_profesional'];         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    } 
+
+    public function get_opiniones_positivas()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+            ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
+            FROM cat_valoraciones AS v INNER JOIN 
+            usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
+            where round((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0)>3";         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    }     
+
+    public function get_opiniones_negativas()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+            ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
+            FROM cat_valoraciones AS v INNER JOIN 
+            usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
+            where round((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0)<3";         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    }     
+
+    public function get_opiniones_neutras()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+            ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
+            FROM cat_valoraciones AS v INNER JOIN 
+            usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
+            where round((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0)=3";         
+    
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+    }     
+
+    public function get_opiniones_todas()
+    {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+    $postData = $this->input->post();      
+
+    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+            ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
+            FROM cat_valoraciones AS v INNER JOIN 
+            usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional=".$postData['id_cat_profesional'];         
     
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();        

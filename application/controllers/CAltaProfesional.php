@@ -11,30 +11,49 @@ class CAltaProfesional extends CI_Controller {
 		$this->load->library('peticion');
 		
 		$this->load->model('MAltaProfesional');
+		$this->load->model('MProfesionales');
 		$this->load->model('MMenu');
     }
     public function index(){
+
+		if ($this->uri->segment(5)==null) $tab="1";
+		else 							   
+			{
+				$id_cat_rol = $this->uri->segment(3);
+				$id_cat_profesional =  $this->uri->segment(4);        
+				$tab = $this->uri->segment(5);
+				
+				$this->session->set_userdata('sisdato', $id_cat_profesional);
+				generaDatosSession2();
+			}	
+		$dataf = array(
+			'tab'  => $tab			
+		); 	
+		/***************************************************************/	
+
 		if (isset($this->session->gIdPerfil)) 
 		 {
 			 $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);
 			 //if($this->session->gIdPerfil==1)
-
-
+			 
 		 }
 		else 								  
-			$tabla = $this->MMenu->MenuRol(4);		
+		  	$tabla = $this->MMenu->MenuRol(4);		
 
 
+		
 
-        $data = array(
-            'seccion' => 'altaprofesional',
+		$data = array(
+			'seccion' => 'altaprofesional',
 			'vista' => 'VAltaProfesional',
 			'data' => '',
-			'dataf' => '',
+			'dataf' => $dataf,
 			'menu' => $tabla
-         );
-       
-		$this->load->view('mp/pagina_principal',$data);
+		);
+	
+		$this->load->view('mp/pagina_principal',$data);			  
+
+			
 	}
 
 	public function update_info_gral(){
@@ -364,7 +383,7 @@ class CAltaProfesional extends CI_Controller {
 		/***************************************************************************************************/		
 		/*************************Envio de respuesta*********************************/
 		$profesional = $this->MAltaProfesional->GetProfesional($postData['id_cat_profesional']);					
-
+				
 		$subject = "Notificación Profesiolandia - Respuesta";	  
 				
 		$message = "
@@ -391,11 +410,11 @@ class CAltaProfesional extends CI_Controller {
 				<div class='row' style='text-align: center;'>
 				Te enviamos este correo de <strong> Profesiolandia </strong> para confirmar alta de la respuesta a la pregunta <strong>".$postData['pregunta']."</strong>   :<br>
 				<strong>".$postData['respuesta']."</strong><br>
-				Para consultar la pregunta con sus posibles respuetsas puedes dar click en la sig liga.
+				Para consultar la pregunta con sus posibles respuestas puedes dar click en la sig liga.
 				</div>
 				
 				<p style='text-align: center;'>
-					<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+					<a href='".base_url()."CAltaProfesional/index/".$profesional['id_cat_rol']."/".$profesional['id_cat_profesional']."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
 					</p>
 				<div class='row'>
 				<div class='col' style='text-align: center;'  >
@@ -413,17 +432,18 @@ class CAltaProfesional extends CI_Controller {
 		</html>
 		";
 		
-
+		
 		//Establecemos esta configuración
 		$this->email->initialize($config);
 		$this->email->from("soporte@profesiolandia.com", "Profesiolandia");
 		$this->email->to($profesional['email'], $profesional['nombre']." ".$profesional['paterno']." ".$profesional['materno']);		
 		$this->email->subject($subject);
 		$this->email->message($message);
-				
+		
 		$enviado=false;
 		
-		if($this->email->send())		$enviado=true;
+		if($this->email->send())		$enviado=true;	
+		
 		//***************************************************************************************************		
 		//***************************************************************************************************		
 		$usuario = $this->MAltaProfesional->GetUsuario($postData['id_cat_pregunta']);				
@@ -454,11 +474,11 @@ class CAltaProfesional extends CI_Controller {
 				<div class='row' style='text-align: center;'>
 				Te enviamos este correo de <strong> Profesiolandia </strong> para notificarte que tu pregunta <strong>".$postData['pregunta']."</strong>   fue contestada por un Profesional:<br>
 				<strong>".$postData['respuesta']."</strong><br>
-				Para consultar la pregunta con sus posibles respuetsas puedes dar click en la sig liga.
+				Para consultar la pregunta con sus posibles respuestas puedes dar click en la sig liga.
 				</div>
 				
-				<p style='text-align: center;'>
-					<a href='".base_url()."CCambio_Password/index/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+				<p style='text-align: center;'>					
+					<a href='".base_url()."CPerfilCliente/index/".$usuario['id_cat_rol']."/".$usuario['id_cat_usuario']."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
 					</p>
 				<div class='row'>
 				<div class='col' style='text-align: center;'  >
@@ -488,8 +508,8 @@ class CAltaProfesional extends CI_Controller {
 		
 		if($this->email->send())		$enviado=true;
         
-		/***************************************************************************************************/		
-		/***************************************************************************************************/		
+		//***************************************************************************************************		
+		//***************************************************************************************************		
 		$resultado['save_update'] = $this->MAltaProfesional->save_update_respuesta();						
 		echo json_encode($resultado);
 	}
