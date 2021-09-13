@@ -123,7 +123,11 @@ function createTable(result,sno)
 	html="";
 	for(index in result)
 	{  		
+<<<<<<< HEAD
+
+=======
 		
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 		if(index % 3 == 0) html+="<div class='row d-flex justify-content-center'>";          	 
 		
 		/*html+= "<div class='col-lg-3'>"+                
@@ -168,23 +172,45 @@ function createTable(result,sno)
 					"</div>"+
 				"</div>";*/
 				/**************************************************************************************************************************************/
+<<<<<<< HEAD
+//console.log(result[index].imagen);
+	
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 		html+= 	"<div class='col-lg-3'>"+
 				"<div class='image-flip' ontouchstart='this.classList.toggle('hover')+'>"+
 					"<div class='mainflip'>"+
 			
 						"<div class='frontside'>"+
 							"<div class='card'>"+
+<<<<<<< HEAD
+								"<div class='card-body text-center'>";
+									if (result[index].imagen == null)
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
+									else
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
+								
+									html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+=======
 								"<div class='card-body text-center'>"+
 									"<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>"+
 									"<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 									"<p class='card-text'>"+
 										"<strong> "+result[index].profesion+"</strong><br>"+
 										"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
 										"<small> Cedula Profesional  - 123123123123</small>"+
 									"</p>"+
 									//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
+<<<<<<< HEAD
+									//"<div class='card-footer'>"+							
+
+									"<div style='background-color: #eeeeee;'>"+	
+									
+=======
 
 									"<div class='card-footer'>"+							
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 										"<div class='pull-left pr-2'>"+
 											"<span class='fa fa-star checked'></span>"+
 											"<span class='fa fa-star checked'></span>"+

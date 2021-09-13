@@ -33,7 +33,7 @@
               <h4 class="card-title"></h4>
               <h6 class="card-subtitle"></h6>
               <div id="cuadro" style="display:none;">       
-                <form id="form_login"> <!--action="<?php echo base_url(); ?>CAcceso/validar" method="post"-->
+                <form action="<?php echo base_url(); ?>CAcceso/validar" method="post">
                   <div class="form-group has-feedback">
                     <!--<input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Email" required value="<?php echo $tUsua ?>">-->
                     <div class="controls">                                
@@ -45,11 +45,6 @@
                   <div class="form-group has-feedback">
                     <input id="txtPassw" name="txtPassw" type="password" class="form-control" placeholder="Contraseña" required>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12" align="center">
-                      <span id="xMensaje" class="error"></span>
-                    </div>  
                   </div>
                   <div class="row">
                     <div class="col-md-12" align="center">
@@ -127,10 +122,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 
-
+<?php
+  if ($xMensaje!="")
+  {
+    echo '<script language="javascript">alert("'.$xMensaje.'");</script>'; 
+  }
+?>
 
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
-
-<style>
-  .error {color: #FF0000;}
-</style>

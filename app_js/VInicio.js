@@ -106,12 +106,29 @@ function createTable(result,sno)
 {
 	sno = Number(sno);
 	$('#tbody_profesionistas').empty();
+<<<<<<< HEAD
+	
+
+
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 	html="";
 	for(index in result)
 	{  		
 		if(index % 3 == 0) html+="<div class='row  d-flex justify-content-center'>";          	 
+<<<<<<< HEAD
+	
+
+
+
+	/* Datos de prueba Martin*/
+		/*
+
+		html+= 	"<div class='col-lg-3'>"+  				
+=======
 		 		
 		/*html+= 	"<div class='col-lg-3'>"+  				
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 					"<div class='card'>"+
 						"<div class='container'>"+
 							"<div class='container-fluid  py-0 pt-2'>"+
@@ -156,23 +173,44 @@ function createTable(result,sno)
 				"</div>";*/
 
 				/**************************************************************************************************************************************/
+<<<<<<< HEAD
+
+           html+= 	"<div class='col-lg-3'>"+
+=======
 		html+= 	"<div class='col-lg-3'>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 					"<div class='image-flip' ontouchstart='this.classList.toggle('hover')+'>"+
 						"<div class='mainflip'>"+
 				
 							"<div class='frontside'>"+
 								"<div class='card'>"+
+<<<<<<< HEAD
+									"<div class='card-body text-center'>";
+									if (result[index].imagen == null)
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
+									else
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
+								
+									html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+=======
 									"<div class='card-body text-center'>"+
 										"<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>"+
 										"<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 										"<p class='card-text'>"+
 											"<strong> "+result[index].profesion+"</strong><br>"+
 											"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
 											"<small> Cedula Profesional  - 123123123123</small>"+
 										"</p>"+
 										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
+<<<<<<< HEAD
+										"<div style='background-color: #eeeeee;'>"+							
+
+										//"<div class='card-footer'>"+							
+=======
 
 										"<div class='card-footer'>"+							
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 											"<div class='pull-left pr-2'>"+
 												"<span class='fa fa-star checked'></span>"+
 												"<span class='fa fa-star checked'></span>"+
@@ -187,10 +225,15 @@ function createTable(result,sno)
 									"</div>"+
 								"</div>"+
 							"</div>"+
+<<<<<<< HEAD
+							"<div class='backside'>"+
+								"<div class='card'>"+
+=======
 
 							"<div class='backside'>"+
 								"<div class='card'>"+
 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 									"<div class='card-body text-center mt-4'>"+
 										"<h4 class='card-title'>"+
 											"<a class='dropdown-item text-primary' href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
@@ -219,6 +262,11 @@ function createTable(result,sno)
 													"<small> "+result[index].direccion+"</small>"+
 												"</div>"+
 											"</div>"+
+<<<<<<< HEAD
+										"</div>"+			
+									"</div>"+
+								"</div>"+
+=======
 
 										"</div>"+
 							
@@ -226,12 +274,19 @@ function createTable(result,sno)
 
 								"</div>"+
 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 							"</div>"+
 
 						"</div>"+
 					"</div>"+
 				"</div>";	      		
 
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 				/**************************************************************************************************************************************/
 			if((index+1) % 3 == 0) 
 			  { 

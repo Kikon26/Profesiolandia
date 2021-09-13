@@ -14,7 +14,7 @@ const asyncGetReq = async (datos, url) => {
 $(function() 
 {
 	'use strict'; 
-	loadPagination(0);	
+	loadPagination(0);
 	//bloqueaPantalla();
   
 	/*
@@ -416,9 +416,7 @@ function get_profesional()
 	  data : {"id_cat_profesional":id_cat_profesional}, 			
 	  success: function(data)
 	  {  
-		cat_profesion(data['profesional'][0].profesion);		
-		loadPagination_preguntas(0,data['profesional'][0].id_cat_profesion);	
-
+		cat_profesion(data['profesional'][0].profesion);
 		$('#especialidad').val(data['profesional'][0].especialidad);
 		$('#descripcion').val(data['profesional'][0].descripcion);
 		$('#informacion_completa').html(data['profesional'][0].informacion_completa);
@@ -1128,10 +1126,14 @@ function cat_profesion(profesion)
 			for (let i in data['profesion']) 				{  
 				    
 					if (data['profesion'][i].nombre==profesion)                                                  
+<<<<<<< HEAD
 					  {
 						  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
 						  $('#id_cat_profesion_temp').val(data['profesion'][i].id_cat_profesion);		
 					  }	  
+=======
+					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].id_cat_profesion+'.-'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
 					else  
 					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
 				}    
@@ -1310,32 +1312,13 @@ function validate(evt) {
 				"id_cat_profesional":id_cat_profesional
 				}, 			
 		success: function(response)
-		{ 
+		{
 			$('#pagination').html(response.links);
 			createTable(response.publicaciones,response.row);		 			
 		}
 		});
 
 	} 
-
-	function loadPagination_preguntas(pagno,id_cat_profesion)
-{	
-	var id_cat_profesional=$('#id_cat_profesional').val();	
-	let method_pagination = 'CAltaProfesional/loadRecord_preguntas';
-	var post_url = baseUrl+method_pagination;
-    
-	$.ajax({
-	url: post_url,
-	type: 'POST',
-	dataType: 'json',
-	data : {"pagno":pagno,"id_cat_profesional":id_cat_profesional,"id_cat_profesion":id_cat_profesion}, 			
-	success: function(response)
-	{   
-		$('#pagination').html(response.links);
-		createTable_preguntas(response.preguntas,response.row);		 			
-	}
-	});
-} 
 
 	function createTable(result,sno)
 	{     
@@ -1344,6 +1327,47 @@ function validate(evt) {
 		html="";
 		for(index in result)
 		{  	
+<<<<<<< HEAD
+
+/*
+					html +="<div class='card-body'>"+
+                            "<a href='#'' data-toggle='modal' data-target='#2020.10.31'  style='color: #2e9ff4;''> "+
+                              "<div class='row' style='text-align: left;'>" +
+                                "<div class='col-md-2'>" + 
+                                "<h5 class='tituloV'><strong> ID:</strong> </h5>" +
+                                "2020.10.31" + 
+                                "</div>" + 
+                              
+                                "<div class='col-md-10'>" + 
+                                "<h5 class='tituloV'><strong> Título:</strong> </h5>" + 
+                                "Titulo de la Publicacion" + 
+                                "</div>" + 
+                            "</div>" + 
+                            "<div class='row'>" + 
+                            "<div class='col-md-12' style='text-align: justify;'>" + 
+                            "<h5 class='tituloV'><strong>Resumen de la Publicacion:</strong></h5>" + 
+                               "En la actualidad el rol del contador público en las organizaciones se ha potencializado y este profesional se ha convertido en parte fundamental de cualquier entidad. Explicamos en qué áreas podría especializarse si es usted un contador público y qué cargos podría desempeñar en cada una. " + 
+                               "<br>" + 
+                              "</div>" + 
+                            "<br>" + 
+                          "</div>" + 
+                        "</a>"+
+                        "</div>";
+*/
+			
+			html+="<div class='row'>"+
+					"<div class='col-md-12'>"+
+					"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'>"+ 
+						 "<div class='row' style='color: #2e9ff4;'>"+
+								"<div class='col-md-2' style='text-align: left;'>"+
+								"<h5 style='color: #4e4e4e;'>"+"<strong>No de publicacion:</strong></h5>"+						
+									+result[index].id_cat_publicacion+
+								"</div>"+
+								"<div class='col-md-5' style='text-align: left;'>"+
+								"<h5 style='color: #4e4e4e;'><strong>Título:</strong></h5>"								
+									+result[index].titulo+								
+								"</div>"+
+=======
 			html+="<div class='row'>"+
 					"<div class='col-md-12'>"+
 						"<div class='row' >"+
@@ -1365,11 +1389,19 @@ function validate(evt) {
 								"</div>"+
 							
 
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 							"<div class='col-md-5 float-right' style='text-align: right;'>"+
 							"<button data-repeater-delete='' class='btn btn-danger waves-effect waves-light' id='button_delete_precio' type='button' onclick='deletePublicacion("+result[index].id_cat_publicacion+"); return false;'>"+                                                          
 								"<i class='ti-close'></i>"+                                                        
 							"</button>"+                                                                                                                
 							"</div>"+
+<<<<<<< HEAD
+						"</div>"+
+						"<div class='row' style='color: #2e9ff4;'>"+
+							"<div class='col-md-12' style='text-align: justify;'>"+
+							"<h5  style='color: #4e4e4e;'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+							+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4; font-weight: lighter; font-family: serif Arial;'>"+result[index].resumen+"</textarea>"+
+=======
 
 						"</div>"+
 						"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
@@ -1377,18 +1409,29 @@ function validate(evt) {
 							"<div class='col-md-12' style='text-align: justify;'>"+
 							"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
 							+result[index].resumen+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 							"<br>"+
 							"</div>"+                             
 							"<br>"+
 						"</div>"+
+<<<<<<< HEAD
+					  "</a>"+	
+					"</div>"+						
+				"</div>"+
+				"<hr>";	  
+
+						
+=======
 						"</a>"+	
 					"</div>"+						
 				"</div>"+
 				"<hr>";	      			
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 		} 
 		$('#tbody_publicaciones').append(html);   				
 	
 	
+<<<<<<< HEAD
 	}
 	
 	function createTable_preguntas(result,sno)
@@ -1458,6 +1501,9 @@ function validate(evt) {
 		$('#tbody_preguntas').append(html);   				
 	}		
 
+=======
+	}	
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
 	function deletePublicacion(id_cat_publicacion)
 	{
 		let method_delete_publicacion = 'CAltaProfesional/delete_publicacion';
@@ -1567,6 +1613,7 @@ function validate(evt) {
 
 		 return false;
 		
+<<<<<<< HEAD
 	});		
 
 	function ContestarPregunta(id_cat_pregunta,pregunta)
@@ -1627,3 +1674,6 @@ function validate(evt) {
 		 return false;
 		
 	});	
+=======
+	});		
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa

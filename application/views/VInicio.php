@@ -103,7 +103,11 @@
                   <div class="card-body px-2">
                     <img src="<?php echo base_url(); ?>imagenes/search_icon.png" style="width: 50px; height: 50px;" class="card-img-top" alt="...">
                     <h5 class="card-title small">
+<<<<<<< HEAD
+                      <a href="<?php echo base_url(); ?>/CBuscar" style="padding: 10px;">Encuentra un Profesional</a>
+=======
                       <a href="#" style="padding: 10px;">Encuentra un Profesional</a>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </h5>
                     <p class="card-text">Busca a un profesional en nuestro directorio y obtén información de sus servicios y experiencia profesional</p>                  
                   </div>
@@ -115,7 +119,11 @@
                   <div class="card-body px-2">
                     <img src="<?php echo base_url(); ?>imagenes/calendar_icon.png" style="width: 50px; height: 50px;" class="card-img-top" alt="...">
                     <h5 class="card-title small">
+<<<<<<< HEAD
+                      <a href="<?php echo base_url(); ?>/CConstruccion" style="padding: 10px;"> Agenda una cita</a>
+=======
                       <a href="#" style="padding: 10px;"> Agenda una cita</a>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </h5>
                     <p class="card-text">Disponible 24/7. Agenda una cita con un profesional en la materia fuera del horario de oficina normal.</p>
                   </div>
@@ -127,7 +135,15 @@
                   <div class="card-body px-2">
                     <img src="<?php echo base_url(); ?>imagenes/ask_icon.png" style="width: 50px; height: 50px;" class="card-img-top" alt="...">
                     <h5 class="card-title small">
+<<<<<<< HEAD
                       <a href="#" id="ancla_pregunta_experto" style="padding: 10px;">Pregunta a un experto</a>
+=======
+<<<<<<< HEAD
+                      <a href="<?php echo base_url(); ?>/CConstruccion" style="padding: 10px;">Pregunta a un experto</a>
+=======
+                      <a href="#" style="padding: 10px;">Pregunta a un experto</a>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
                     </h5>
                     <p class="card-text">Los profesionales en la materia te pueden dar un consejo de algún tema en particular. Pregunta a un experto tus dudas</p>              
                   </div>
@@ -148,7 +164,13 @@
               <h4>Profesionistas Destacados</h4>          
             </div>  
           </div>         
+<<<<<<< HEAD
+         
           <div id="tbody_profesionistas"></div>
+     
+=======
+          <div id="tbody_profesionistas"></div>
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
         <!--*****************************************************************************************************************************-->
         <!--*****************************************************************************************************************************-->
  

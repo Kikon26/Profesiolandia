@@ -249,8 +249,6 @@ function loadPagination_preguntas(pagno)
 
 function createTable(result,sno)
 {
-	cat_profesion('');
-
 	sno = Number(sno);
 	$('#tbody_profesionistas_favoritos').empty();
 	html="";
@@ -266,9 +264,19 @@ function createTable(result,sno)
 				
 							"<div class='frontside'>"+
 								"<div class='card'>"+
+<<<<<<< HEAD
+									"<div class='card-body text-center'>";
+									if (result[index].imagen == null)
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
+									else
+										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
+								
+									html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+=======
 									"<div class='card-body text-center'>"+
 										"<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>"+
 										"<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 										"<p class='card-text'>"+
 											"<strong> "+result[index].profesion+"</strong><br>"+
 											"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
@@ -276,7 +284,12 @@ function createTable(result,sno)
 										"</p>"+
 										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
 
+<<<<<<< HEAD
+										//"<div class='card-footer'>"+							
+										"<div style='background-color: #eeeeee;'>"+	
+=======
 										"<div class='card-footer'>"+							
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 											"<div class='pull-left pr-2'>"+
 												"<span class='fa fa-star checked'></span>"+
 												"<span class='fa fa-star checked'></span>"+
@@ -369,6 +382,16 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row' >"+
 
 						
+<<<<<<< HEAD
+							"<div class='col-md-5' style='text-align: left;'>"+
+							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							"<h5 class='tituloV'>"+"<strong>Area Interes:</strong></h5>"						
+								+result[index].area_interes+
+							"</a>"+	
+							"</div>"+
+							
+							"<div class='col-md-7' style='text-align: left;'>"+
+=======
 							"<div class='col-md-2' style='text-align: left;'>"+
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"		
@@ -377,6 +400,7 @@ function createTable_contenido_interes(result,sno)
 							"</div>"+
 							
 							"<div class='col-md-5' style='text-align: left;'>"+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 							"<h5 class='tituloV'><strong>Título:</strong></h5>"								
 								+result[index].titulo+								
@@ -390,7 +414,11 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row'>"+
 						"<div class='col-md-12' style='text-align: justify;'>"+
 						"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+<<<<<<< HEAD
+						+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4; font-weight: lighter;'>"+result[index].resumen+"</textarea>"+
+=======
 						+result[index].resumen+
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 						"<br>"+
 						"</div>"+                             
 						"<br>"+
@@ -529,11 +557,9 @@ function cat_estado(id_cat_estado)
 function savePregunta()
 	{
 		$("#btn_save_edit_pregunta").html("Guardar");
-		//$('#id_cat_profesion').val("-1");		
 		$('#id_cat_pregunta').val("-1");
 		$('#pregunta').val("");		
 
-		
 		$('#Modal_Add_Pregunta').modal('show');
 	}
 
@@ -562,18 +588,13 @@ function savePregunta()
 	}
 
 	$("#form_save_update_pregunta").on("submit", function(){ 			
-		var id_cat_usuario=$( "#id_cat_usuario" ).val();
-		var id_cat_profesion=$( "#id_cat_profesion" ).val();		
-		var profesion=$( "#id_cat_profesion").find(':selected').data('nombre');
-
+		var id_cat_usuario=$( "#id_cat_usuario" ).val();		
 		var id_cat_pregunta = $('#id_cat_pregunta').val();			
 		var pregunta = $('#pregunta').val();
 		
 		var formData = new FormData();
 
 		formData.append("id_cat_usuario", id_cat_usuario);
-		formData.append("id_cat_profesion", id_cat_profesion);
-		formData.append("profesion", profesion);
 		formData.append("id_cat_pregunta", id_cat_pregunta);
 		formData.append("pregunta", pregunta);
 	
@@ -592,14 +613,15 @@ function savePregunta()
             cache:false,
             async:false,      
 			success: function(data)
-			{					
-				$('#pregunta').val("");								
+			{	
+				$('#pregunta').val("");				
+				$('#pregunta').val("");				
 				$('#Modal_Add_Pregunta').modal('hide');
 
 				Swal.fire({
 					title: 'Actualización realizada con exitó!',                        
 				}).then((result) => {
-					loadPagination_preguntas(0);					
+					loadPagination_preguntas(0);
 				})	
 			}
 		});
@@ -608,36 +630,3 @@ function savePregunta()
 		 return false;
 		
 	});			
-
-	function cat_profesion(profesion)
-{
-
-	let method_profesion = 'CPerfilCliente/profesion';
-	var post_url = baseUrl+method_profesion
-
-	$.ajax({
-		type: "POST",   
-		dataType:'json',         
-		url: post_url,                          
-		success: function(data){                                
-			var html = '<option value="">Selecciona Profesión</option>';                
-			for (let i in data['profesion']) 				{  
-				    
-					if (data['profesion'][i].nombre==profesion)                                                  
-					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
-					else  
-					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
-				}    
-			
-			$('#id_cat_profesion').html(html);	
-			$('#id_cat_profesion').select2({
-				 dropdownParent: $('#Modal_Add_Pregunta'),
-				
-			});
-			// $('#id_cat_profesion').change();  				
-
-			
-		}
-	});
-
-}

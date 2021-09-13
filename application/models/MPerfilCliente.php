@@ -211,11 +211,25 @@ class MPerfilCliente extends CI_Model {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
         
+<<<<<<< HEAD
       $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
               cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
               cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
               order by p.id_cat_publicacion";             
+=======
+<<<<<<< HEAD
+        
+   $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
+              order by p.id_cat_publicacion";           
     
+
+=======
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
+    
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
       return $sqlsrvDB->query($query)->num_rows();
     }  
 
@@ -223,11 +237,23 @@ class MPerfilCliente extends CI_Model {
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
       $postData = $this->input->post();
+<<<<<<< HEAD
       
       $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
               cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
               cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion 
               order by p.id_cat_publicacion";             
+=======
+
+<<<<<<< HEAD
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional inner join  
+              cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional inner join 
+              cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion               
+              order by p.id_cat_publicacion";            
+=======
+      $query="select  * from cat_favoritos as f inner join cat_publicaciones as p on f.id_cat_usuario={$postData['id_cat_usuario']} and p.id_cat_profesional=f.id_cat_profesional order by p.id_cat_publicacion";             
+>>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
               //." limit ".$start.",".$limit;                        
        
       $resultado = $sqlsrvDB->query($query);		
@@ -329,7 +355,6 @@ class MPerfilCliente extends CI_Model {
           
         $data = array(             
             'id_cat_usuario'  => $postData['id_cat_usuario'], 
-            'id_cat_profesion'  => $postData['id_cat_profesion'], 
             'pregunta'  => $postData['pregunta'],             
             'fecha_alta' => date("Y-m-d H:i:s")            
         );
@@ -369,34 +394,6 @@ class MPerfilCliente extends CI_Model {
       
       $resultado=$sqlsrvDB->delete('cat_preguntas');
     }  
-
-    public function CatalogoProfesiones()
-    {
-		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $query="select * from cat_profesiones where activo=1 order by nombre";         
-        $resultado = $sqlsrvDB->query($query);		
-		return $resultado->result();        
-    }
-
-    public function GetCorreos()
-    {
-		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $postData = $this->input->post();
-    $query="select * from cat_profesionales where activo=1 and id_cat_profesion={$postData['id_cat_profesion']} order by nombre";         
-        $resultado = $sqlsrvDB->query($query);		
-		return $resultado->result();        
-    }
-
-  public function GetUser($id_cat_usuario)
-  {
-    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-
-    $query="select * from usuarios where id_cat_usuario='{$id_cat_usuario}'";         
-    
-    $resultado = $sqlsrvDB->query($query);		                
-    return $resultado->row_array();
-    
-  }
 
 
 }
