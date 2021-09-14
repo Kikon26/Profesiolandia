@@ -276,7 +276,8 @@ function createTable(result,sno)
 										"</p>"+
 										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
 
-										"<div class='card-footer'>"+							
+										//"<div class='card-footer'>"+							
+										"<div style='background-color: #eeeeee;'>"+	
 											"<div class='pull-left pr-2'>"+
 												"<span class='fa fa-star checked'></span>"+
 												"<span class='fa fa-star checked'></span>"+
@@ -369,14 +370,14 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row' >"+
 
 						
-							"<div class='col-md-2' style='text-align: left;'>"+
+							"<div class='col-md-5' style='text-align: left;'>"+
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-							"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"		
+							"<h5 class='tituloV'>"+"<strong>Area de interes:</strong></h5>"		
 								+result[index].area_interes+
 							"</a>"+	
 							"</div>"+
 							
-							"<div class='col-md-5' style='text-align: left;'>"+
+							"<div class='col-md-7' style='text-align: left;'>"+
 							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 							"<h5 class='tituloV'><strong>Título:</strong></h5>"								
 								+result[index].titulo+								
@@ -390,7 +391,7 @@ function createTable_contenido_interes(result,sno)
 					"<div class='row'>"+
 						"<div class='col-md-12' style='text-align: justify;'>"+
 						"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
-						+result[index].resumen+
+						+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4; font-weight: lighter;'>"+result[index].resumen+"</textarea>"+
 						"<br>"+
 						"</div>"+                             
 						"<br>"+

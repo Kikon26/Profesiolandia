@@ -1346,45 +1346,36 @@ function validate(evt) {
 		{  	
 			html+="<div class='row'>"+
 					"<div class='col-md-12'>"+
-						"<div class='row' >"+
-
-							
-								"<div class='col-md-2' style='text-align: left;'>"+
-								"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-								"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+						
-								
-									+result[index].id_cat_publicacion+
-								"</a>"+	
-								"</div>"+
-								
+					"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'>"+ 
+						 "<div class='row' style='color: #2e9ff4;'>"+
 								"<div class='col-md-5' style='text-align: left;'>"+
-								"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-								"<h5 class='tituloV'><strong>Título:</strong></h5>"								
-									+result[index].titulo+								
-								"</a>"+		
+								"<h5 style='color: #4e4e4e;'>"+"<strong>No de publicacion:</strong></h5>"+						
+									+result[index].id_cat_publicacion+
 								"</div>"+
-							
-
-							"<div class='col-md-5 float-right' style='text-align: right;'>"+
+								"<div class='col-md-5' style='text-align: left;'>"+
+								"<h5 style='color: #4e4e4e;'><strong>Título:</strong></h5>"								
+									+result[index].titulo+								
+								"</div>"+
+							"<div class='col-md-2 float-right' style='text-align: right;'>"+
 							"<button data-repeater-delete='' class='btn btn-danger waves-effect waves-light' id='button_delete_precio' type='button' onclick='deletePublicacion("+result[index].id_cat_publicacion+"); return false;'>"+                                                          
 								"<i class='ti-close'></i>"+                                                        
 							"</button>"+                                                                                                                
 							"</div>"+
-
 						"</div>"+
-						"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-						"<div class='row'>"+
+						"<div class='row' style='color: #2e9ff4;'>"+
 							"<div class='col-md-12' style='text-align: justify;'>"+
-							"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
-							+result[index].resumen+
+							"<h5  style='color: #4e4e4e;'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
+							+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4; font-weight: lighter; font-family: serif Arial;'>"+result[index].resumen+"</textarea>"+
 							"<br>"+
 							"</div>"+                             
 							"<br>"+
 						"</div>"+
-						"</a>"+	
+					  "</a>"+	
 					"</div>"+						
 				"</div>"+
-				"<hr>";	      			
+				"<hr>";	 
+
+
 		} 
 		$('#tbody_publicaciones').append(html);   				
 	

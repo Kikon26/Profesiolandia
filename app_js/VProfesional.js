@@ -29,19 +29,19 @@ $(function()
 			$('#profesionista').html(data['profesional'][0].profesionista);
 			$('#especialidad').html("Especialidad  - "+data['profesional'][0].especialidad);
 			$('#especialidad2').html("Especialidad en "+data['profesional'][0].especialidad);
-			$('#descripcion').html(data['profesional'][0].descripcion);
+			$('#txta_descripcion').html(data['profesional'][0].descripcion);
 			$('#descripcion1').html(data['profesional'][0].descripcion);			
 			$('#profesion').html(data['profesional'][0].profesion);
 			$('#profesion2').html(data['profesional'][0].profesion);
 			$('#tel').html(data['profesional'][0].tel);
 			$('#direccion').html(data['profesional'][0].direccion);
-			$('#informacion_completa').html(data['profesional'][0].informacion_completa);
+			$('#txta_informacion_completa').html(data['profesional'][0].informacion_completa);
 			
 			$('#cedula_profesional').html(data['profesional'][0].cedula_profesional);
 			$('#cedula_profesional_postgrado').html(data['profesional'][0].cedula_profesional_postgrado);
 			
-			$('#experiencia_servicios_ofrecidos').html(data['profesional'][0].experiencia_servicios_ofrecidos);
-			$('#preguntas_frecuentes').html(data['profesional'][0].preguntas_frecuentes);
+			$('#txta_experiencia_servicios_ofrecidos').html(data['profesional'][0].experiencia_servicios_ofrecidos);
+			$('#txta_preguntas_frecuentes').html(data['profesional'][0].preguntas_frecuentes);
 
 			$('#metodos_pago').html("<br>"+data['profesional'][0].metodos_pago+"<br>");
 			
@@ -380,13 +380,13 @@ function get_publicaciones()
 								"<div class='row' >"+
 
 									
-										"<div class='col-md-2' style='text-align: left;'>"+							
+										"<div class='col-md-5' style='text-align: left;'>"+							
 										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-										"<h5 class='tituloV'>"+"<strong>ID:</strong></h5>"+
-											+data['publicaciones'][i].id_cat_publicacion+							
+										"<h5 class='tituloV'>"+"<strong>Area de Interes:</strong></h5>"
+											+data['publicaciones'][i].area_interes+							
 										"</div>"+
 										"</a>"+	
-										"<div class='col-md-5' style='text-align: left;'>"+
+										"<div class='col-md-7' style='text-align: left;'>"+
 										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 										"<h5 class='tituloV'><strong>Título:</strong></h5>"								
 											+data['publicaciones'][i].titulo+	
@@ -401,7 +401,7 @@ function get_publicaciones()
 								"<div class='row'>"+
 									"<div class='col-md-12' style='text-align: justify;'>"+
 									"<h5 class='tituloV'>"+"<strong>Resumen de la Publicacion:</strong></h5>"
-									+data['publicaciones'][i].resumen+
+									+"<textarea readonly rows='4' style='min-width: 100%; border:none; color: #2e9ff4;'>"+data['publicaciones'][i].resumen+"</textarea>"+
 									"<br>"+
 									"</div>"+                             
 									"<br>"+

@@ -26,6 +26,14 @@
   color: #007b5e ;
 }
 
+
+.texto-Areas
+{
+color: #3e5569;
+font-weight: lighter;
+font-family: sans-serif arial;
+}
+
 .imagenes
 {
     width: 120px; 
@@ -36,12 +44,11 @@
 
 .cards
 {
-   min-height: 312px;
-    
+   min-height: 312px;  
 }
 
 
-/*   Estuilos para flip card*/
+/*   Estilos para flip card*/
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
@@ -119,6 +126,7 @@ section .section-title {
 
 .backside {
     position: absolute;
+    bottom: 0;
     top: 0;
     left: 0;
     background: white;
@@ -153,6 +161,7 @@ section .section-title {
 .frontside .card,
 .backside .card {
     min-height: 312px;
+    
 }
 
 .backside .card a {
@@ -170,7 +179,6 @@ section .section-title {
     height: 120px;
     border-radius: 50%;
 }
-
 
 
 
