@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<<<<<<< HEAD
 ERROR - 2021-09-08 10:59:33 --> Query error: Table 'profesiolandia.cat_opiniones' doesn't exist - Invalid query: select 
               p.id_cat_profesional, 
               s.nombre as estado,
@@ -485,9 +484,6 @@ ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL synta
 ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_dia' at line 1 - Invalid query: select * from cat_horario_atencion where id_cat_profesional= order by id_cat_dia
 ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_promocion' at line 1 - Invalid query: select * from cat_promociones where id_cat_profesional= order by id_cat_promocion
 ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 46 - Invalid query: select  
-=======
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 46 - Invalid query: select  
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
             s.nombre as estado,   
             e.id_cat_profesion,         
             e.nombre as profesion,
@@ -496,13 +492,8 @@ ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL synta
             p.costo_consulta,
             p.imagen,
             concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-<<<<<<< HEAD
             v.opinion,
             
-=======
-            o.opinion,
-            ifnull(o.calificacion,0) as calificacion,              
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
             concat(d.calle,' ',d.num,', ',d.colonia ) as direccion,
 
             d.id_cat_estado,
@@ -535,40 +526,12 @@ ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL synta
             cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
             cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-<<<<<<< HEAD
             cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional left join
             cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
             where p.id_cat_profesional= 
 ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_precio' at line 1 - Invalid query: select * from cat_precios where id_cat_profesional= order by id_cat_precio
 ERROR - 2021-09-08 15:23:44 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_reconocimiento' at line 1 - Invalid query: select * from cat_reconocimientos where id_cat_profesional= order by id_cat_reconocimiento
 ERROR - 2021-09-08 15:26:39 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 46 - Invalid query: select  
-=======
-            cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional left join
-            cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
-            where p.id_cat_profesional= 
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_publicacion' at line 1 - Invalid query: select  * from cat_publicaciones where id_cat_profesional=  order by id_cat_publicacion
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_precio' at line 1 - Invalid query: select * from cat_precios where id_cat_profesional= order by id_cat_precio
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_dia' at line 1 - Invalid query: select * from cat_horario_atencion where id_cat_profesional= order by id_cat_dia
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_reconocimiento' at line 1 - Invalid query: select * from cat_reconocimientos where id_cat_profesional= order by id_cat_reconocimiento
-ERROR - 2021-09-08 18:02:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_promocion' at line 1 - Invalid query: select * from cat_promociones where id_cat_profesional= order by id_cat_promocion
-ERROR - 2021-09-08 18:09:48 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\Desarrollo\Profesiolandia\application\controllers\CRegistro.php 144
-ERROR - 2021-09-08 18:21:20 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 18:21:35 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 18:21:48 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 18:32:34 --> Severity: Warning --> Undefined array key "id_cat_profesion" C:\xampp\htdocs\Desarrollo\Profesiolandia\application\views\VBuscar.php 20
-ERROR - 2021-09-08 18:32:34 --> Severity: Warning --> Undefined array key "id_cat_estado" C:\xampp\htdocs\Desarrollo\Profesiolandia\application\views\VBuscar.php 21
-ERROR - 2021-09-08 18:32:34 --> Severity: Warning --> Undefined array key "filtrar" C:\xampp\htdocs\Desarrollo\Profesiolandia\application\views\VBuscar.php 41
-ERROR - 2021-09-08 18:34:40 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 18:36:02 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 18:38:20 --> 404 Page Not Found: Assets/images
-ERROR - 2021-09-08 21:56:54 --> 404 Page Not Found: Assets/libs
-ERROR - 2021-09-08 21:56:54 --> 404 Page Not Found: Assets/js
-ERROR - 2021-09-08 21:56:54 --> 404 Page Not Found: Assets/libs
-ERROR - 2021-09-08 21:57:10 --> 404 Page Not Found: Assets/css
-ERROR - 2021-09-08 22:08:24 --> Severity: error --> Exception: Undefined constant "console" C:\xampp\htdocs\Desarrollo\Profesiolandia\application\models\MPerfilCliente.php 219
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_publicacion' at line 1 - Invalid query: select  * from cat_publicaciones where id_cat_profesional=  order by id_cat_publicacion
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 46 - Invalid query: select  
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
             s.nombre as estado,   
             e.id_cat_profesion,         
             e.nombre as profesion,
@@ -577,7 +540,6 @@ ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL synta
             p.costo_consulta,
             p.imagen,
             concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-<<<<<<< HEAD
             v.opinion,
             
             concat(d.calle,' ',d.num,', ',d.colonia ) as direccion,
@@ -633,10 +595,6 @@ ERROR - 2021-09-08 15:30:22 --> Query error: You have an error in your SQL synta
             concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
             v.opinion,
             
-=======
-            o.opinion,
-            ifnull(o.calificacion,0) as calificacion,              
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
             concat(d.calle,' ',d.num,', ',d.colonia ) as direccion,
 
             d.id_cat_estado,
@@ -669,19 +627,9 @@ ERROR - 2021-09-08 15:30:22 --> Query error: You have an error in your SQL synta
             cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
             cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-<<<<<<< HEAD
             cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional left join
             cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
             where p.id_cat_profesional= 
 ERROR - 2021-09-08 15:30:22 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_promocion' at line 1 - Invalid query: select * from cat_promociones where id_cat_profesional= order by id_cat_promocion
 ERROR - 2021-09-08 15:30:22 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_precio' at line 1 - Invalid query: select * from cat_precios where id_cat_profesional= order by id_cat_precio
 ERROR - 2021-09-08 15:30:22 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_dia' at line 1 - Invalid query: select * from cat_horario_atencion where id_cat_profesional= order by id_cat_dia
-=======
-            cat_opiniones as o on o.id_cat_profesional=p.id_cat_profesional left join
-            cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
-            where p.id_cat_profesional= 
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_reconocimiento' at line 1 - Invalid query: select * from cat_reconocimientos where id_cat_profesional= order by id_cat_reconocimiento
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_dia' at line 1 - Invalid query: select * from cat_horario_atencion where id_cat_profesional= order by id_cat_dia
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_precio' at line 1 - Invalid query: select * from cat_precios where id_cat_profesional= order by id_cat_precio
-ERROR - 2021-09-08 22:09:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by id_cat_promocion' at line 1 - Invalid query: select * from cat_promociones where id_cat_profesional= order by id_cat_promocion
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa

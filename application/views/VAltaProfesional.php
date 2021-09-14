@@ -21,7 +21,6 @@
             <!--Tabs de informacion del profesional inicio  -->
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">                
-<<<<<<< HEAD
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '1' ? 'show active' : '' ?>" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Información General</a>               
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="true">Experiencia & Titulos</a>                
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '3' ? 'show active' : '' ?>" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>    
@@ -29,14 +28,6 @@
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '6' ? 'show active' : '' ?>" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
                 <a class="nav-item nav-link <?=$datosvista["tab"] === '7' ? 'show active' : '' ?>" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
-=======
-                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Información General</a>               
-                <a class="nav-item nav-link" id="nav-exp-tab" data-toggle="tab" href="#nav-exp" role="tab" aria-controls="nav-exp" aria-selected="false">Experiencia & Titulos</a>                
-                <a class="nav-item nav-link" id="nav-pub-tab" data-toggle="tab" href="#nav-pub" role="tab" aria-controls="nav-pub" aria-selected="false">Publicaciones</a>                
-                <a class="nav-item nav-link" id="nav-dir-tab" data-toggle="tab" href="#nav-dir" role="tab" aria-controls="nav-dir" aria-selected="false">Datos de contacto</a>
-                <a class="nav-item nav-link" id="nav-precio-tab" data-toggle="tab" href="#nav-precio" role="tab" aria-controls="nav-precio" aria-selected="false">Precios</a>
-                <a class="nav-item nav-link" id="nav-promo-tab" data-toggle="tab" href="#nav-promo" role="tab" aria-controls="nav-promo" aria-selected="false">Calendario</a>
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">    
@@ -57,7 +48,7 @@
                     <div class="form-row" style="text-align: left;">
                       <div class="form-group col-md-6">
                         <label for="titulo">Título</label>
-                        <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >  
+                        <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >                          
                         <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
                         <input type="hidden" name="existe_direccion" id="existe_direccion" value="no" >  
                         <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
@@ -196,15 +187,8 @@
                       Crear Publicación
                     </span>
                   </a> 
-<<<<<<< HEAD
-                </div>     
-
-                
-                
-=======
                 </div>          
 
->>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                 <div id="tbody_publicaciones"></div>             
                 <!--***********************************************************************************************************************************************-->
                 <!-- MODAL ADD -->
@@ -229,24 +213,12 @@
 
                           <div class="col-md-12">
                             <label for="resumenLabel1">Resúmen de la Publicación:</label>
-<<<<<<< HEAD
-                            <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Recomendaciones: 
-                            Titulos deben ir en mayusculas, y los parrafos de informacion en minusculas con sus separaciones por cambio de linea.
-                            Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" required></textarea>
-=======
                             <textarea class="form-control" maxlength="600" rows="3" id="resumen" placeholder="Ingresa el resumen / detalle de la publicación (600 caracteres maximo)" required></textarea>
->>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                           </div>
 
                           <div class="col-md-12">
                             <label for="PublicacionLabel2">Publicación:</label>
-<<<<<<< HEAD
-                            <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Recomendaciones: 
-                            Titulos deben ir en mayusculas, y los parrafos de informacion en minusculas con sus separaciones por cambio de linea.
-                            Ingresa la informacion de la publicación (10,000 caracteres maximo)" required></textarea>
-=======
                             <textarea class="form-control" maxlength="10000" rows="5" id="publicacion" placeholder="Ingresa la informacion de la publicación (10,000 caracteres maximo)" required></textarea>
->>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                           </div>
                         </div>
                         <br>                        
@@ -254,12 +226,8 @@
                             
                     </div>
                     <div class="modal-footer">
-<<<<<<< HEAD
-                        <button type="submit" class="btn btn-info waves-effect waves-light">Guardar</button>
-=======
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button type="submit" id="btn_save_edit_publicacion" class="btn btn-primary">Guardar</button>
->>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
                     </div>
                     </div>
                 </div>
@@ -268,7 +236,6 @@
                 <!--END MODAL ADD-->    
       
                 <!--***********************************************************************************************************************************************-->           
-<<<<<<< HEAD
               </div>   
               <!--  Detalle tab  - Preguntas - Inicio  -->
               <div class="tab-pane fade <?=$datosvista["tab"] === '4' ? 'show active' : '' ?>" id="nav-quest" role="tabpanel" aria-labelledby="nav-quest-tab">
@@ -287,9 +254,6 @@
                 <!--***********************************************************************************************************************************************-->  
               </div>
               
-=======
-              </div>                
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
               
               <div class="tab-pane fade <?=$datosvista["tab"] === '5' ? 'show active' : '' ?>" id="nav-dir" role="tabpanel" aria-labelledby="nav-dir-tab">
                 <br>
@@ -663,7 +627,6 @@
 
 
     
-<<<<<<< HEAD
           </div>
 
                 <!--***********************************************************************************************************************************************-->
@@ -724,10 +687,6 @@
                 <!--END MODAL ADD-->    
                 <!--***********************************************************************************************************************************************-->
       </div>
-=======
-    </div>
-</div>
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
       
 
     </div>
@@ -741,11 +700,7 @@
 <!-- ============================================================== -->		
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">                
 <link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
-<<<<<<< HEAD
-<link href="<?php echo base_url(); ?>assets/css/style_profesiolandia.css" rel="stylesheet">  
-=======
 
->>>>>>> ac08ebb8f27160be318a5a6b78bbcc6c54473e4e
 
 <!-- ============================================================== -->	        
 <!-- tinymce -->    
