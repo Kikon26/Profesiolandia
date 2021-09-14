@@ -14,7 +14,7 @@ const asyncGetReq = async (datos, url) => {
 $(function() 
 {
 	'use strict'; 
-	loadPagination(0);	
+	loadPagination(0);
 	//bloqueaPantalla();
   
 	/*
@@ -416,9 +416,7 @@ function get_profesional()
 	  data : {"id_cat_profesional":id_cat_profesional}, 			
 	  success: function(data)
 	  {  
-		cat_profesion(data['profesional'][0].profesion);		
-		loadPagination_preguntas(0,data['profesional'][0].id_cat_profesion);	
-
+		cat_profesion(data['profesional'][0].profesion);
 		$('#especialidad').val(data['profesional'][0].especialidad);
 		$('#descripcion').val(data['profesional'][0].descripcion);
 		$('#informacion_completa').html(data['profesional'][0].informacion_completa);
@@ -1127,11 +1125,12 @@ function cat_profesion(profesion)
 			var html = '<option value="">Selecciona Profesión</option>';                
 			for (let i in data['profesion']) 				{  
 				    
-					if (data['profesion'][i].nombre==profesion)                                                  
+					if (data['profesion'][i].nombre==profesion)                                                   
 					  {
 						  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
 						  $('#id_cat_profesion_temp').val(data['profesion'][i].id_cat_profesion);		
 					  }	  
+
 					else  
 					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
 				}    
@@ -1310,32 +1309,13 @@ function validate(evt) {
 				"id_cat_profesional":id_cat_profesional
 				}, 			
 		success: function(response)
-		{ 
+		{
 			$('#pagination').html(response.links);
 			createTable(response.publicaciones,response.row);		 			
 		}
 		});
 
 	} 
-
-	function loadPagination_preguntas(pagno,id_cat_profesion)
-{	
-	var id_cat_profesional=$('#id_cat_profesional').val();	
-	let method_pagination = 'CAltaProfesional/loadRecord_preguntas';
-	var post_url = baseUrl+method_pagination;
-    
-	$.ajax({
-	url: post_url,
-	type: 'POST',
-	dataType: 'json',
-	data : {"pagno":pagno,"id_cat_profesional":id_cat_profesional,"id_cat_profesion":id_cat_profesion}, 			
-	success: function(response)
-	{   
-		$('#pagination').html(response.links);
-		createTable_preguntas(response.preguntas,response.row);		 			
-	}
-	});
-} 
 
 	function createTable(result,sno)
 	{     
@@ -1344,7 +1324,7 @@ function validate(evt) {
 		html="";
 		for(index in result)
 		{  	
-			html+="<div class='row'>"+
+     html+="<div class='row'>"+
 					"<div class='col-md-12'>"+
 					"<a href='#' onclick='editarPublicacion("+result[index].id_cat_publicacion+"); return false;'>"+ 
 						 "<div class='row' style='color: #2e9ff4;'>"+
@@ -1375,11 +1355,8 @@ function validate(evt) {
 				"</div>"+
 				"<hr>";	 
 
-
 		} 
 		$('#tbody_publicaciones').append(html);   				
-	
-	
 	}
 	
 	function createTable_preguntas(result,sno)
@@ -1414,7 +1391,7 @@ function validate(evt) {
 
 						"</div>"+
 
-						
+					
 	
 						"<div class='collapse' id='collapsePregunta"+result[index].id_cat_pregunta+"'>";
 			}
@@ -1447,8 +1424,7 @@ function validate(evt) {
 			}		
 		} 
 		$('#tbody_preguntas').append(html);   				
-	}		
-
+	}	
 	function deletePublicacion(id_cat_publicacion)
 	{
 		let method_delete_publicacion = 'CAltaProfesional/delete_publicacion';
@@ -1555,10 +1531,10 @@ function validate(evt) {
 			}
 		});
 		
-
+  
 		 return false;
 		
-	});		
+});		
 
 	function ContestarPregunta(id_cat_pregunta,pregunta)
 	{

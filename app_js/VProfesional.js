@@ -24,8 +24,8 @@ $(function()
     
 	if (data['profesional']) 
 		{   
-			            			
-			$('#imagen').attr("src",baseUrl+"assets/images/profesionales/"+data['profesional'][0].imagen);			
+    
+      $('#imagen').attr("src",baseUrl+"assets/images/profesionales/"+data['profesional'][0].imagen);			
 			$('#profesionista').html(data['profesional'][0].profesionista);
 			$('#especialidad').html("Especialidad  - "+data['profesional'][0].especialidad);
 			$('#especialidad2').html("Especialidad en "+data['profesional'][0].especialidad);
@@ -55,8 +55,7 @@ $(function()
 			$('#pagina_web').val(data['profesional'][0].pagina_web);
 
 			
-			if($('#id_cat_rol').val()=="3")	 checar_favorito();	
-			
+			if($('#id_cat_rol').val()=="3")	 checar_favorito();	            				
 		}			
 		get_redes_sociales();
 		get_reconocimientos(); 
@@ -307,6 +306,7 @@ function checar_favorito()
 		}
 	});
 }
+
 
 
 

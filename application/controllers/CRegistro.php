@@ -59,22 +59,15 @@ class CRegistro extends CI_Controller {
 		  $id_usuario_profesional=$this->MRegistro->save_usuario($code);	 
 		  $subject = "Bienvenido a Profesiolandia";	  
 
-          /* Antes 
-       	  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/style_profesiolandia.css'
-		  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/bootstrap.min.css'
-		  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/mdb.min.css'
-
-	      http://obraspublicas.morelia.gob.mx/Profesiolandia/imagenes/Logo_Profesiolandia_perspectiva.png	
-		  */	
 		  $message = "
 		  <html lang='en'>
 			<head>
 			  
 			  <meta charset='utf-8'>
 			  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/bootstrap.min.css' rel='stylesheet'>
+			  <link href='http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/mdb.min.css' rel='stylesheet'>
 			</head>
 			<body>
 
@@ -84,7 +77,7 @@ class CRegistro extends CI_Controller {
 				<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				  
 				  <div class='row' style='text-align: center;'>
-					<img src='https://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+					<img src='http://obraspublicas.morelia.gob.mx/Profesiolandia/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				  </div>
 
 				  <strong>
@@ -120,7 +113,7 @@ class CRegistro extends CI_Controller {
 		 
 		//Establecemos esta configuración
 		  $this->email->initialize($config);
-		  $this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		  $this->email->from("enrique.rocko@gmail.com", "Profesiolandia");
 		  $this->email->to($postData['email'], $postData['usuario']);		
 		  $this->email->subject($subject);
 		  $this->email->message($message);

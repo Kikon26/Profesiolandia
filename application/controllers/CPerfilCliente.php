@@ -9,7 +9,7 @@ class CPerfilCliente extends CI_Controller {
 		$this->load->library('sesion');
 		$this->load->library("pagination");
 		$this->load->library('peticion');		
-		$this->load->model('MPerfilCliente');		
+		$this->load->model('MPerfilCliente');
 		$this->load->model('MMenu');
     }
     public function index(){
@@ -273,6 +273,7 @@ class CPerfilCliente extends CI_Controller {
 	}
 
 	public function save_update_pregunta(){
+<<<<<<< HEAD
 
 		/***************************************************************************************************/
 		$postData = $this->input->post();				 
@@ -424,6 +425,9 @@ class CPerfilCliente extends CI_Controller {
 		/***************************************************************************************************/		
 		/***************************************************************************************************/		
 		$resultado['save_update'] = $this->MPerfilCliente->save_update_pregunta();						
+=======
+		$resultado['save_update'] = $this->MPerfilCliente->save_update_pregunta();				
+>>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
 		echo json_encode($resultado);
 	}
 
@@ -438,10 +442,6 @@ class CPerfilCliente extends CI_Controller {
 	}
 	
 
-	public function profesion(){
-		$resultado['profesion'] = $this->MPerfilCliente->CatalogoProfesiones();				
-		echo json_encode($resultado);
-	}
 }
 
 
