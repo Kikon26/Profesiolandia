@@ -270,8 +270,7 @@
                   <div class="col"></div>
                 </div>
                 <hr>
-
-                
+               
 
                 <div class="row">
                   <div class="col"></div>
@@ -287,110 +286,7 @@
                 <hr>
 
                 <div id="tbody_preguntas"></div>    
-                <!--***********************************************************************************************************************************************-->
-                <!-- MODAL ADD -->
-                <form id="form_save_update_pregunta">
-                <div class="modal fade" id="Modal_Add_Pregunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Crea una Pregunta</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">                                                                                      
-                      <div class="row">
-
-                        <div class="col-md-7">
-                          <br>
-                          <h5 class="tituloV"><strong>Pregunta a un Profesional</strong> </h5>
-                          <p class="text-justify">
-                            Tu respuesta sera canalizada con los profesionales <br>
-                            Los profesionales tardan aproximadamente 48 horas en responder tu pregunta<br>
-                            Recibiras una notificacion cuando tu respuesta sea contestada
-                          </p>
-                        </div>
-
-                        <div class="col-md-5" style="text-align: center;">
-                          <img src="<?php echo base_url(); ?>imagenes/questions.png" style="height: 200px; width: 200px;" alt="Pregunta">
-                        </div>
-
-                      </div>
-
-                      <div class="container" style="border-radius: 25px; background: #ded7d7;">
-                        <br>                         
-                          <div class="container" style="text-align: left;">
-                            <label for="pregunta1" class="form-label"><strong style="color: #333030;">&nbsp;Cual es tu pregunta?</strong></label>
-                            <input type='hidden' name='id_cat_pregunta' id='id_cat_pregunta' value="-1">
-                            <input type="text" class="form-control" id="pregunta" placeholder="Escribe tu pregunta...">
-                          </div>                          
-                        <br>
-                      </div>                      
-                      <br>                              
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" id="btn_save_edit_pregunta" class="btn btn-primary">Enviar</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                </form>
-                <!--END MODAL ADD-->    
-      
                 <!--***********************************************************************************************************************************************-->  
-
-                 <!-- Preguntas Collapse  
-                <div class="row" style="text-align: left;">
-                  <div class="col-md-8" style="border-radius: 25px; border-color: black; background-color: #f1efef;">
-                    <br>
-                    <a data-toggle="collapse" href="#collapsePregunta1" role="button" aria-expanded="false" aria-controls="collapsePregunta1">
-                      Cuantos años debo de tener para poder realizar tramites legales?
-                      <br>
-                      <br>
-                    </a>
-                  </div>
-                  <div class="col-md-4"></div>
-                </div>
-
-                <div class="collapse" id="collapsePregunta1">
-                  <br>
-                   Respuestas  
-                  <div class="row">                    
-                    <div class="col-md-4">
-                      <a href="profesional.php=id=1111" target="_self">        
-                        <img src="" style="max-height: 40px; max-height: 40px; position: absolute; bottom: 5px; right: 5px; border-radius: 40%;" data-toggle="tooltip" data-placement="top" title="Marcela Vazquez">
-                      </a>                        
-                    </div>
-                    <div class="col-md-8" style="border-radius: 25px; background: #dddddd;">
-                      <br>
-                      Los años que debes de tener son minimo la mayoria de edad que so 18 años aqui en Mexico para poder realizar cualquier tipo de tramite
-                      <br>
-                      <br>
-                    </div>
-                  </div>
-
-                  <br>
-                   Respuestas  
-                  <div class="row">                    
-                    <div class="col-md-4">
-                      <a href="profesional.php=id=1111" target="_self">        
-                          <img src="" style="max-height: 40px; max-height: 40px; position: absolute; bottom: 5px; right: 5px; border-radius: 40%;" data-toggle="tooltip" data-placement="top" title="Rodrigo Mancera">
-                      </a>                        
-                    </div>
-                    <div class="col-md-8" style="border-radius: 25px; background: #dddddd;">
-                      <br>
-                      Debes de tener 18 años
-                      <br>
-                      <br>
-                    </div>
-                  </div>
-                </div>
-                <br>                -->
-
-
-
               </div>
               <!--  Detalle tab  - Preguntas - Fin  -->
 
@@ -443,7 +339,6 @@
 
 
     
-<<<<<<< HEAD
           </div>
 
                 <!--***********************************************************************************************************************************************-->
@@ -505,10 +400,6 @@
                 <!--***********************************************************************************************************************************************-->
 
         </div>
-=======
-    </div>
-</div>
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
       
 
     </div>
