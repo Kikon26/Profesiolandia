@@ -69,23 +69,36 @@ class CAcceso extends CI_Controller {
 		{   
 			$this->session->set_userdata('sisdato', $valida);
 			generaDatosSession();
-			$this->principal();	
+			
+			//$this->principal();	
+
+			$resultado['valida'] = "1";				
+			echo json_encode($resultado);
+
+
 		}
 		else if ($valida2)
 		{   
 			$this->session->set_userdata('sisdato', $valida2);
 			generaDatosSession2();
-			$this->principal();	
+			//$this->principal();	
+
+			$resultado['valida'] = "1";				
+			echo json_encode($resultado);
 		}
 		else
 		{
-			$data = array(
+			/*$data = array(
 			'tUsua'=> $xUsua,
             'xMensaje' => 'Los datos de Validacion son incorrectos, verifiquelos...'
             );
 
-			//$this->load->view('VAcceso2',$data);
-			$this->index();
+			$this->load->view('VAcceso',$data);*/
+			
+			//$this->index('Los datos son incorrectos, verifiquelos...');
+
+			$resultado['valida'] = "0";				
+			echo json_encode($resultado);
 		}
 
 	}
