@@ -168,13 +168,17 @@ function createTable(result,sno)
 					"</div>"+
 				"</div>";*/
 				/**************************************************************************************************************************************/
-		html+= 	"<div class='col-lg-3'>"+
+		html+= 											
+				"<div class='col-lg-3'>"+				
 				"<div class='image-flip' ontouchstart='this.classList.toggle('hover')+'>"+
 					"<div class='mainflip'>"+
 			
-						"<div class='frontside'>"+
+						"<div class='frontside'>"+	
+							
 							"<div class='card'>"+
+								
 								"<div class='card-body text-center'>";
+								 						
 									if (result[index].imagen == null)
 										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
 									else
@@ -188,21 +192,22 @@ function createTable(result,sno)
 									"</p>"+
 									//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
 									//"<div class='card-footer'>"+							
-
-									"<div style='background-color: #eeeeee;'>"+	
-									
-										"<div class='pull-left pr-2'>"+
-											"<span class='fa fa-star checked'></span>"+
-											"<span class='fa fa-star checked'></span>"+
-											"<span class='fa fa-star checked'></span>"+
-											"<span class='fa fa-star'></span>"+
-											"<span class='fa fa-star'></span>"+
-										"</div>"+    
-										"<p class='card-text' style='color: green;'>250 valoraciones</p>"+    
-									"</div>"+
-
-
 								"</div>"+
+
+								"<div class='card-footer text-muted'>"+
+									"<div class='pull-left pr-2'>"+
+									"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"'></div>"+			
+
+										// "<span class='fa fa-star checked'></span>"+
+										// "<span class='fa fa-star checked'></span>"+
+										// "<span class='fa fa-star checked'></span>"+
+										// "<span class='fa fa-star'></span>"+
+										// "<span class='fa fa-star'></span>"+
+
+									"</div>"+    
+									"<p class='card-text' style='color: green;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+							  	"</div>"+
+
 							"</div>"+
 						"</div>"+
 
@@ -248,7 +253,9 @@ function createTable(result,sno)
 
 					"</div>"+
 				"</div>"+
-			"</div>";	      		
+			"</div>";	
+			
+			
 
 			/**************************************************************************************************************************************/				
 			if((index+1) % 3 == 0)  html+="</div>";     				
@@ -299,10 +306,23 @@ function createTable(result,sno)
 			}
 		});*/
 		//***********************************************************************************************
+
+		
 	} 
 	if((index+1) % 3 != 0) html+="</div>";     				
-	$('#tbody_profesionistas').append(html);   				
-				
+	$('#tbody_profesionistas').append(html);   		
+
+
+	for(index in result)
+	{  		
+		$("#valoracion_general_rating_"+result[index].id_cat_profesional).raty({ 	
+			path: baseUrl+'assets/images/rating',	
+			readOnly: true, 
+			score: +result[index].val_gral
+			
+		});			
+	}
+	
 
 }
 
@@ -347,7 +367,6 @@ function filtar()
 	  }
 	});
 }
-
 
 
 

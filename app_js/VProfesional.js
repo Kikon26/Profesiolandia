@@ -570,7 +570,7 @@ function get_redes_sociales()
 			html="";				
 			
 			if (typeof(data['redes_sociales'][0])!='undefined') 
-				{	
+				{					
 					if(data['redes_sociales'][0].business_card!="")						  			    
 						html+= 	"<li class='list-inline-item'>"+
 									"<a href='#' data-toggle='modal' data-target='#Bcard'>"+
@@ -650,8 +650,7 @@ function get_redes_sociales()
 									"<img src='"+baseUrl+"imagenes/editar.png' style='height: 50px; width: 50px;' title='Ir al Perfil del Profesional para edicción'  alt='...'>"+                        
 								"</a>"+						
 							"</li>";							
-				$('#ul_redes_sociales').html(html);  
-
+				$('#ul_redes_sociales').html(html);  				
 			
 			
 			
@@ -716,9 +715,9 @@ function verPublicacion(id_cat_publicacion)
 }
 
 $('#ancla_valoracion').click(function(){	
-
+	
 	if($('#id_cat_rol').val()=="3")	 
-	{
+	{   
 		get_valoracion();
 		$('#valoracion1').modal('show');
 	}	
@@ -765,11 +764,11 @@ $("#form_valoracion").on("submit", function(){
 	var id_cat_rol=$( "#id_cat_rol" ).val();
 	var opinion=$( "#opinion" ).val();	
 
-	var Arating= $('input[name="Arating"]:checked').val();
-	var Crating= $('input[name="Crating"]:checked').val();
-	var Prating= $('input[name="Prating"]:checked').val();
-	var Irating= $('input[name="Irating"]:checked').val();
-	var Rrating= $('input[name="Rrating"]:checked').val();
+	var Arating= $('#Arating').raty('score');
+	var Crating= $('#Crating').raty('score');
+	var Prating= $('#Prating').raty('score');
+	var Irating= $('#Irating').raty('score');
+	var Rrating= $('#Rrating').raty('score');
 
 	var formData = new FormData();
 
@@ -839,11 +838,11 @@ function get_valoracion()
 				$( "#id_cat_valoracion" ).val(data['valoracion'][0].id_cat_valoracion);
 				$( "#opinion" ).val(data['valoracion'][0].opinion);
 
-				$("#Astar"+data['valoracion'][0].atencion).prop("checked", true);
-				$("#Cstar"+data['valoracion'][0].calidad).prop("checked", true);
-				$("#Pstar"+data['valoracion'][0].puntualidad).prop("checked", true);
-				$("#Istar"+data['valoracion'][0].instalaciones).prop("checked", true);
-				$("#Rstar"+data['valoracion'][0].recomendacion).prop("checked", true);			
+				$('#Arating').raty({ score: data['valoracion'][0].atencion });
+				$('#Crating').raty({ score: data['valoracion'][0].calidad });
+				$('#Prating').raty({ score: data['valoracion'][0].puntualidad });
+				$('#Irating').raty({ score: data['valoracion'][0].instalaciones });
+				$('#Rrating').raty({ score: data['valoracion'][0].recomendacion });
 			}
 			else 
 				{
@@ -893,7 +892,9 @@ function get_valoracion_gral()
 				val_gral+=val_atencion+val_calidad+val_puntualidad+val_instalaciones+val_recomendacion;
 
 				$( "#valoracion_general" ).html(Math.round(val_gral/(conta*5)));
-				$( "#valoracion_general_texto" ).html( "☆☆☆☆☆ " + Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+
+				$( "#valoracion_general_rating").raty({ readOnly: true, score: Math.round(val_gral/(conta*5)) });				
+				$( "#valoracion_general_texto" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
 				$( "#atencion" ).html(Math.round(val_atencion/conta));
 				$( "#calidad" ).html(Math.round(val_calidad/conta));
 				$( "#puntualidad" ).html(Math.round(val_puntualidad/conta));

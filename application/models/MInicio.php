@@ -38,14 +38,22 @@ class MInicio extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              v.opinion,               
+              ifnull(v.total_valoraciones,0) as total_valoraciones,
+              ifnull(v.val_gral,0) as val_gral,
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion                           
               from cat_profesionales as p inner join 
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional "
+              (
+                select 
+                v.id_cat_profesional,
+                count(*) as total_valoraciones,
+                round (sum(atencion+calidad+puntualidad+instalaciones+recomendacion)/(count(*)*5),0) as val_gral
+                from cat_valoraciones as v                 
+                group by v.id_cat_profesional
+              ) as v  on v.id_cat_profesional=p.id_cat_profesional "
       
               .$this->obtener($array_where)
 
@@ -80,7 +88,8 @@ class MInicio extends CI_Model {
               p.costo_consulta,
               p.imagen,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
-              v.opinion,              
+              ifnull(v.total_valoraciones,0) as total_valoraciones,
+              ifnull(v.val_gral,0) as val_gral,
               d.tel,
               concat(d.calle,' ',d.num,', ',d.colonia ) as direccion             
               
@@ -88,7 +97,14 @@ class MInicio extends CI_Model {
               cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion left join 
               cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
               cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
-              cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional  "
+              (
+                select 
+                v.id_cat_profesional,
+                count(*) as total_valoraciones,
+                round (sum(atencion+calidad+puntualidad+instalaciones+recomendacion)/(count(*)*5),0) as val_gral
+                from cat_valoraciones as v                 
+                group by v.id_cat_profesional
+              ) as v  on v.id_cat_profesional=p.id_cat_profesional "
  
               .$this->obtener($array_where)
 

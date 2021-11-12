@@ -320,7 +320,8 @@
                   <div class="col-xs-8 col-sm-3 col-md-3">
                     <h1> <span class="badge" style="background: #158151;" id='valoracion_general'> 0 </span></h1>
                     <h5 class="tituloV"><strong> Valoracion General:</strong> </h5>
-                    <h6 id='valoracion_general_texto' style="color: #007b5e;">  ☆☆☆☆☆ 0/5 / 0 valoraciones </h6> 
+                    <div id="valoracion_general_rating"></div>
+                    <h6 id='valoracion_general_texto' style="color: #007b5e;">0/5 / 0 valoraciones </h6> 
                   </div>
                   <div class="col-xs-4 col-sm-3 col-md-3" style="text-align: left;">
                     <div class="row">
@@ -414,32 +415,24 @@
                                 </div> 
                               </div>
                               <br>
+
+                            
+                         
+
                               <div class="form-row" style="text-align: left;">
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Atención: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Astar5" name="Arating" value="5"/><label for="Astar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Astar4" name="Arating" value="4" /><label for="Astar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Astar3" name="Arating" value="3" /><label for="Astar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Astar2" name="Arating" value="2" /><label for="Astar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Astar1" name="Arating" value="1" /><label for="Astar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Arating"></div>
                                     </div> 
                                   </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Calidad: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Cstar5" name="Crating" value="5" /><label for="Cstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Cstar4" name="Crating" value="4" /><label for="Cstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Cstar3" name="Crating" value="3" /><label for="Cstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Cstar2" name="Crating" value="2" /><label for="Cstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Cstar1" name="Crating" value="1" /><label for="Cstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Crating"></div>
                                     </div> 
                                   </div>
                                 </div>                                
@@ -449,28 +442,16 @@
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Puntualidad: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Pstar5" name="Prating" value="5" /><label for="Pstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Pstar4" name="Prating" value="4" /><label for="Pstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Pstar3" name="Prating" value="3" /><label for="Pstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Pstar2" name="Prating" value="2" /><label for="Pstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Pstar1" name="Prating" value="1" /><label for="Pstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Prating"></div>
                                     </div> 
                                   </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Instalaciones: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Istar5" name="Irating" value="5" /><label for="Istar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Istar4" name="Irating" value="4" /><label for="Istar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Istar3" name="Irating" value="3" /><label for="Istar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Istar2" name="Irating" value="2" /><label for="Istar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Istar1" name="Irating" value="1" /><label for="Istar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Irating"></div>
                                     </div> 
                                   </div>
                                 </div>
@@ -480,29 +461,12 @@
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Recomendaciones: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Rstar5" name="Rrating" value="5" /><label for="Rstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Rstar4" name="Rrating" value="4" /><label for="Rstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Rstar3" name="Rrating" value="3" /><label for="Rstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Rstar2" name="Rrating" value="2" /><label for="Rstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Rstar1" name="Rrating" value="1" /><label for="Rstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Rrating"></div>
                                     </div> 
                                   </div>
                                 </div>
-                              </div>
-                              <!-- rating
-                              <div class="row">
-                                <div class="rating" style="text-align: center;">
-                                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Excelente">5 stars</label>
-                                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Bueno">4 stars</label>
-                                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Mas o menos">3 stars</label>
-                                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Malo">2 stars</label>
-                                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Muy Malo">1 star</label>
-                                </div>
-                              </div>
-                              -->
+                              </div>                              
                               <br>
                               <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;" id="button_valoracion">Guardar</button>
                               <button type="button" class="btn my-0 border border-white" data-dismiss="modal" style="background: #aaabaa;" >Cerrar</button>
