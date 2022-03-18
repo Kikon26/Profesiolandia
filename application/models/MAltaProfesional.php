@@ -19,7 +19,8 @@ class MAltaProfesional extends CI_Model {
     $postData = $this->input->post();
 
     $query="select  
-            s.nombre as estado,            
+            s.nombre as estado,   
+            e.id_cat_profesion,         
             e.nombre as profesion,
             p.especialidad,
             p.descripcion,
@@ -453,7 +454,6 @@ class MAltaProfesional extends CI_Model {
       $resultado = $sqlsrvDB->query($query);		
       return $resultado->result();
     
-<<<<<<< HEAD
     }   
     
     public function get_count_preguntas() 
@@ -529,9 +529,6 @@ class MAltaProfesional extends CI_Model {
       return $resultado->result();
     
     }  
-=======
-    }    
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
 
     public function save_update_publicacion()
     {
@@ -582,7 +579,6 @@ class MAltaProfesional extends CI_Model {
       
       $resultado=$sqlsrvDB->delete('cat_publicaciones');
     }      
-<<<<<<< HEAD
 
     public function GetProfesional($id_cat_profesional) 
     { 
@@ -633,8 +629,6 @@ class MAltaProfesional extends CI_Model {
     } 
 
     
-=======
->>>>>>> 05e16327d818604f29ecf2cb5c3810a7fdcb5dfa
 }
 
 ?>
