@@ -195,7 +195,11 @@
                   <div class="col"></div>
                 </div>
 
+                <select class="select2 form-control custom-select" style="width: 30%;" id="favoritos_id_cat_profesion" name="favoritos_id_cat_profesion" data-placeholder="Selecciona Profesión" tabindex="1" required>                                                         
+                </select>                                  
+                
                 <hr>
+                
                 <div id="tbody_profesionistas_favoritos"></div>
               </div>
               <!--  Detalle tab  - Mis Favoritos- Fin  -->
@@ -209,6 +213,10 @@
                   </div>
                   <div class="col"></div>
                 </div>
+
+                <select class="select2 form-control custom-select" style="width: 30%;" id="publicaciones_id_cat_profesion" name="publicaciones_id_cat_profesion" data-placeholder="Selecciona Profesión" tabindex="1" required>                                                         
+                </select>                                  
+
                 <hr>
              
                 <div id="tbody_publicaciones"></div>             
@@ -284,9 +292,8 @@
                   <div class="col"></div>
                 </div>
                 <hr>
-
+                <input type='hidden' name='id_cat_pregunta_tmp' id='id_cat_pregunta_tmp' value="<?=$datosvista["id_cat_pregunta"]?>">
                 <div id="tbody_preguntas"></div>    
-                <!--***********************************************************************************************************************************************-->  
               </div>
               <!--  Detalle tab  - Preguntas - Fin  -->
 
@@ -341,6 +348,7 @@
     
           </div>
 
+              
                 <!--***********************************************************************************************************************************************-->
                 <!-- MODAL ADD -->
                 <form id="form_save_update_pregunta">

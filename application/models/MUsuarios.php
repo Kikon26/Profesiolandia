@@ -22,7 +22,7 @@ class MUsuarios extends CI_Model {
         $sqlsrvDB->select("*")->from('usuarios')->where($cond);
         */ 
 
-        $query="SELECT * FROM usuarios WHERE email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
+        $query="SELECT * FROM usuarios WHERE activo=1 and email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
 
         //$resultado = $sqlsrvDB->get();
 
@@ -33,7 +33,7 @@ class MUsuarios extends CI_Model {
         { 
           
           $row = $resultado->row();
-
+          /*
           // generar código aleatorio simple
 			    $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			    $code = substr(str_shuffle($set), 0, 12);
@@ -44,7 +44,7 @@ class MUsuarios extends CI_Model {
               
           $sqlsrvDB->where('id_cat_usuario', $row->id_cat_usuario);      
           $resultado=$sqlsrvDB->update('usuarios',$data);    
-                     
+          */           
         	
         	return $row->id_cat_usuario;
         	//return 1;	

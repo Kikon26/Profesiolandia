@@ -21,7 +21,7 @@ class MProfesionales extends CI_Model {
         $sqlsrvDB->select("*")->from('cat_profesionales')->where($cond);
         */
         
-        $query="SELECT * FROM cat_profesionales WHERE email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
+        $query="SELECT * FROM cat_profesionales WHERE activo=1 and email = '{$usuario}' COLLATE utf8_bin and password=sha('{$passw}')  ";
          
         //$resultado = $sqlsrvDB->get();
 
@@ -31,7 +31,7 @@ class MProfesionales extends CI_Model {
         if ($resultado->num_rows()>0)
         {
         	$row = $resultado->row();
-
+          /*
           // generar código aleatorio simple
 			    $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			    $code = substr(str_shuffle($set), 0, 12);
@@ -42,7 +42,7 @@ class MProfesionales extends CI_Model {
     
           $sqlsrvDB->where('id_cat_profesional', $row->id_cat_profesional);      
           $resultado=$sqlsrvDB->update('cat_profesionales',$data);    
-          
+          */
         	return $row->id_cat_profesional;
         	//return 1;	
         }

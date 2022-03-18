@@ -9,23 +9,29 @@ class CPerfilCliente extends CI_Controller {
 		$this->load->library('sesion');
 		$this->load->library("pagination");
 		$this->load->library('peticion');		
-		$this->load->model('MPerfilCliente');		
+		$this->load->model('MPerfilCliente');				
 		$this->load->model('MMenu');
     }
     public function index(){
 
-		if ($this->uri->segment(5)==null) $tab="1";
+		if ($this->uri->segment(5)==null) 
+			{
+				$tab="1";
+				$id_cat_pregunta ="-1";
+			}
 		else 							   
 			{
 				$id_cat_rol = $this->uri->segment(3);
 				$id_cat_usuario =  $this->uri->segment(4);        
 				$tab = $this->uri->segment(5);
+				$id_cat_pregunta = $this->uri->segment(6);
 				
 				$this->session->set_userdata('sisdato', $id_cat_usuario);
 				generaDatosSession();
 			}	
 		$dataf = array(
-			'tab'  => $tab			
+			'tab'  => $tab,
+			'id_cat_pregunta'  => $id_cat_pregunta
 		); 	
 		/***************************************************************/	
 
@@ -274,6 +280,7 @@ class CPerfilCliente extends CI_Controller {
 
 	public function save_update_pregunta(){
 
+		$id_cat_pregunta = $this->MPerfilCliente->save_update_pregunta();						
 		/***************************************************************************************************/
 		$postData = $this->input->post();				 
 		$this->load->library('email');
@@ -290,7 +297,9 @@ class CPerfilCliente extends CI_Controller {
 
 		 
 		  
-		 $data['correos'] = $this->MPerfilCliente->GetCorreos($postData['id_cat_profesion']);					 			
+		 $data['correos'] = $this->MPerfilCliente->GetCorreos($postData['id_cat_profesion']);	
+		 
+		 
 		 $contador=0;
 		 foreach($data['correos'] as $correo) 
 		   {
@@ -303,9 +312,9 @@ class CPerfilCliente extends CI_Controller {
 					
 					<meta charset='utf-8'>
 					<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-					<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
-					<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
-					<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+					<link href='http://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+					<link href='http://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+					<link href='http://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
 				</head>
 				<body>
 				<div class='container mt-n0'>
@@ -313,7 +322,7 @@ class CPerfilCliente extends CI_Controller {
 					<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 						
 						<div class='row' style='text-align: center;'>
-						<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+						<img src='http://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 						</div>
 						<strong>
 								<h4 style='color: #007b5e'> <strong> Hola ". $correo->usuario . "</strong> </h4>
@@ -325,16 +334,16 @@ class CPerfilCliente extends CI_Controller {
 						</div>
 						
 						<p style='text-align: center;'>
-							<a href='".base_url()."CAltaProfesional/index/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Dar Respuesta </strong> </a>					      
+							<a href='".base_url()."CAltaProfesional/index/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/4/".$id_cat_pregunta."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Dar Respuesta </strong> </a>					      
 							</p>
 						<div class='row'>
 						<div class='col' style='text-align: center;'  >
-						Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+						Estamos seguros de que estas disfrutando la experiencia en Profesiolandia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
 						</div>
 						<br>
 						
 						<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
-							<a href='".base_url()."CRegistro/cancel/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/4' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+							<a href='".base_url()."CRegistro/cancel/".$correo->id_cat_rol."/".$correo->id_cat_profesional."/".$correo->code."' target='_blank'>Cancelar Suscripción </a> | Enviado por Profesiolandia 
 						</div>
 					</div>
 					</div>
@@ -370,9 +379,9 @@ class CPerfilCliente extends CI_Controller {
 			
 			<meta charset='utf-8'>
 			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
-			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
-			<link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+			<link href='http://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			<link href='http://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='http://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
 		</head>
 		<body>
 		<div class='container mt-n0'>
@@ -380,7 +389,7 @@ class CPerfilCliente extends CI_Controller {
 			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				
 				<div class='row' style='text-align: center;'>
-				<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+				<img src='http://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				</div>
 				<strong>
 						<h4 style='color: #007b5e'> <strong> Hola ". $user['usuario'] . "</strong> </h4>
@@ -392,16 +401,16 @@ class CPerfilCliente extends CI_Controller {
 				</div>
 				
 				<p style='text-align: center;'>
-					<a href='".base_url()."CPerfilCliente/index/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/4' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
+					<a href='".base_url()."CPerfilCliente/index/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/4/".$id_cat_pregunta."' style='background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;' target='_blank'> <strong> Consultar  Respuestas </strong> </a>					      
 					</p>
 				<div class='row'>
 				<div class='col' style='text-align: center;'  >
-				Estamos seguros de que estas disfrutando la experiencia en Profesionalia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+				Estamos seguros de que estas disfrutando la experiencia en Profesiolandia, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
 				</div>
 				<br>
 				
 				<div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
-					<a href='".base_url()."CRegistro/cancel/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/4' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+					<a href='".base_url()."CRegistro/cancel/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/".$user['code']."' target='_blank'>Cancelar Suscripción </a> | Enviado por Profesiolandia 
 				</div>
 			</div>
 			</div>
@@ -423,8 +432,8 @@ class CPerfilCliente extends CI_Controller {
 		if($this->email->send())		$enviado=true;
 		/***************************************************************************************************/		
 		/***************************************************************************************************/		
-		$resultado['save_update'] = $this->MPerfilCliente->save_update_pregunta();						
-		echo json_encode($resultado);
+		
+		echo json_encode($id_cat_pregunta);
 	}
 
 	public function get_pregunta(){
@@ -440,6 +449,16 @@ class CPerfilCliente extends CI_Controller {
 
 	public function profesion(){
 		$resultado['profesion'] = $this->MPerfilCliente->CatalogoProfesiones();				
+		echo json_encode($resultado);
+	}
+	
+	public function save_score_respuesta(){
+		$resultado['save_score_respuesta'] = $this->MPerfilCliente->save_update_score_respuesta();				
+		echo json_encode($resultado);
+	}
+
+	public function get_score_respuesta(){
+		$resultado['get_score_respuesta'] = $this->MPerfilCliente->get_score_respuesta();				
 		echo json_encode($resultado);
 	}
 }

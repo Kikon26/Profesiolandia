@@ -45,7 +45,7 @@ class MProfesional extends CI_Model {
             
             from cat_profesionales as p left join 
             cat_profesiones as e on e.id_cat_profesion=p.id_cat_profesion and p.activo=1 left join 
-            cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional left join 
+            cat_direcciones as d on d.id_cat_profesional=p.id_cat_profesional and d.dom_particular=0 left join 
             cat_estados as s on s.id_cat_estado=d.id_cat_estado left join 
             cat_valoraciones as v on v.id_cat_profesional=p.id_cat_profesional left join
             cat_redes_sociales as r on r.id_cat_profesional=p.id_cat_profesional 
@@ -150,9 +150,17 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
     
-    $query="select * from cat_publicaciones as p  inner join  
+    $query="select 
+              p.id_cat_publicacion,   
+              p.id_cat_profesional,
+              pr2.area_interes,
+              p.titulo,
+              p.resumen,
+              p.publicacion,
+              DATE_FORMAT(p.fecha_alta,'%d/%m/%Y') as fecha_alta 
+            from cat_publicaciones as p  inner join  
             cat_profesionales as pr on pr.id_cat_profesional=p.id_cat_profesional and p.id_cat_profesional=".$postData['id_cat_profesional']."  inner join 
-            cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion ";
+            cat_profesiones as pr2 on pr2.id_cat_profesion=pr.id_cat_profesion order by p.fecha_alta desc";
     
     $resultado = $sqlsrvDB->query($query);		
     return $resultado->result();        
@@ -215,7 +223,9 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
 
-    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+    $query="SELECT 
+            v.id_cat_valoracion,
+            CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
             ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
             FROM cat_valoraciones AS v INNER JOIN 
             usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
@@ -230,7 +240,9 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
 
-    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+    $query="SELECT 
+            v.id_cat_valoracion,
+            CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
             ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
             FROM cat_valoraciones AS v INNER JOIN 
             usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
@@ -245,7 +257,9 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
 
-    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+    $query="SELECT 
+            v.id_cat_valoracion,
+            CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
             ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
             FROM cat_valoraciones AS v INNER JOIN 
             usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional={$postData['id_cat_profesional']}
@@ -260,7 +274,9 @@ class MProfesional extends CI_Model {
     $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
     $postData = $this->input->post();      
 
-    $query="SELECT CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
+    $query="SELECT 
+            v.id_cat_valoracion,
+            CONCAT(u.nombre,' ',u.paterno,' ',u.materno) AS usuario,u.imagen,v.opinion,
             ROUND((v.atencion+v.calidad+v.puntualidad+v.instalaciones+v.recomendacion)/5,0) AS valoracion
             FROM cat_valoraciones AS v INNER JOIN 
             usuarios AS u ON u.id_cat_usuario=v.id_cat_usuario AND v.id_cat_profesional=".$postData['id_cat_profesional'];         

@@ -21,7 +21,7 @@ class CActivacion extends CI_Controller {
 		else 								  
 			$tabla = $this->MMenu->MenuRol(4);		
 
-
+		
 
         $data = array(
             'seccion' => 'Activacion',

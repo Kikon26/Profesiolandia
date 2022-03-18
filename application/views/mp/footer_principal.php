@@ -20,10 +20,10 @@
                             <h6 class="card-title">Servicios</h6>
                             <p class="card-text" style="text-align: left;">
                             
-                                <a href="CQuienes_somos" style="padding: 10px;">Quienes somos</a><br>
-                                <a href="CConstruccion" style="padding: 10px;">Contacto</a><br>
-                                <a href="CConstruccion" style="padding: 10px;">Planes y costos</a><br>
-                                <a href="CConstruccion" style="padding: 10px;">Reporta algun problema del sistema</a><br>
+                                <a href="<?php echo base_url(); ?>CQuienes_Somos" style="padding: 10px;">Quienes somos</a><br>
+                                <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Contacto</a><br>
+                                <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Planes y costos</a><br>
+                                <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Reporta algun problema del sistema</a><br>
                             
                             </p>
                         </div>
@@ -34,11 +34,12 @@
                         <h6 class="card-title">Usuarios</h6>
                         <p class="card-text"  style="text-align: left;">
                             
-                            <a href="CBuscar" style="padding: 10px;">Busca profesionales</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Pregunta a un experto</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Servicios</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Contenido</a><br>
+                            <a href="<?php echo base_url(); ?>CBuscar" style="padding: 10px;">Busca profesionales</a><br>
+                            <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  isset($id_perfil)?$id_perfil:4 ?>" >                                             
+                            <a href="#" id="footer_ancla_pregunta_experto" style="padding: 10px;">Pregunta a un experto</a><br>
+                            <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
+                            <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Servicios</a><br>
+                            <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Contenido</a><br>
                             
                         </p>
                         </div>
@@ -49,9 +50,9 @@
                         <h6 class="card-title">Profesionistas</h6>
                         <p class="card-text"  style="text-align: left;">
                             
-                            <a href="CAcceso" style="padding: 10px;">Inicia Sesion</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Calendario de citas</a><br>
-                            <a href="CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
+                            <a href="<?php echo base_url(); ?>CAcceso" style="padding: 10px;">Inicia Sesion</a><br>
+                            <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Calendario de citas</a><br>
+                            <a href="<?php echo base_url(); ?>CConstruccion" style="padding: 10px;">Agenda una cita</a><br>
                             
                         </p>
                         </div>
@@ -72,15 +73,13 @@
             </div>
             <footer class="footer text-center">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-3" style="text-align: left;">
+                    <div class="col-4" style="text-align: left;">
                         <a href="<?php echo base_url(); ?>CPolitica_Privacidad" style="color:gray;"> Politica de Privacidad </a>    | <a href="<?php echo base_url(); ?>CCondiciones_Servicio" style="color:gray;">Condiciones del servicio</a>
                     </div>
-                    <div class="col-3" style="text-align: center;">
-                        © 2020 Profesionalia, derechos reservados
+                    <div class="col-4" style="text-align: center;">
+                        © 2022 Profesionalia, derechos reservados
                     </div>
-                    <div class="col-2" style="text-align: center;">
-                        
-                    </div>
+                    <!-- <div class="col-2" style="text-align: center;"></div> -->
                     <div class="col-1" style="text-align: right;">
                         
                             <a href="http://www.facebook.com" target="_blank"> 
@@ -473,4 +472,44 @@
         "use strict";
         $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
     }(window, document, jQuery);
+
+
+
+    $('#footer_ancla_pregunta_experto').click(function(){	
+        
+        if($('#id_cat_rol').val()=="3")	 
+        {
+            location.href=baseUrl + "CPreguntaExperto";
+        }	
+        else
+        {
+            
+
+            /*********/
+            Swal.fire({
+                title: "Para poder dejar una pregunta a los  profesionales es necesario que estes registrado como usuario",
+                //text: "No se podra recuperar!",
+                //type: "advertencia",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, registrarme!',
+                cancelButtonText: "No!"/*,
+                closeOnConfirm: false,
+                closeOnCancel: false*/
+            }).then((result) => {
+                
+                if (result.value)
+                {											
+                                    
+                    location.href=baseUrl + "CRegistro/index/3";
+                }
+                
+            })
+
+        } 
+
+        return false;	
+    });
+
+
 </script>

@@ -39,9 +39,11 @@
                           <strong id="profesion"> Contador</strong>
                           <br> 
                           <div id="especialidad">Pymes</div>
-                          <br>
-                          Cedula Profesional  - 123123123123
-                          <p style="color: #007b5e;"> ☆☆☆☆☆ 4/5 / 250 valoraciones </p> 
+                          <br>                                                     
+                          <div id="cedula_profesional">123123123123</div>
+                          <!-- <p style="color: #007b5e;"> ☆☆☆☆☆ 4/5 / 250 valoracioness </p>  -->
+                          <div id="valoracion_general_rating2"></div>
+                          <h6 id='valoracion_general_texto2' style="color: #007b5e;">0/5 / 0 valoraciones </h6> 
                         </div>
                       </div>
                     </div>    
@@ -79,7 +81,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                               <strong>Tipo de Pago:</strong>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div id="metodos_pago2"class="col-xs-12 col-sm-12 col-md-6">
                               Efectivo y Tarjeta bancarias
                             </div>
                           </div>
@@ -91,13 +93,85 @@
                               Zoom
                             </div>
                           </div>
+
+                          <br>                                                       
+                          <br>                                                       
+                          <div class="row">    
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                              <?php if ($id_perfil==3) {?>
+                              <a href="#" onclick="savePregunta();"  >                   
+                                <span data-toggle="tooltip" data-placement="top" title="Pregunta a un Profesional">
+                                  Pregunta a un Profesional
+                                </span>
+                              </a> 
+                              <?php } ?> 
+                            </div>
+                          </div>
+
+
                         </div>
                       </div>
                     </div>
                   </div>    
                 </div>
               </div>
-            
+              <!--***********************************************************************************************************************************************-->
+              <!-- MODAL ADD -->
+              <form id="form_save_update_pregunta">
+              <div class="modal fade" id="Modal_Add_Pregunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Crea una Pregunta</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">                                                                                      
+                    <div class="row">
+          
+                      <div class="col-md-7">
+                        <br>
+                        <h5 class="tituloV"><strong>Pregunta a un Profesional</strong> </h5>
+                        <p class="text-justify">
+                          Tu respuesta sera canalizada con los profesionales <br>
+                          Los profesionales tardan aproximadamente 48 horas en responder tu pregunta<br>
+                          Recibiras una notificacion cuando tu respuesta sea contestada
+                        </p>
+                      </div>
+
+                      <div class="col-md-5" style="text-align: center;">
+                        <img src="<?php echo base_url(); ?>imagenes/questions.png" style="height: 200px; width: 200px;" alt="Pregunta">
+                      </div>
+                    </div>
+
+                    <div class="container" style="border-radius: 25px; background: #ded7d7;">
+                      <br>                         
+                        <div class="container" style="text-align: left;">
+                          <label for="id_cat_profesion" class="form-label"><strong style="color: #333030;">&nbsp;Tipo de Profesional</strong></label>
+                          <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
+                          </select>                           
+                        </div>                          
+                      <br>                         
+                        <div class="container" style="text-align: left;">
+                          <label for="pregunta1" class="form-label"><strong style="color: #333030;">&nbsp;Cual es tu pregunta?</strong></label>
+                          <input type='hidden' name='id_cat_pregunta' id='id_cat_pregunta' value="-1">
+                          <input type="text" class="form-control" id="pregunta" placeholder="Escribe tu pregunta...">
+                        </div>                          
+                      <br>
+                    </div>                      
+                    <br>                              
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" id="btn_save_edit_pregunta" class="btn btn-primary">Preguntar</button>
+                  </div>
+                  </div>
+              </div>
+              </div>
+              </form>
+              <!--END MODAL ADD-->    
+              <!--***********************************************************************************************************************************************-->
               <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center">
                 <hr>
                 <ul class="list-inline" id="ul_redes_sociales"></ul>
@@ -150,7 +224,7 @@
                     </div>
                     <div class="col-md-6">
                       <h5 class="tituloV"><strong>Cédula Profesional:</strong> </h5>
-                      <div id="cedula_profesional">123123123123</div>
+                      <div id="cedula_profesional2">123123123123</div>
                     </div>
                   </div>
                   <br>
@@ -644,39 +718,12 @@
                   <div class="col"></div>
                 </div>
                 <hr>
-
+                <?php if ($id_perfil==3) {?>
                 <div class="row  d-flex justify-content-center">
                   <div class="col-md-12">
                       <div class="card">
                           <div class="">
                               <div class="row">
-                                
-                                  <!-- <div class="col-lg-3 border-right p-r-0">
-                                      <div class="card-body border-bottom">
-                                          <h4 class="card-title m-t-10">Drag & Drop Event</h4>
-                                      </div>
-                                      <div class="card-body">
-                                          <div class="row">
-                                              <div class="col-md-12">
-                                                  <div id="calendar-events" class="">
-                                                      <div class="calendar-events m-b-20" data-class="bg-info"><i class="fa fa-circle text-info m-r-10"></i>Event One</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-success"><i class="fa fa-circle text-success m-r-10"></i> Event Two</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-danger"><i class="fa fa-circle text-danger m-r-10"></i>Event Three</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-warning"><i class="fa fa-circle text-warning m-r-10"></i>Event Four</div>
-                                                  </div>
-                                                  
-                                                  <div class="custom-control custom-checkbox">
-                                                      <input type="checkbox" class="custom-control-input" id="drop-remove">
-                                                      <label class="custom-control-label" for="drop-remove">Remove after drop</label>
-                                                  </div>
-                                                  <a href="javascript:void(0)" data-toggle="modal" data-target="#add-new-event" class="btn m-t-20 btn-info btn-block waves-effect waves-light">
-                                                          <i class="ti-plus"></i> Add New Event
-                                                      </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> -->
-
                                   <div class="col-lg-12">
                                       <div class="card-body b-l calender-sidebar">
                                           <div id="calendar_profesional"></div>
@@ -686,7 +733,8 @@
                           </div>
                       </div>
                   </div>
-                </div>    
+                </div>   
+                <?php }?> 
 
                 <!--***********************************************************************************************************************************************-->
                 <!-- BEGIN MODAL -->

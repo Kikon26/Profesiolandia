@@ -1,4 +1,6 @@
 
+
+  <meta http-equiv="refresh" content="10;url=<?php echo base_url(); ?>" />
 <div class="page-wrapper33">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -17,20 +19,20 @@
           <h4 class="tituloV"> 
            <strong>
             <br><br>  
-               Bienvenido a Profesiolandia "Nombre de Usuario"
+               Bienvenido a Profesiolandia <?php  echo $datosvista["nombre"] ?>
           </strong>
          </h4>
 
           <!--  Codigo de formulario de alta de usuarios | profesionales -->
           <div class="container">
               <div class="container-fluid  py-0 pt-3" style="text-align: justify;">
-                 Tu cuenta ha sido activada satisfactoriamente.
+                 Tu cuenta ha sido activada satisfactoriamente, seras redireccionado a la pagina de inicio  de sesión.
                 <br>
-             Ahora puedes ir a la Pagina de
+              Ahora puedes ir a la Pagina de
                     <a href="<?php echo base_url(); ?>CInicio" style="padding: 0px;">Inicio</a>
                 o puedes ir a la pagina de
                   <a href="<?php echo base_url(); ?>CAcceso" style="padding: 0px;">Inicio de sesión</a>
-                 para obtener mayores beneficios
+                 <!-- para obtener mayores beneficios  -->
              </div>
               <div class="row">
                 <div class="col" style="text-align: center;">

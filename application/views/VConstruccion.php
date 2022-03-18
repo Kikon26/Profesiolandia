@@ -28,13 +28,13 @@
 
       <!--  Informacion - Inicio -->
       <div class="container">
-        <div class="container-fluid  py-0 pt-3">     
+        <div class="container-fluid  py-0 pt-3" style="text-align: center;">     
 
-        <div class="row">
-          <div class="ol-xs-12 col-sm-12 col-md-12" align="center" style="vertical-align: middle;">
-            <img src="<?php echo base_url(); ?>imagenes/construccion.jpg" style="max-width: 600px; max-height: 400px;" alt="Pagina en Construccion">
+          <div class="row">
+            <div class="ol-xs-12 col-sm-12 col-md-12" align="center" style="vertical-align: middle;">
+              <img src="<?php echo base_url(); ?>imagenes/construccion.jpg" style="max-width: 100%; max-height: 80%;" alt="Pagina en Construccion">
+            </div>
           </div>
-        </div>
           
         </div>
       </div>  

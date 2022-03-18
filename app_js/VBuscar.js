@@ -124,7 +124,7 @@ function createTable(result,sno)
 	for(index in result)
 	{  		
 		
-		if(index % 3 == 0) html+="<div class='row d-flex justify-content-center'>";          	 
+		if(index % 3 == 0) html+="<div class='row d-flex justify-content-center pb-3'><div class='col-9'><div class='row'>";          	 
 		
 		/*html+= "<div class='col-lg-3'>"+                
 					"<div class='card'>"+
@@ -169,7 +169,7 @@ function createTable(result,sno)
 				"</div>";*/
 				/**************************************************************************************************************************************/
 		html+= 											
-				"<div class='col-lg-3'>"+				
+				"<div class='col-lg-4'>"+				
 				"<div class='image-flip' ontouchstart='this.classList.toggle('hover')+'>"+
 					"<div class='mainflip'>"+
 			
@@ -188,24 +188,21 @@ function createTable(result,sno)
 									"<p class='card-text'>"+
 										"<strong> "+result[index].profesion+"</strong><br>"+
 										"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
-										"<small> Cedula Profesional  - 123123123123</small>"+
+										"<small> Cedula Profesional  - "+result[index].cedula_profesional+"</small>"+
 									"</p>"+
 									//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
 									//"<div class='card-footer'>"+							
 								"</div>"+
 
-								"<div class='card-footer text-muted'>"+
-									"<div class='pull-left pr-2'>"+
-									"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"'></div>"+			
-
-										// "<span class='fa fa-star checked'></span>"+
-										// "<span class='fa fa-star checked'></span>"+
-										// "<span class='fa fa-star checked'></span>"+
-										// "<span class='fa fa-star'></span>"+
-										// "<span class='fa fa-star'></span>"+
-
-									"</div>"+    
-									"<p class='card-text' style='color: green;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+								"<div class='card-footer text-center'>"+
+									"<div class='row'>"+ 
+										"<div class='col-7 float-left pl-0'>"+
+											"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"'></div>"+			
+										"</div>"+    
+										"<div class='col-5 text-center pl-0'>"+
+											"<p class='card-text' style='color: green;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+										"</div>"+    
+									"</div>"+    	
 							  	"</div>"+
 
 							"</div>"+
@@ -258,7 +255,7 @@ function createTable(result,sno)
 			
 
 			/**************************************************************************************************************************************/				
-			if((index+1) % 3 == 0)  html+="</div>";     				
+			if((index+1) % 3 == 0)  html+="</div></div></div>";     				
 			
 		//**************************************************************************************************************************************
 
@@ -309,7 +306,7 @@ function createTable(result,sno)
 
 		
 	} 
-	if((index+1) % 3 != 0) html+="</div>";     				
+	if((index+1) % 3 != 0) html+="</div></div></div>";     				
 	$('#tbody_profesionistas').append(html);   		
 
 
@@ -334,7 +331,7 @@ $( "#id_cat_estado").change(function() {
 	filtar();	
 });
 
-$( "#id_cat_profesion").change(function() {		
+$( "#id_cat_profesion").change(function() {			
 	filtar();	
 });
 

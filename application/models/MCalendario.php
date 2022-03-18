@@ -109,8 +109,8 @@ class MCalendario extends CI_Model
    
        $return_arr['before'][] = array("min" => date ( 'H:i' , $before_minute) ,"max" => date ( 'H:i' , $after_minute));
 
-       $before_minute = strtotime ( '-1 minute' , strtotime ($row->horario_termino) ) ;     
-       $after_minute = strtotime ( '+1 minute' , strtotime ($row->horario_termino) ) ;     
+       $before_minute = strtotime ( '-31 minute' , strtotime ($row->horario_termino) ) ;     
+       $after_minute = strtotime ( '-29 minute' , strtotime ($row->horario_termino) ) ;     
 
        $return_arr['after'][] = array("min" => date ( 'H:i' , $before_minute) ,"max" => date ( 'H:i' , $after_minute));
        

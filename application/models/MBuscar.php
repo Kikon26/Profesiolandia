@@ -36,6 +36,7 @@ class MBuscar extends CI_Model {
               p.especialidad,
               p.descripcion,
               p.costo_consulta,
+              p.cedula_profesional,
               p.imagen,
               p.id_cat_profesional,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
@@ -86,6 +87,7 @@ class MBuscar extends CI_Model {
               p.especialidad,
               p.descripcion,
               p.costo_consulta,
+              p.cedula_profesional,
               p.imagen,
               p.id_cat_profesional,
               concat(p.nombre,' ',p.paterno,' ',p.materno )  as profesionista,
@@ -141,7 +143,15 @@ class MBuscar extends CI_Model {
     public function ListadoProfesiones()
     {
       $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-      $query="select * from cat_profesiones where activo=1 order by nombre";               
+      $query="SELECT t1.* 
+            FROM cat_profesiones AS t1
+            JOIN
+            (
+              SELECT MIN(id_cat_profesion) AS id_cat_profesion
+              FROM cat_profesiones
+              WHERE activo=1
+              GROUP BY nombre
+            ) t2 ON t1.id_cat_profesion = t2.id_cat_profesion";         
     
       $resultado = $sqlsrvDB->query($query);		
 	    return $resultado->result();    

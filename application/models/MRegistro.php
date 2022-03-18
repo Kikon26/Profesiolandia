@@ -102,6 +102,28 @@ class MRegistro extends CI_Model {
       return $resultado;              
     }
 
+    public function habilitar_subscripcion($id_cat_rol,$id_usuario_profesional)
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
+
+      $data = array(             
+        'activo' => 1
+        );      
+
+      if ($id_cat_rol==2)
+      {
+        $sqlsrvDB->where('id_cat_profesional', $id_usuario_profesional);      
+        $resultado=$sqlsrvDB->update('cat_profesionales',$data);    
+      }
+      else 
+      {
+        $sqlsrvDB->where('id_cat_usuario', $id_usuario_profesional);      
+        $resultado=$sqlsrvDB->update('usuarios',$data);            
+      }
+      
+      return $resultado;              
+    }
+
     
     public function VerificarExisteEmail()
     {

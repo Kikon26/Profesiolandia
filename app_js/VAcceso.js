@@ -108,7 +108,7 @@ $( "#txtUsuario" ).blur(function() {
             if(data['valida']==1)
               location.href=baseUrl + "CAcceso/principal";
             else 
-              $('#xMensaje').html('Los datos son incorrectos, verifiquelos...');//console.log("no");
+              $('#xMensaje').html('Los datos son incorrectos, vuelve a intentar o si olvidaste tu contraseña puedes utilizar la opcion Olvide mi contraseña');//console.log("no");
             
         }
     });
