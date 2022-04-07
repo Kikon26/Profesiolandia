@@ -62,7 +62,7 @@ $(function()
 			{	
 				console.log(data['enviado']);
 				Swal.fire({
-					title: 'Se Actualizo de manera exitosa la contraseña!',                        
+					title: '“La contraseña fue cambiada exitosamente, Te hemos enviado un correo electronico con el detalle',                        
 				}).then((result) => {
 					location.href=baseUrl + "CInicio";	
 				})					

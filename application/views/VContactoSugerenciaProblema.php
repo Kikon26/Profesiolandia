@@ -15,7 +15,7 @@
         <div class="container mt-n0">
           <div class="container-fluid py-0 pt-3 col-xs-12 col-sm-6 col-md-6" style="text-align: center;">
             <strong>
-              <h4 class="tituloV"> <strong> Registrate Gratis </strong></h4>
+              <h4 class="tituloV"> <strong id="tipo_mensaje">  </strong></h4>
             </strong>
           </div>
         </div>
@@ -42,7 +42,10 @@
                       <div class="card-body">        
                         <div class="row"> 
                           <div class="form-group col-md-12">  
-                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="nombre de Usuario" required>
+                            <input type="hidden" name="id_usuario_profesional" id="id_usuario_profesional" value="<?php echo  ($idUsuario<>"")?$idUsuario:-1 ?>" >  
+                            <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  isset($id_perfil)?$id_perfil:4 ?>" >                                             
+                            <input type="hidden" id="id_cat_tipo_formulario_temp" value="<?php echo $datosvista["id_cat_tipo_formulario"] ?>" >                                                             
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Tu Nombre" required>
                           </div>
                         </div>
 
@@ -50,40 +53,34 @@
                         <div class="row"> 
                           <div class="form-group col-md-12">        
                             <div class="controls">                                
-                              <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido" placeholder="email">                           
+                              <input type="email" name="email" id="email" class="form-control" required data-validation-required-message="Esté campo es requerido" placeholder="Tu Email">                           
                             </div>
+                          </div>
+                        </div>
+
+                        <div class="row"> 
+                          <div class="form-group col-md-12">                              
+                            <input type="text" name="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
                           </div>
                         </div>
                         
-                        <div class="row">  
-                          <div class="form-group col-md-12">                        
-                            <div class="controls">
-                              <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="Este campo es requerido" placeholder="password">                                         
-                            </div>
+                        <div class="row"> 
+                          <div class="form-group col-md-12">                              
+                            <textarea class="form-control" maxlength="600" rows="3" id="mensaje" placeholder="Mensaje" ></textarea>
                           </div>
-                        </div>
-                        
-                        <div class="row">             
-                          <div class="form-group col-md-12">                        
-                            <div class="controls">                                 
-                              <input type="password" name="password2" id="password2" data-validation-match-match="password" class="form-control" required placeholder="password nuevamente">                                                                               
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                
+                        </div>                        
+                        <!--
                         <div class="form-group row">                                    
-                            <div class="col-md-12"> 
-                              <input type="hidden" id="id_cat_rol_temp" value="<?php echo $datosvista["id_cat_rol"] ?>" >                                                             
-                              <select class="form-control custom-select" style="width: 100%;" id="id_cat_rol" name="id_cat_rol" data-placeholder="Selecciona Rol" required>                                                         
+                            <div class="col-md-12">                               
+                              <select class="form-control custom-select" style="width: 100%;" id="id_cat_tipo_formulario" name="id_cat_tipo_formulario" data-placeholder="Selecciona Tipo" required>                                                         
                               </select>
                             </div>
                         </div>                     
-
+                        -->
 
                         <div class="form-row">                      
                           <div class="form-group col-md-12" style="text-align: center;">
-                            Al registrarse, confirma que ha leído y aceptado nuestras
+                            Al registrar, confirma que ha leído y aceptado nuestras
                             
                             <a href="<?php echo base_url(); ?>CCondiciones_Servicio">Condiciones del servicio</a>, <a href="<?php echo base_url(); ?>CProteccion_Datos"> Proteccion de datos </a> y
                             <a href="<?php echo base_url(); ?>CPolitica_Privacidad"> Politica de Privacidad </a>                        

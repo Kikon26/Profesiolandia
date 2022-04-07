@@ -46,14 +46,19 @@
 
                   <form id="form_info_gral" tyle="text-align: center;">
                     <div class="form-row" style="text-align: left;">
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-5">
                         <label for="titulo">Título</label>
                         <input type="hidden" name="id_cat_profesional" id="id_cat_profesional" value="<?php echo  (isset($this->session->id_cat_profesional))?  $this->session->id_cat_profesional :  $idUsuario; ?>" >                          
                         <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
                         <input type="hidden" name="existe_direccion" id="existe_direccion" value="no" >  
                         <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
-                        </select>
+                        </select>                        
                       </div>
+                      <div class="form-group col-md-1 my-auto">                      
+                        <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Profesion" id="btn_add">
+                          <span class="fa fa-plus"></span>
+                        </a>                                  
+                      </div>  
                       <div class="form-group col-md-6">
                         <label for="celula">Cédula Profesional</label>
                         <input type="text" class="form-control" id="cedula_profesional" placeholder="Ingresa un Cédula Profesional">
@@ -86,6 +91,43 @@
                     <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;">Guardar</button>
                   </form>
                 </div>
+                <!--***********************************************************************************************************************************************-->
+                <!-- MODAL PROFESION -->
+                <form id="form_save_profesion">
+                <div class="modal fade" id="Modal_Profesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Nueva Profesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">                            
+                            <div class="form-group row">
+                                
+                                <div class="col-md-6">
+                                  <label class="col-form-label">Area de Interes</label>
+                                  <input type="text" name="area_interes" id="area_interes" class="form-control" placeholder="Area de Interes" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label class="col-form-label">Profesión</label>
+                                  <input type="text" name="profesion" id="profesion" class="form-control" placeholder="Profesión" required>
+                                </div>            
+                                
+                            </div>                                                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" id="btn_save" class="btn btn-primary">Guardar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                </form>
+                <!--END MODAL PROFESION-->
+                <!--***********************************************************************************************************************************************-->
               </div>
 
               <div class="tab-pane fade <?=$datosvista["tab"] === '2' ? 'show active' : '' ?>" id="nav-exp" role="tabpanel" aria-labelledby="nav-exp-tab">
@@ -249,7 +291,7 @@
                 </div>
                 
                 <hr>
-
+                <input type='hidden' name='id_cat_pregunta_tmp' id='id_cat_pregunta_tmp' value="<?=$datosvista["id_cat_pregunta"]?>">
                 <div id="tbody_preguntas"></div>    
                 <!--***********************************************************************************************************************************************-->  
               </div>

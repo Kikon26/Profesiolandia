@@ -12,8 +12,7 @@
             'vista' => $vista,
             'datosvista' => $dataf,
             'menu' => $menu            
-        );
-    
+        );    
     $this->load->view('mp/header_principal', $data);
 	$this->load->view('mp/menu_principal', $data);
 	$this->load->view($vista, $data);

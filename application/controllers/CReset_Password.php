@@ -67,9 +67,9 @@ class CReset_Password extends CI_Controller {
 			  
 			  <meta charset='utf-8'>
 			  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
-			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
-			  <link href='http://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
 			</head>
 			<body>
 		  <div class='container mt-n0'>
@@ -77,7 +77,7 @@ class CReset_Password extends CI_Controller {
 				<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				  
 				  <div class='row' style='text-align: center;'>
-					<img src='http://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+					<img src='https://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				  </div>
 				  <strong>
 						   <h4 style='color: #007b5e'> <strong> Hola ". $user['usuario'] . "</strong> </h4>
@@ -98,7 +98,7 @@ class CReset_Password extends CI_Controller {
 				  <br>
 				  
 				  <div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
-					 <a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+					 <a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Cancelar Suscripción </a> | Enviado por Profesiolandia 
 				  </div>
 				</div>
 			  </div>
@@ -110,7 +110,7 @@ class CReset_Password extends CI_Controller {
 
 		//Establecemos esta configuración
 		  $this->email->initialize($config);
-		  $this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		  $this->email->from("noreply@profesiolandia.com", "Profesiolandia");
 		  $this->email->to($postData['email'], $user['usuario']);		
 		  $this->email->subject($subject);
 		  $this->email->message($message);

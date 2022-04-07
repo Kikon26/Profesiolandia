@@ -16,12 +16,13 @@
         <div class="container-fluid  py-3 px-0">      
             <!--Carta de informacion del profesional inicio  -->
             <div class="row">    
-
+            
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="card-deck">     
-                    <div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">           
+                    <!--<div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">-->           
+                    <div class="card px-1 py-0 mx-1 my-1" >           
                       <div class="row py-0 px-0">
-                        <div class="col px-0" style="text-align: center; color: #757474">                        
+                        <div class="col px-0" style="text-align: center; color: #757474">       
                           <input type="hidden" id="id_cat_usuario" value="<?php echo $idUsuario ?>" >                          
                           <input type="hidden" id="id_cat_profesional" value="<?php echo $datosvista["id_cat_profesional"] ?>" >                          
                           <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
@@ -39,18 +40,32 @@
                           <strong id="profesion"> Contador</strong>
                           <br> 
                           <div id="especialidad">Pymes</div>
-                          <br>
-                          Cedula Profesional  - 123123123123
-                          <p style="color: #007b5e;"> ☆☆☆☆☆ 4/5 / 250 valoraciones </p> 
+                          <br>                                                     
+                          <div id="cedula_profesional">123123123123</div>
+                          <!-- <p style="color: #007b5e;"> ☆☆☆☆☆ 4/5 / 250 valoracioness </p>  -->
+                          <div class='card-footer' >
+                          <div class='row' >
+											      <div class='col-6 float-left p-0'>
+                              <div id="valoracion_general_rating2"></div>
+                            </div>  
+                            <!--<h6 id='valoracion_general_texto2' style="color: #007b5e;">0/5 / 0 valoraciones </h6>--> 
+                            <div class='col-6 text-center p-0 pt-1' >                              
+                              <p id='valoracion_general_texto2' class='card-text h1 small' style='color: green; font-size: 13px;'></p>
+                            </div>
+                          </div>    
+                          </div>    
+
                         </div>
                       </div>
+                      
                     </div>    
                   </div>  
                 </div>
        
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="card-deck">     
-                  <div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">
+                  <!--<div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">-->
+                  <div class="card px-1 py-0 mx-1 my-1"  style="min-height: 340px;">
                     <div class="row py-3 px-3" style="text-align: center; color: #757474; text-align: justify-all;">
                       <div class="col">
                         <strong>Resumen: </strong> 
@@ -79,7 +94,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                               <strong>Tipo de Pago:</strong>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div id="metodos_pago2"class="col-xs-12 col-sm-12 col-md-6">
                               Efectivo y Tarjeta bancarias
                             </div>
                           </div>
@@ -91,13 +106,83 @@
                               Zoom
                             </div>
                           </div>
+
+                          <br>                                                       
+                          <br>                                                       
+                          <div class="row">    
+                            <div class="col-xs-12 col-sm-12 col-md-12">                              
+                              <a href="#" id="ancla_pregunta_experto" style="padding: 10px;">  
+                                <span data-toggle="tooltip" data-placement="top" title="Pregunta a un Profesional">
+                                  Pregunta a un Experto
+                                </span>
+                              </a>                               
+                            </div>
+                          </div>
+
+
                         </div>
                       </div>
                     </div>
                   </div>    
                 </div>
               </div>
-            
+              <!--***********************************************************************************************************************************************-->
+              <!-- MODAL ADD -->
+              <form id="form_save_update_pregunta">
+              <div class="modal fade" id="Modal_Add_Pregunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Crea una Pregunta</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">                                                                                      
+                    <div class="row">
+          
+                      <div class="col-md-7">
+                        <br>
+                        <h5 class="tituloV"><strong>Pregunta a un Profesional</strong> </h5>
+                        <p class="text-justify">
+                          Tu respuesta sera canalizada con los profesionales <br>
+                          Los profesionales tardan aproximadamente 48 horas en responder tu pregunta<br>
+                          Recibiras una notificacion cuando tu respuesta sea contestada
+                        </p>
+                      </div>
+
+                      <div class="col-md-5" style="text-align: center;">
+                        <img src="<?php echo base_url(); ?>imagenes/questions.png" style="height: 200px; width: 200px;" alt="Pregunta">
+                      </div>
+                    </div>
+
+                    <div class="container" style="border-radius: 25px; background: #ded7d7;">
+                      <br>                         
+                        <div class="container" style="text-align: left;">
+                          <label for="id_cat_profesion" class="form-label"><strong style="color: #333030;">&nbsp;Tipo de Profesional</strong></label>
+                          <select class="select2 form-control custom-select" style="width: 100%;" id="id_cat_profesion" name="id_cat_profesion" data-placeholder="Selecciona Profesión" required>                                                         
+                          </select>                           
+                        </div>                          
+                      <br>                         
+                        <div class="container" style="text-align: left;">
+                          <label for="pregunta1" class="form-label"><strong style="color: #333030;">&nbsp;Cual es tu pregunta?</strong></label>
+                          <input type='hidden' name='id_cat_pregunta' id='id_cat_pregunta' value="-1">
+                          <input type="text" class="form-control" id="pregunta" placeholder="Escribe tu pregunta...">
+                        </div>                          
+                      <br>
+                    </div>                      
+                    <br>                              
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" id="btn_save_edit_pregunta" class="btn btn-primary">Preguntar</button>
+                  </div>
+                  </div>
+              </div>
+              </div>
+              </form>
+              <!--END MODAL ADD-->    
+              <!--***********************************************************************************************************************************************-->
               <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center">
                 <hr>
                 <ul class="list-inline" id="ul_redes_sociales"></ul>
@@ -124,14 +209,14 @@
                     <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                        
                       <ul class="list-inline">                          
                         <li class="list-inline-item">
-                          <a  href="#" data-toggle="popover" data-placement="top" title="Profesionista Destacado" data-content="Profesionista Destacado">
+                          <!--<a  href="#" data-toggle="popover" data-placement="top" title="Profesionista Destacado" data-content="Profesionista Destacado">-->
                             <img src="<?php echo base_url(); ?>imagenes/destacado_logo_mini.png" style="height: 50px; width: 40px;"  alt="Profesionista Destacado">
-                          </a>
+                          <!--</a>-->
                         </li>
                         <li class="list-inline-item">
-                          <a  href="" target="_blank">
+                          <!--<a  href="" target="_blank">-->
                             <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 45px; width: 50px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                          </a>
+                          <!--</a>-->
                         </li>
                       </ul>
                     </div>
@@ -150,7 +235,7 @@
                     </div>
                     <div class="col-md-6">
                       <h5 class="tituloV"><strong>Cédula Profesional:</strong> </h5>
-                      <div id="cedula_profesional">123123123123</div>
+                      <div id="cedula_profesional2">123123123123</div>
                     </div>
                   </div>
                   <br>
@@ -180,8 +265,8 @@
                     <div class="col-md-12">
                       <h5 class="tituloV"><strong>Informacion completa del Servicio:</strong></h5>
                       
-                      <div id="informacion_completa">
-                        <textarea id="txta_informacion_completa" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div id="txta_informacion_completa" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_informacion_completa" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div> 
 
                         
@@ -213,8 +298,8 @@
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#collapse_experiencia">
-                      <div class="card-body" id="experiencia_servicios_ofrecidos">
-                        <textarea id="txta_experiencia_servicios_ofrecidos" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div class="card-body" id="txta_experiencia_servicios_ofrecidos" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_experiencia_servicios_ofrecidos" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div>
                     </div>
                   </div>
@@ -298,8 +383,8 @@
                       </h2>
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia">
-                      <div class="card-body"id="preguntas_frecuentes">
-                        <textarea id="txta_preguntas_frecuentes" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div class="card-body"id="txta_preguntas_frecuentes" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_preguntas_frecuentes" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div>
                     </div>
                   </div>
@@ -320,7 +405,20 @@
                   <div class="col-xs-8 col-sm-3 col-md-3">
                     <h1> <span class="badge" style="background: #158151;" id='valoracion_general'> 0 </span></h1>
                     <h5 class="tituloV"><strong> Valoracion General:</strong> </h5>
-                    <h6 id='valoracion_general_texto' style="color: #007b5e;">  ☆☆☆☆☆ 0/5 / 0 valoraciones </h6> 
+                    <!--
+                    <div id="valoracion_general_rating"></div>
+                    <h6 id='valoracion_general_texto' style="color: #007b5e;">0/5 / 0 valoraciones </h6> 
+                    -->              
+
+                    <div class='row'>
+                      <div class='col-7 text-right pr-1'>
+                        <div id="valoracion_general_rating"></div>
+                      </div>                   
+                      <div class='col-5 text-left pl-2' >
+                        <p id='valoracion_general_texto' class='card-text' style='color: green;'></p>
+                      </div>
+                    </div>    
+
                   </div>
                   <div class="col-xs-4 col-sm-3 col-md-3" style="text-align: left;">
                     <div class="row">
@@ -414,32 +512,24 @@
                                 </div> 
                               </div>
                               <br>
+
+                            
+                         
+
                               <div class="form-row" style="text-align: left;">
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Atención: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Astar5" name="Arating" value="5"/><label for="Astar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Astar4" name="Arating" value="4" /><label for="Astar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Astar3" name="Arating" value="3" /><label for="Astar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Astar2" name="Arating" value="2" /><label for="Astar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Astar1" name="Arating" value="1" /><label for="Astar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Arating"></div>
                                     </div> 
                                   </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Calidad: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Cstar5" name="Crating" value="5" /><label for="Cstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Cstar4" name="Crating" value="4" /><label for="Cstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Cstar3" name="Crating" value="3" /><label for="Cstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Cstar2" name="Crating" value="2" /><label for="Cstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Cstar1" name="Crating" value="1" /><label for="Cstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Crating"></div>
                                     </div> 
                                   </div>
                                 </div>                                
@@ -449,28 +539,16 @@
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Puntualidad: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Pstar5" name="Prating" value="5" /><label for="Pstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Pstar4" name="Prating" value="4" /><label for="Pstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Pstar3" name="Prating" value="3" /><label for="Pstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Pstar2" name="Prating" value="2" /><label for="Pstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Pstar1" name="Prating" value="1" /><label for="Pstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Prating"></div>
                                     </div> 
                                   </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Instalaciones: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Istar5" name="Irating" value="5" /><label for="Istar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Istar4" name="Irating" value="4" /><label for="Istar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Istar3" name="Irating" value="3" /><label for="Istar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Istar2" name="Irating" value="2" /><label for="Istar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Istar1" name="Irating" value="1" /><label for="Istar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Irating"></div>
                                     </div> 
                                   </div>
                                 </div>
@@ -480,29 +558,12 @@
                                 <div class="form-group col-md-6">
                                   <div class="row">
                                     <div class="col-6">Recomendaciones: </div>
-                                    <div class="6">
-                                      <div class="rating">
-                                        <input type="radio" id="Rstar5" name="Rrating" value="5" /><label for="Rstar5" title="Excelente">5 stars</label>
-                                        <input type="radio" id="Rstar4" name="Rrating" value="4" /><label for="Rstar4" title="Bueno">4 stars</label>
-                                        <input type="radio" id="Rstar3" name="Rrating" value="3" /><label for="Rstar3" title="Mas o menos">3 stars</label>
-                                        <input type="radio" id="Rstar2" name="Rrating" value="2" /><label for="Rstar2" title="Malo">2 stars</label>
-                                        <input type="radio" id="Rstar1" name="Rrating" value="1" /><label for="Rstar1" title="Muy Malo">1 star</label>
-                                      </div>
+                                    <div class="6">                                      
+                                      <div id="Rrating"></div>
                                     </div> 
                                   </div>
                                 </div>
-                              </div>
-                              <!-- rating
-                              <div class="row">
-                                <div class="rating" style="text-align: center;">
-                                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Excelente">5 stars</label>
-                                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Bueno">4 stars</label>
-                                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Mas o menos">3 stars</label>
-                                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Malo">2 stars</label>
-                                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Muy Malo">1 star</label>
-                                </div>
-                              </div>
-                              -->
+                              </div>                              
                               <br>
                               <button type="submit" class="btn my-0 border border-white" style="background: #0856c7;" id="button_valoracion">Guardar</button>
                               <button type="button" class="btn my-0 border border-white" data-dismiss="modal" style="background: #aaabaa;" >Cerrar</button>
@@ -680,39 +741,12 @@
                   <div class="col"></div>
                 </div>
                 <hr>
-
+                <?php if ($id_perfil==3) {?>
                 <div class="row  d-flex justify-content-center">
                   <div class="col-md-12">
                       <div class="card">
                           <div class="">
                               <div class="row">
-                                
-                                  <!-- <div class="col-lg-3 border-right p-r-0">
-                                      <div class="card-body border-bottom">
-                                          <h4 class="card-title m-t-10">Drag & Drop Event</h4>
-                                      </div>
-                                      <div class="card-body">
-                                          <div class="row">
-                                              <div class="col-md-12">
-                                                  <div id="calendar-events" class="">
-                                                      <div class="calendar-events m-b-20" data-class="bg-info"><i class="fa fa-circle text-info m-r-10"></i>Event One</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-success"><i class="fa fa-circle text-success m-r-10"></i> Event Two</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-danger"><i class="fa fa-circle text-danger m-r-10"></i>Event Three</div>
-                                                      <div class="calendar-events m-b-20" data-class="bg-warning"><i class="fa fa-circle text-warning m-r-10"></i>Event Four</div>
-                                                  </div>
-                                                  
-                                                  <div class="custom-control custom-checkbox">
-                                                      <input type="checkbox" class="custom-control-input" id="drop-remove">
-                                                      <label class="custom-control-label" for="drop-remove">Remove after drop</label>
-                                                  </div>
-                                                  <a href="javascript:void(0)" data-toggle="modal" data-target="#add-new-event" class="btn m-t-20 btn-info btn-block waves-effect waves-light">
-                                                          <i class="ti-plus"></i> Add New Event
-                                                      </a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> -->
-
                                   <div class="col-lg-12">
                                       <div class="card-body b-l calender-sidebar">
                                           <div id="calendar_profesional"></div>
@@ -722,7 +756,8 @@
                           </div>
                       </div>
                   </div>
-                </div>    
+                </div>   
+                <?php }?> 
 
                 <!--***********************************************************************************************************************************************-->
                 <!-- BEGIN MODAL -->

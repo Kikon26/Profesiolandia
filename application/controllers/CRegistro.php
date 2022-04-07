@@ -59,22 +59,16 @@ class CRegistro extends CI_Controller {
 		  $id_usuario_profesional=$this->MRegistro->save_usuario($code);	 
 		  $subject = "Bienvenido a Profesiolandia";	  
 
-          /* Antes 
-       	  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/style_profesiolandia.css'
-		  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/bootstrap.min.css'
-		  http://obraspublicas.morelia.gob.mx/Profesiolandia/assets/css/mdb.min.css'
-
-	      http://obraspublicas.morelia.gob.mx/Profesiolandia/imagenes/Logo_Profesiolandia_perspectiva.png	
-		  */	
+       	
 		  $message = "
 		  <html lang='en'>
 			<head>
 			  
 			  <meta charset='utf-8'>
 			  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/style.css' rel='stylesheet' type='text/css'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/bootstrap.min.css' rel='stylesheet'>
-			  <link href='https://obraspublicas.morelia.gob.mx/contratistas/css/mdb.min.css' rel='stylesheet'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/style.css' rel='stylesheet' type='text/css'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			  <link href='https://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
 			</head>
 			<body>
 
@@ -84,7 +78,7 @@ class CRegistro extends CI_Controller {
 				<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				  
 				  <div class='row' style='text-align: center;'>
-					<img src='https://obraspublicas.morelia.gob.mx/contratistas/images/Logo_.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+					<img src='https://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				  </div>
 
 				  <strong>
@@ -103,12 +97,12 @@ class CRegistro extends CI_Controller {
 					  </p>
 
 				  <div class='row'>
-					Estamos seguros de que tu experiencia en Profesionalia va a ser la mejor, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+					Estamos seguros de que tu experiencia en Profesiolandia va a ser la mejor, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
 				  </div>
 				  <br>
 				  
 				  <div class='row' style='text-align: center; font-size: 14px; color: gray;'>
-					 <a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Anular la suscripción </a> | Enviado por Profesiolandia 
+					 <a href='".base_url()."CRegistro/cancel/".$id_cat_rol."/".$id_usuario_profesional."/".$code."' target='_blank'>Cancelar Suscripción </a> | Enviado por Profesiolandia 
 				  </div>
 				</div>
 			  </div>
@@ -162,8 +156,24 @@ class CRegistro extends CI_Controller {
             $this->session->set_flashdata('message', 'No se puede activar la cuenta. El código no coincide');
         }
   
-        redirect('/');
-  
+        //redirect('CActivacion/index');  
+		/********************************************************/			
+
+		$tabla = $this->MMenu->MenuRol(4);		 			
+		$dataf = array(		
+			'nombre'  => $user['usuario']			
+		);
+
+		$data = array(
+            'seccion' => 'Activacion',
+			'vista' => 'VActivacion',
+			'data' => '',
+			'dataf' => $dataf,
+			'menu' => $tabla
+         );
+
+		  
+		$this->load->view('mp/pagina_principal',$data);
     }
 
 	public function cancel()
@@ -191,11 +201,185 @@ class CRegistro extends CI_Controller {
         else{
             $this->session->set_flashdata('message', 'No se puede canxcelar la cuenta. El código no coincide');
         }
-  
-        redirect('CRegistro');
-  
+
+		/***************************************************************************************************/
+		$this->load->library('email');
+	   
+		$config['protocol'] = 'mail';		  
+		//   $config["smtp_host"] = 'smtp.gmail.com';		   		 
+		//   $config["smtp_user"] = 'usuario';
+		//   $config["smtp_pass"] = 'password';   
+		//   $config["smtp_port"] = '25';
+		$config['charset'] = 'utf-8';   		 
+		$config['wordwrap'] = TRUE;
+		$config['validate'] = true;	
+		$config['mailtype'] = 'html'; 
+
+		if ($user['id_cat_rol']==2) $perfil="Profesional";
+		else                        $perfil="Cliente";   
+
+		$subject = "Notificación Profesiolandia - Subscripción Cancelada";	  
+
+		$message = "
+		<html lang='en'>
+		<head>
+			
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
+		</head>
+		<body>
+		<div class='container mt-n0'>
+			<div class='container-fluid  py-3 px-3'>
+			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
+				
+				<div class='row' style='text-align: center;'>
+				  <img src='https://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+				</div>
+				<strong>
+						<h4 style='color: #007b5e'> <strong> Hola ". $user['usuario'] . "</strong> </h4>
+				</strong>  
+				
+				<div class='row' style='text-align: center;'>
+				  Te enviamos este correo de <strong> Profesiolandia </strong> para confirmar la cancelación de tu suscripción como <strong>".$perfil."</strong>. 
+				</div>
+				<br>
+				<div class='row'>
+				  <div class='col' style='text-align: center;'  >
+				    Estamos seguros de que de nuevo estaras disfrutando la experiencia en Profesiolandia en el momento que lo desees, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+				  </div>
+				  <br>
+				
+				  <div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
+					<a href='".base_url()."CRegistro/habilitar_subscripcion/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/".$user['code']."' target='_blank'>Habilitar de nuevo la suscripción </a> | Enviado por Profesiolandia 
+				  </div>
+			    </div>
+			</div>
+		</div>
+		</body>
+		</html>
+		";
+		
+
+		//Establecemos esta configuración
+		$this->email->initialize($config);
+		$this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		$this->email->to($user['email'], $user['nombre']." ".$user['paterno']." ".$user['materno']);		
+		$this->email->subject($subject);
+		$this->email->message($message);
+				
+		$enviado=false;
+		
+		if($this->email->send())		$enviado=true;
+   
+
+		/***************************************************************************************************/
+		$this->session->sess_destroy();	
+        redirect(base_url().'CInicio');		  
     }
   	
+	public function habilitar_subscripcion()
+	{
+        $id_cat_rol = $this->uri->segment(3);
+		$id_usuario_profesional =  $this->uri->segment(4);        
+		$code = $this->uri->segment(5);
+  
+        // obtener los detalles del usuario
+        $user = $this->MRegistro->GetUser($id_cat_rol,$id_usuario_profesional);				
+  
+        // si el código coincide
+        if($user['code'] == $code){
+            // actualizar el estado activo del usuario
+            $data['active'] = true;
+            $query = $this->MRegistro->habilitar_subscripcion($id_cat_rol,$id_usuario_profesional);
+  
+            if($query){
+                $this->session->set_flashdata('message', 'Usuario subscripcion habilitada correctamente');
+            }
+            else{
+                $this->session->set_flashdata('message', 'Algo salió mal al habilitar la cuenta.');
+            }
+        }
+        else{
+            $this->session->set_flashdata('message', 'No se puede habilitar la cuenta. El código no coincide');
+        }
+
+		/***************************************************************************************************/
+		$this->load->library('email');
+	   
+		$config['protocol'] = 'mail';		  
+		//   $config["smtp_host"] = 'smtp.gmail.com';		   		 
+		//   $config["smtp_user"] = 'usuario';
+		//   $config["smtp_pass"] = 'password';   
+		//   $config["smtp_port"] = '25';
+		$config['charset'] = 'utf-8';   		 
+		$config['wordwrap'] = TRUE;
+		$config['validate'] = true;	
+		$config['mailtype'] = 'html'; 
+		
+		$subject = "Bienvenido a Profesiolandia";	  
+
+		$message = "
+		<html lang='en'>
+		<head>
+			
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
+		</head>
+		<body>
+		<div class='container mt-n0'>
+			<div class='container-fluid  py-3 px-3'>
+			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
+				
+				<div class='row' style='text-align: center;'>
+				  <img src='https://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+				</div>
+				<strong>
+						<h4 style='color: #007b5e'> <strong> Bienvenido ". $user['usuario'] . "</strong> </h4>						
+				</strong>  
+				
+				<div class='row' style='text-align: center;'>
+					Te damos la bienvenida a <strong> Profesiolandia </strong> la plataforma donde encontraras a todos los Profesionales.
+				</div>
+				<br>				
+				<div class='row'>
+				  <div class='col' style='text-align: center;'  >
+				  	Estamos seguros de que tu experiencia en Profesiolandia va a ser la mejor, en esta plataforma encontraras a todos los profesionales de cada una de las especialidades en México
+				  </div>
+				  <br>
+				
+				  <div class='row' style='text-align: center; font-size: 14px; color: gray;'>					 
+					<a href='".base_url()."CRegistro/cancel/".$user['id_cat_rol']."/".$user['id_cat_usuario']."/".$user['code']."' target='_blank'>Cancelar Suscripción </a> | Enviado por Profesiolandia 					
+				  </div>
+			    </div>
+			</div>
+		</div>
+		</body>
+		</html>
+		";
+		
+
+		//Establecemos esta configuración
+		$this->email->initialize($config);
+		$this->email->from("soporte@profesiolandia.com", "Profesiolandia");
+		$this->email->to($user['email'], $user['nombre']." ".$user['paterno']." ".$user['materno']);		
+		$this->email->subject($subject);
+		$this->email->message($message);
+				
+		$enviado=false;
+		
+		if($this->email->send())		$enviado=true;
+		/***************************************************************************************************/
+		$this->session->sess_destroy();	
+        redirect(base_url().'CInicio');		  
+    }
+
+
 	public function rol(){
 		$resultado['rol'] = $this->MRegistro->CatalogoRoles();				
 		echo json_encode($resultado);

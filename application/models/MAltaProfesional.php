@@ -365,7 +365,16 @@ class MAltaProfesional extends CI_Model {
   public function CatalogoProfesiones()
     {
 		$sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);
-    $query="select * from cat_profesiones where activo=1 order by nombre";         
+    $query="SELECT t1.* 
+            FROM cat_profesiones AS t1
+            JOIN
+            (
+              SELECT MIN(id_cat_profesion) AS id_cat_profesion
+              FROM cat_profesiones
+              WHERE activo=1
+              GROUP BY nombre
+            ) t2 ON t1.id_cat_profesion = t2.id_cat_profesion";         
+            
         $resultado = $sqlsrvDB->query($query);		
 		return $resultado->result();        
     }
@@ -464,11 +473,15 @@ class MAltaProfesional extends CI_Model {
       $query="SELECT  
                       p.id_cat_pregunta,
                       p.pregunta,
+                      DATE_FORMAT(p.fecha_alta,'%d/%m/%Y') as fecha_alta_pregunta,
                       r.id_cat_respuesta,
                       r.respuesta,
+                      DATE_FORMAT(r.fecha_alta_respuesta,'%d/%m/%Y') as fecha_alta_respuesta,
                       r.carrera,
                       r.profesional, 
-                      r.imagen
+                      r.imagen,
+                      ifnull(r.total_valoraciones,0) as total_valoraciones,
+                      ifnull(r.val_gral,0) as val_gral
                       FROM 
                       (SELECT * FROM cat_preguntas WHERE id_cat_profesion={$postData['id_cat_profesion']} ) AS p LEFT JOIN
                       (
@@ -476,13 +489,25 @@ class MAltaProfesional extends CI_Model {
                         r.id_cat_pregunta,
                         r.id_cat_respuesta,
                         r.respuesta,
+                        r.fecha_alta as fecha_alta_respuesta,
                         pe.nombre AS carrera,
                         CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
-                        pr.imagen
+                        pr.imagen,
+                        ifnull(v.total_valoraciones,0) as total_valoraciones,
+                        ifnull(v.val_gral,0) as val_gral
                         FROM                 
                         cat_respuestas AS r   INNER JOIN 
                         cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
-                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
+                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion  left join 
+                        (
+                          select 
+                          v.id_cat_profesional,
+                          count(*) as total_valoraciones,
+                          round (sum(atencion+calidad+puntualidad+instalaciones+recomendacion)/(count(*)*5),0) as val_gral
+                          from cat_valoraciones as v                 
+                          group by v.id_cat_profesional
+                        ) as v  on v.id_cat_profesional=pr.id_cat_profesional
+
                       ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta
                       order by  p.id_cat_pregunta desc
                       ";
@@ -498,12 +523,16 @@ class MAltaProfesional extends CI_Model {
       $query="SELECT  
                       p.id_cat_pregunta,
                       p.pregunta,
+                      DATE_FORMAT(p.fecha_alta,'%d/%m/%Y') as fecha_alta_pregunta,
                       r.id_cat_respuesta,
                       r.respuesta,
+                      DATE_FORMAT(r.fecha_alta_respuesta,'%d/%m/%Y') as fecha_alta_respuesta,
                       r.carrera,
                       r.id_cat_profesional,
                       r.profesional, 
-                      r.imagen
+                      r.imagen,
+                      ifnull(r.total_valoraciones,0) as total_valoraciones,
+                      ifnull(r.val_gral,0) as val_gral
                       FROM 
                       (SELECT * FROM cat_preguntas WHERE id_cat_profesion={$postData['id_cat_profesion']} ) AS p LEFT JOIN
                       (
@@ -511,14 +540,26 @@ class MAltaProfesional extends CI_Model {
                         r.id_cat_pregunta,
                         r.id_cat_respuesta,
                         r.respuesta,
+                        r.fecha_alta as fecha_alta_respuesta,
                         pe.nombre AS carrera,
                         pr.id_cat_profesional,
                         CONCAT(pr.nombre,' ',pr.paterno,' ',pr.materno) AS profesional, 
-                        pr.imagen
+                        pr.imagen,
+                        ifnull(v.total_valoraciones,0) as total_valoraciones,
+                        ifnull(v.val_gral,0) as val_gral
                         FROM                 
                         cat_respuestas AS r   INNER JOIN 
                         cat_profesionales AS pr ON pr.id_cat_profesional=r.id_cat_profesional AND pr.id_cat_profesional={$postData['id_cat_profesional']} INNER JOIN 
-                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion
+                        cat_profesiones AS pe ON pe.id_cat_profesion=pr.id_cat_profesion left join 
+                        (
+                          select 
+                          v.id_cat_profesional,
+                          count(*) as total_valoraciones,
+                          round (sum(atencion+calidad+puntualidad+instalaciones+recomendacion)/(count(*)*5),0) as val_gral
+                          from cat_valoraciones as v                 
+                          group by v.id_cat_profesional
+                        ) as v  on v.id_cat_profesional=pr.id_cat_profesional
+                        
                       ) AS r ON r.id_cat_pregunta=p.id_cat_pregunta
                       order by  p.id_cat_pregunta desc
                       ";
@@ -628,7 +669,48 @@ class MAltaProfesional extends CI_Model {
       return $resultado;   
     } 
 
+    public function save_profesion()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+      
+      $data = array(              
+              'area_interes'  => $postData['area_interes'], 
+              'nombre'  => $postData['profesion'],
+              'activo' => "0"
+          );
+      
+      $resultado=$sqlsrvDB->insert('cat_profesiones',$data);
+      $insert_id = $sqlsrvDB->insert_id();
+      return $insert_id;              
+    } 
+
+    public function verificar_profesion()
+    {
+      $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+      $postData = $this->input->post();
+      
+      $query="select exists
+      (
+        select 1 from 
+        (
+          select * from cat_profesiones 
+        ) as t where t.area_interes='".$postData['area_interes']."' and t.nombre='".$postData['profesion']."' 
+      )  as existe";         
+  $resultado = $sqlsrvDB->query($query);		
+return $resultado->result();        
+    } 
+
+    public function get_score_respuesta()
+  {
+    $sqlsrvDB = $this->load->database('dbProfesiolandia',TRUE);            
+    $postData = $this->input->post();
+        
+    $query="select * from cat_respuestas where id_cat_respuesta=".$postData['id_cat_respuesta'];         
     
+    $resultado = $sqlsrvDB->query($query);		
+    return $resultado->result();        
+  } 
 }
 
 ?>

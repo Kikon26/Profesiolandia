@@ -11,8 +11,8 @@ const asyncGetReq = async (datos, url) => {
         return await response.json(); //Retorna una promesa
 }
 
-$(function() 
-{
+! function($) {
+//$(function() {
 	'use strict'; 
 		
 	//bloqueaPantalla();
@@ -35,15 +35,18 @@ $(function()
 			$('#profesion2').html(data['profesional'][0].profesion);
 			$('#tel').html(data['profesional'][0].tel);
 			$('#direccion').html(data['profesional'][0].direccion);
-			$('#txta_informacion_completa').html(data['profesional'][0].informacion_completa);
+			$('#txta_informacion_completa').html(data['profesional'][0].informacion_completa);		
 			
-			$('#cedula_profesional').html(data['profesional'][0].cedula_profesional);
+			
+			$('#cedula_profesional').html("Cédula Profesional  - "+data['profesional'][0].cedula_profesional);
+			$('#cedula_profesional2').html(data['profesional'][0].cedula_profesional);
 			$('#cedula_profesional_postgrado').html(data['profesional'][0].cedula_profesional_postgrado);
 			
 			$('#txta_experiencia_servicios_ofrecidos').html(data['profesional'][0].experiencia_servicios_ofrecidos);
 			$('#txta_preguntas_frecuentes').html(data['profesional'][0].preguntas_frecuentes);
 
 			$('#metodos_pago').html("<br>"+data['profesional'][0].metodos_pago+"<br>");
+			$('#metodos_pago2').html(data['profesional'][0].metodos_pago);
 			
 			$('#email_contacto').html("(Datos de pagina alta Usuario) "+data['profesional'][0].email);
 
@@ -54,6 +57,7 @@ $(function()
 			$('#twitter').val(data['profesional'][0].twitter);
 			$('#pagina_web').val(data['profesional'][0].pagina_web);
 
+			cat_profesion('',1);		
 			
 			if($('#id_cat_rol').val()=="3")	 checar_favorito();	
 			
@@ -76,8 +80,9 @@ $(function()
   }).catch(e => { console.error(e); desbloqueaPantalla();});
   
 
-/***********************************************************************************************************************/
-		/**************************************CALENDARIO***********************************************************************/
+	/***********************************************************************************************************************/
+	/**************************************CALENDARIO***********************************************************************/
+	
 		$('#starttime').timepicker({ 
 			'disableTimeRanges':[], 
 			
@@ -95,8 +100,8 @@ $(function()
 		}); 
 	
 		var CalendarApp = function() {
-			this.$body = $("body")
-			this.$calendar = $('#calendar_profesional'),
+				this.$body = $("body")
+				this.$calendar = $('#calendar_profesional'),
 				this.$event = ('#calendar-events div.calendar-events'),
 				this.$categoryForm = $('#add-new-event form'),
 				this.$extEvents = $('#calendar-events'),
@@ -257,9 +262,9 @@ $(function()
 		
 				});
 		
-				//***********************************************************************************************
-				set_businessHours();
-				render_events(); 
+				//***********************************************************************************************				
+				//set_businessHours();
+				//render_events(); 
 		
 				
 				//***********************************************************************************************        
@@ -277,16 +282,25 @@ $(function()
 		
 				});
 			},
-		
-			//init CalendarApp
-			$.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp  
+					
+			//init CalendarApp			
+			$.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp  				
+						
 		/******************************************FIN CALENDARIO***************************************************************/
 		/***********************************************************************************************************************/
 
 
    desbloqueaPantalla(); 
+  
+//});
+}(window.jQuery),
 
-});
+ $(window).on('load', function() {	 
+	
+     $.CalendarApp.init();	 
+	 set_businessHours();
+	render_events(); 
+ });
 
 function checar_favorito()
 {	
@@ -323,36 +337,45 @@ function get_reconocimientos()
 		data : {"id_cat_profesional":id_cat_profesional}, 			  
 		url: post_url,                          
 		success: function(data){                                
-			html="";		
-			for (let i in data['reconocimiento']) 				
-			{  			    
+			html="";	
+			for (i in data['reconocimiento']) 				
+			{  	if(i % 3 == 0) html+="<div class='row d-flex justify-content-center pb-3'><div class='col-9'><div class='row'>";          	 
 				html+= 	"<div class='card-body'>"+
 							"<a href='#' data-toggle='modal' data-target='#rec_"+data['reconocimiento'][i].id_cat_reconocimiento+"'  style='color: #2e9ff4;'>"+
-								"» "+data['reconocimiento'][i].nombre+"   <br>"+
+								"» "+data['reconocimiento'][i].nombre+"   <br>"+								
+								"<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='width: 80px; height: 80px;' class='img-fluid' alt='Especialidad'>"+
+
 								"<!-- Modal -->"+
 								"<div class='modal fade' id='rec_"+data['reconocimiento'][i].id_cat_reconocimiento+"' tabindex='-1' role='dialog' aria-labelledby='EspecialidadLabel' aria-hidden='true'>"+
 									"<div class='modal-dialog' role='document'>"+
 									"<div class='modal-content'>"+
 										"<div class='modal-header'>"+
-										"<h5 class='modal-title' id='BcardLabel'>"+data['reconocimiento'][i].nombre+"</h5>"+
-										"<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
+										  "<h5 class='modal-title' id='BcardLabel'>"+data['reconocimiento'][i].nombre+"</h5>"+
+										  "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
 											"<span aria-hidden='true'>&times;</span>"+
-										"</button>"+
+										  "</button>"+
 										"</div>"+
 										"<div class='modal-body' style='text-align: center;'>"+
-										"<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='max-width: 100%; max-height: 100;' alt='Especialidad'>"+
+										  "<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='max-width: 100%; max-height: 100;' alt='Especialidad'>"+
 										"</div>"+
 										"<div class='modal-footer'>"+
-										"<button type='button' class='btn my-0 border border-white' style='background: #0856c7;' >Cerrar</button>"+
+										  "<button type='button' class='btn my-0 border border-white' style='background: #0856c7;' >Cerrar</button>"+
 										"</div>"+
 									"</div>"+
 									"</div>"+
 								"</div>"+
 							"</a>"+
-						"</div>";				
+						"</div>";	
+						
+						if((i+1) % 3 == 0)  html+="</div></div></div>";     									
+						
 
-			}  
-			$('#collapseTwo').html(html);  
+			} 
+			console.log(i); 
+			if((i+1) % 3 != 0)        html+="<div class='card-body'></div>  </div></div></div>";   
+			else  if((i+2) % 3 != 0)  html+="<div class='card-body'></div> <div class='card-body'></div> </div></div></div>";   
+			
+			$('#collapseTwo').append(html);  
 			
 		}
 	});
@@ -386,11 +409,18 @@ function get_publicaciones()
 											+data['publicaciones'][i].area_interes+							
 										"</div>"+
 										"</a>"+	
-										"<div class='col-md-7' style='text-align: left;'>"+
+										"<div class='col-md-5' style='text-align: left;'>"+
 										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
 										"<h5 class='tituloV'><strong>Título:</strong></h5>"								
 											+data['publicaciones'][i].titulo+	
 										"</a>"+																
+										"</div>"+
+
+										"<div class='col-md-2' style='text-align: left;'>"+
+										"<a href='#' onclick='verPublicacion("+data['publicaciones'][i].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+											"<h5 class='tituloV'><strong>Fecha:</strong></h5>"								
+											+data['publicaciones'][i].fecha_alta+								
+										"</a>"+		
 										"</div>"+
 									
 
@@ -570,7 +600,7 @@ function get_redes_sociales()
 			html="";				
 			
 			if (typeof(data['redes_sociales'][0])!='undefined') 
-				{	
+				{					
 					if(data['redes_sociales'][0].business_card!="")						  			    
 						html+= 	"<li class='list-inline-item'>"+
 									"<a href='#' data-toggle='modal' data-target='#Bcard'>"+
@@ -622,7 +652,7 @@ function get_redes_sociales()
 					if(data['redes_sociales'][0].instagram!="")		
 						html+= "<li class='list-inline-item'>"+
 									"<a  href='"+data['redes_sociales'][0].instagram+"' target='_blank'>"+
-									"<img src='"+baseUrl+"imagenes/Instagram_mini.png' style='height: 50px; width: 50px;' title='Ir a pagina de Instagram del Profesional' alt='...'>"+
+									"<img src='"+baseUrl+"imagenes/instagram_mini.png' style='height: 50px; width: 50px;' title='Ir a pagina de Instagram del Profesional' alt='...'>"+
 									"</a>"+
 								"</li>";
 
@@ -650,8 +680,7 @@ function get_redes_sociales()
 									"<img src='"+baseUrl+"imagenes/editar.png' style='height: 50px; width: 50px;' title='Ir al Perfil del Profesional para edicción'  alt='...'>"+                        
 								"</a>"+						
 							"</li>";							
-				$('#ul_redes_sociales').html(html);  
-
+				$('#ul_redes_sociales').html(html);  				
 			
 			
 			
@@ -716,9 +745,9 @@ function verPublicacion(id_cat_publicacion)
 }
 
 $('#ancla_valoracion').click(function(){	
-
+	
 	if($('#id_cat_rol').val()=="3")	 
-	{
+	{   
 		get_valoracion();
 		$('#valoracion1').modal('show');
 	}	
@@ -765,11 +794,11 @@ $("#form_valoracion").on("submit", function(){
 	var id_cat_rol=$( "#id_cat_rol" ).val();
 	var opinion=$( "#opinion" ).val();	
 
-	var Arating= $('input[name="Arating"]:checked').val();
-	var Crating= $('input[name="Crating"]:checked').val();
-	var Prating= $('input[name="Prating"]:checked').val();
-	var Irating= $('input[name="Irating"]:checked').val();
-	var Rrating= $('input[name="Rrating"]:checked').val();
+	var Arating= $('#Arating').raty('score');
+	var Crating= $('#Crating').raty('score');
+	var Prating= $('#Prating').raty('score');
+	var Irating= $('#Irating').raty('score');
+	var Rrating= $('#Rrating').raty('score');
 
 	var formData = new FormData();
 
@@ -824,7 +853,7 @@ function get_valoracion()
 	var id_cat_usuario=$( "#id_cat_usuario" ).val();
 	var id_cat_profesional=$( "#id_cat_profesional" ).val();
 	var id_cat_rol=$( "#id_cat_rol" ).val();
-
+     
 	$.ajax({
 		type: "POST",   
 		dataType:'json',       
@@ -839,16 +868,22 @@ function get_valoracion()
 				$( "#id_cat_valoracion" ).val(data['valoracion'][0].id_cat_valoracion);
 				$( "#opinion" ).val(data['valoracion'][0].opinion);
 
-				$("#Astar"+data['valoracion'][0].atencion).prop("checked", true);
-				$("#Cstar"+data['valoracion'][0].calidad).prop("checked", true);
-				$("#Pstar"+data['valoracion'][0].puntualidad).prop("checked", true);
-				$("#Istar"+data['valoracion'][0].instalaciones).prop("checked", true);
-				$("#Rstar"+data['valoracion'][0].recomendacion).prop("checked", true);			
+				$('#Arating').raty({ score: data['valoracion'][0].atencion });
+				$('#Crating').raty({ score: data['valoracion'][0].calidad });
+				$('#Prating').raty({ score: data['valoracion'][0].puntualidad });
+				$('#Irating').raty({ score: data['valoracion'][0].instalaciones });
+				$('#Rrating').raty({ score: data['valoracion'][0].recomendacion });
 			}
 			else 
 				{
 					$( "#button_valoracion" ).html("Guardar");
 					$( "#id_cat_valoracion" ).val("-1");
+
+					$('#Arating').raty({ score: "0" });
+					$('#Crating').raty({ score: "0" });
+					$('#Prating').raty({ score: "0" });
+					$('#Irating').raty({ score: "0" });
+					$('#Rrating').raty({ score: "0" });
 				}	
 		}
 	});
@@ -893,12 +928,28 @@ function get_valoracion_gral()
 				val_gral+=val_atencion+val_calidad+val_puntualidad+val_instalaciones+val_recomendacion;
 
 				$( "#valoracion_general" ).html(Math.round(val_gral/(conta*5)));
-				$( "#valoracion_general_texto" ).html( "☆☆☆☆☆ " + Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+
+				$( "#valoracion_general_rating").raty({ readOnly: true, hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: Math.round(val_gral/(conta*5)) });				
+				$( "#valoracion_general_rating2").raty({ readOnly: true, hints: ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: Math.round(val_gral/(conta*5)) });				
+				//$( "#valoracion_general_texto" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+				$( "#valoracion_general_texto" ).html(conta+" valoraciones" );
+
+				//$( "#valoracion_general_texto2" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+
+				$( "#valoracion_general_texto2" ).html(conta+" valoraciones" );
+
+
+
 				$( "#atencion" ).html(Math.round(val_atencion/conta));
 				$( "#calidad" ).html(Math.round(val_calidad/conta));
 				$( "#puntualidad" ).html(Math.round(val_puntualidad/conta));
 				$( "#instalaciones" ).html(Math.round(val_instalaciones/conta));
 				$( "#recomendacion" ).html(Math.round(val_recomendacion/conta));
+			}
+			else 
+			{
+				$( "#valoracion_general_rating").raty({ readOnly: true, hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: 0,noRatedMsg: "Sin valoración aun!" });				
+				$( "#valoracion_general_rating2").raty({ readOnly: true, hints: ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: 0,noRatedMsg: "Sin valoración aun!" });				
 			}
 			
 		}
@@ -925,23 +976,33 @@ function get_opiniones_positivas()
 			for (let i in data['opiniones_positivas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_positivas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
-								"<div id='read-only-stars'></div>"+
-								"<span style='color: #007b5e;'> ☆☆☆☆☆</span>"+
+								"<div id='read-only-stars'></div>"+								
+								"<div id='valoracion_positiva_rating_"+data['opiniones_positivas'][i].id_cat_valoracion+"'></div>"+															
 							"</div>"
 							+data['opiniones_positivas'][i].opinion+							
 						"</div>";
 			}  
 			$('#tbody_opiniones_positivas').html(html);  
+			for (let i in data['opiniones_positivas']) 				
+			{  		
+				$("#valoracion_positiva_rating_"+data['opiniones_positivas'][i].id_cat_valoracion).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],
+					score: +data['opiniones_positivas'][i].valoracion
+					
+				});			
+			}
 			
 		}
 	});
@@ -965,23 +1026,33 @@ function get_opiniones_negativas()
 			for (let i in data['opiniones_negativas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_negativas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
 								"<div id='read-only-stars'></div>"+
-								"<span style='color: #007b5e;'> ☆☆☆☆☆</span>"+
+								"<div id='valoracion_negativa_rating_"+data['opiniones_negativas'][i].id_cat_valoracion+"'></div>"+															
 							"</div>"
 							+data['opiniones_negativas'][i].opinion+							
 						"</div>";
 			}  
 			$('#tbody_opiniones_negativas').html(html);  
+			for (let i in data['opiniones_negativas']) 				
+			{  		
+				$("#valoracion_negativa_rating_"+data['opiniones_negativas'][i].id_cat_valoracion).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],
+					score: +data['opiniones_negativas'][i].valoracion
+					
+				});			
+			}
 			
 		}
 	});
@@ -1005,23 +1076,33 @@ function get_opiniones_neutras()
 			for (let i in data['opiniones_neutras']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_neutras'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
 								"<div id='read-only-stars'></div>"+
-								"<span style='color: #007b5e;'> ☆☆☆☆☆</span>"+
+								"<div id='valoracion_neutra_rating_"+data['opiniones_neutras'][i].id_cat_valoracion+"'></div>"+															
 							"</div>"
 							+data['opiniones_neutras'][i].opinion+							
 						"</div>";
 			}  
 			$('#tbody_opiniones_neutras').html(html);  
+			for (let i in data['opiniones_neutras']) 				
+			{  		
+				$("#valoracion_neutra_rating_"+data['opiniones_neutras'][i].id_cat_valoracion).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],
+					score: +data['opiniones_neutras'][i].valoracion
+					
+				});			
+			}
 			
 		}
 	});
@@ -1046,23 +1127,33 @@ function get_opiniones_todas()
 			for (let i in data['opiniones_todas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_todas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
 								"<div id='read-only-stars'></div>"+
-								"<span style='color: #007b5e;'> ☆☆☆☆☆</span>"+
+								"<div id='valoracion_todas_rating_"+data['opiniones_todas'][i].id_cat_valoracion+"'></div>"+															
 							"</div>"
 							+data['opiniones_todas'][i].opinion+							
 						"</div>";
 			}  
 			$('#tbody_opiniones_todas').html(html);  
+			for (let i in data['opiniones_todas']) 				
+			{  		
+				$("#valoracion_todas_rating_"+data['opiniones_todas'][i].id_cat_valoracion).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],
+					score: +data['opiniones_todas'][i].valoracion
+					
+				});			
+			}
 			
 		}
 	});
@@ -1206,8 +1297,7 @@ $("#form_reservar").on("submit", function()
         
       });   
 
-      $('#starttime').change(function(e) {	      
-        
+      $('#starttime').change(function(e) {	              
         $('#endtime').val( moment( $("#FecInicio").val()+" "+$("#starttime").val()+":00" ).add(30,"minutes").format('HH:mm'));
         return false;	
     });
@@ -1236,7 +1326,7 @@ function set_businessHours()
         data : {"id_cat_profesional":id_cat_profesional}, 			
         success: function(data)
         {                   
-
+			
              let businessHours=[];
 
              len = data['get_dias_atencion'].length;
@@ -1246,7 +1336,7 @@ function set_businessHours()
                     businessHours.push(id_cat_dia);                                                                                                       
                 } 
 
-            console.log(businessHours);    
+            
             $('#calendar_profesional').fullCalendar('option', {
                 businessHours: [
                         {
@@ -1275,7 +1365,7 @@ function render_events()
         dataType: 'json',
         data : {"id_cat_profesional":id_cat_profesional}, 			
         success: function(data)
-        {                   
+        {  
             if(typeof(data['citas'][0]) != 'undefined' )
             { 
                 for (let i in data['citas']) 
@@ -1286,8 +1376,10 @@ function render_events()
                     var end=data["citas"][i].end;					  
                     var className= data["citas"][i].color
                     
-                    var event={id:id_cat_cita,title: title,start:start,end:end,className:className};
-                    $("#calendar_profesional").fullCalendar('renderEvent', event,true);   
+                    var event={id:id_cat_cita,title: title,start:start,end:end,className:className};					
+					
+					$("#calendar_profesional").fullCalendar('renderEvent', event,true);   
+                    
                 }
                 
             }
@@ -1311,7 +1403,7 @@ function get_horario_atencion()
         dataType: 'json',
         data : {"id_cat_profesional":id_cat_profesional,"id_cat_dia":id_cat_dia}, 			
         success: function(data)
-        { 
+        {   
             if (data['horario_atencion'] != null) 
             {
                 let disableTimeRanges=[];
@@ -1370,3 +1462,131 @@ function get_horario_atencion()
 /***********************************************************************************************************************/
 /***********************************************************************************************************************/
 
+	$("#form_save_update_pregunta").on("submit", function(){ 			
+		var id_cat_usuario=$( "#id_cat_usuario" ).val();
+		var id_cat_profesion=$( "#id_cat_profesion" ).val();		
+		var profesion=$( "#id_cat_profesion").find(':selected').data('nombre');
+
+		var id_cat_pregunta = $('#id_cat_pregunta').val();			
+		var pregunta = $('#pregunta').val();
+		
+		var formData = new FormData();
+
+		formData.append("id_cat_usuario", id_cat_usuario);
+		formData.append("id_cat_profesion", id_cat_profesion);
+		formData.append("profesion", profesion);
+		formData.append("id_cat_pregunta", id_cat_pregunta);
+		formData.append("pregunta", pregunta);
+	
+				       
+		let method_data_save = 'CPerfilCliente/save_update_pregunta';
+		var post_url = baseUrl+method_data_save 
+		
+		$.ajax        
+		({
+            url: post_url,                       
+            type: "POST",               
+            dataType:'json',            
+            data:formData,            
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,      
+			success: function(data)
+			{	
+				$('#pregunta').val("");								
+				$('#Modal_Add_Pregunta').modal('hide');
+
+				Swal.fire({
+					title: 'Tu pregunta fue enviada correctamente, en breve recibiras respuesta de los Profesionales!',                        
+				}).then((result) => {
+					loadPagination_preguntas(0);					
+				})	
+			}
+		});
+		
+
+		 return false;
+		
+	});			
+
+	function cat_profesion(profesion)
+{
+    var favoritos="0";
+	var id_cat_usuario=$( "#id_cat_usuario" ).val();
+	let method_profesion = 'CPerfilCliente/profesion';
+	var post_url = baseUrl+method_profesion
+
+	$.ajax({
+		type: "POST",   
+		dataType:'json',     
+		data : {"id_cat_usuario":id_cat_usuario,"favoritos":favoritos}, 			      
+		url: post_url,                          
+		success: function(data){                                
+			//var html = '<option value="">Selecciona Profesión</option>';        
+			var html = "<option value=''>Selecciona Profesión</option>";                        
+			for (let i in data['profesion']) 				{  
+				    
+					if (data['profesion'][i].nombre==profesion)                                                  
+					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'" selected>'+data['profesion'][i].nombre+'</option>';                                                                                                     					  
+					else  
+					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
+				}    
+			
+			
+			$('#id_cat_profesion').html(html);			
+			$('#id_cat_profesion').select2({
+				dropdownParent: $('#Modal_Add_Pregunta'),							
+			});
+			// $('#id_cat_profesion').change();  				
+			
+
+			
+		}
+	});
+
+}	
+
+$('#ancla_pregunta_experto').click(function(){	
+	
+	if($('#id_cat_rol').val()=="3")	 
+	{   
+		$("#btn_save_edit_pregunta").html("Guardar");
+		//$('#id_cat_profesion').val("-1");		
+		$('#id_cat_pregunta').val("-1");
+		$('#pregunta').val("");		
+
+		
+		$('#Modal_Add_Pregunta').modal('show');
+
+		//location.href=baseUrl + "CPreguntaExperto";
+	}	
+	else
+	{
+		
+
+		/*********/
+		Swal.fire({
+			title: "Para poder dejar una pregunta a los  profesionales es necesario que estes registrado como usuario",
+			//text: "No se podra recuperar!",
+			//type: "advertencia",
+			showCancelButton: true,
+			confirmButtonColor: '#DD6B55',
+			confirmButtonText: 'Si, registrarme!',
+			cancelButtonText: "No!"/*,
+			closeOnConfirm: false,
+			closeOnCancel: false*/
+		}).then((result) => {
+			
+			if (result.value)
+			{											
+								
+				location.href=baseUrl + "CRegistro/index/3";
+			}
+			
+		})
+
+	} 
+
+	return false;	
+});

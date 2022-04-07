@@ -11,9 +11,11 @@ class CProfesional extends CI_Controller {
 		$this->load->library('peticion');
 		
 		$this->load->model('MProfesional');
-		$this->load->model('MAltaProfesional');
+		$this->load->model('MAltaProfesional');		
 		$this->load->model('MCalendario');
 		$this->load->model('MMenu');
+		
+		$this->load->model('MPerfilCliente');
     }
     public function index($id_cat_profesional){
 		if (isset($this->session->gIdPerfil)) $tabla = $this->MMenu->MenuRol($this->session->gIdPerfil);

@@ -109,8 +109,8 @@ function createTable(result,sno)
 	html="";
 	for(index in result)
 	{  		
-		if(index % 3 == 0) html+="<div class='row  d-flex justify-content-center'>";          	 
-		 		
+		if(index % 3 == 0) html+="<div class='row d-flex justify-content-center pb-3'><div class='col-9'><div class='row'>";          	 
+		
 		/*html+= 	"<div class='col-lg-3'>"+  				
 					"<div class='card'>"+
 						"<div class='container'>"+
@@ -156,47 +156,47 @@ function createTable(result,sno)
 				"</div>";*/
 
 				/**************************************************************************************************************************************/
-	html+= 	"<div class='col-lg-3'>"+
+	html+= 	"<div class='col-lg-4'>"+
 					"<div class='image-flip' ontouchstart='this.classList.toggle('hover')+'>"+
 						"<div class='mainflip'>"+
 				
 							"<div class='frontside'>"+
 								"<div class='card'>"+
 									"<div class='card-body text-center'>";
-									if (result[index].imagen == null)
-										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
-									else
-										html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
-								
-									html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
-										"<p class='card-text'>"+
-											"<strong> "+result[index].profesion+"</strong><br>"+
-											"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
-											"<small> Cedula Profesional  - 123123123123</small>"+
-										"</p>"+
-										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
-										
-										"<div style='background-color: #eeeeee;'>"+							
-										//"<div class='card-footer'>"+							
-											"<div class='pull-left pr-2'>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star'></span>"+
-												"<span class='fa fa-star'></span>"+
-											"</div>"+    
-											"<p class='card-text' style='color: green;'>250 valoraciones</p>"+    
-										"</div>"+
-
-
+										if (result[index].imagen == null)
+											html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/usuario"+ Math.floor((Math.random() * 3) + 1) +".png' alt='card image'></p>";
+										else
+											html+=  "<p><img class=' img-fluid' src='"+baseUrl+"assets/images/profesionales/"+result[index].imagen+"' alt='card image'></p>";
+									
+										html+=  "<h4 class='card-title'>"+result[index].profesionista+"</h4>"+
+											"<p class='card-text'>"+
+												"<strong> "+result[index].profesion+"</strong><br>"+
+												"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
+												"<small> Cedula Profesional  - "+result[index].cedula_profesional+"</small>"+
+											"</p>"+
+										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+																		
 									"</div>"+
+
+									"<div class='card-footer text-center'>"+
+										"<div class='row'>"+ 
+											"<div class='col-6 float-left p-0'>"+
+												"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"'></div>"+															
+											"</div>"+    
+											"<div class='col-6 text-center p-0 pt-1' >"+
+												"<p class='card-text small' style='color: green; font-size: 13px;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+											"</div>"+    
+										"</div>"+    
+							  		"</div>"+
+
+
 								"</div>"+
 							"</div>"+
 							"<div class='backside'>"+
 								"<div class='card'>"+
 									"<div class='card-body text-center mt-4'>"+
 										"<h4 class='card-title'>"+
-											"<a class='dropdown-item text-primary' href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
+											//"<a class='dropdown-item text-primary' href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
+											"<a  href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
 										"</h4>"+
 										"<p class='card-text'>"+
 											"<strong> "+result[index].profesion+"</strong><br>"+
@@ -206,19 +206,19 @@ function createTable(result,sno)
 
 										"<div class='container-fluid'>"+
 											"<div class='row'>"+
-												"<div class='col-4'>"+
+												"<div class='col-5'>"+
 													"<small>Telefono:</small>"+
 												"</div>"+
-												"<div class='col'>"+
+												"<div class='col-7'>"+
 													"<small> "+result[index].tel+" </small>"+
 												"</div>"+
 											"</div>"+
 
 											"<div class='row'>"+
-												"<div class='col-4'>"+
+												"<div class='col-5'>"+
 													"<small>Dirección:</small>"+
 												"</div>"+
-												"<div class='col'>"+
+												"<div class='col-7'>"+
 													"<small> "+result[index].direccion+"</small>"+
 												"</div>"+
 											"</div>"+
@@ -234,10 +234,20 @@ function createTable(result,sno)
 				/**************************************************************************************************************************************/
 			if((index+1) % 3 == 0) 
 			  { 
-				html+="</div>";          		
+				html+="</div></div></div>";          		
 				$('#tbody_profesionistas').append(html);   				
 				html="";
 			  }
+			for(index in result)
+			{  		
+				$("#valoracion_general_rating_"+result[index].id_cat_profesional).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					score: +result[index].val_gral//,
+					//starType: 'img'
+					
+				});			
+			} 
 		/**************************************************************************************************************************************/
 	} 
 
@@ -324,3 +334,4 @@ $('#ancla_pregunta_experto').click(function(){
 
 	return false;	
 });
+

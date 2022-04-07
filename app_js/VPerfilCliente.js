@@ -37,6 +37,7 @@ $(function()
 		$('#usuario').val(data['usuario'][0].usuario);			
         
 		cat_estado(data['usuario'][0].id_cat_estado);
+		cat_profesion('',1);		
         
 		if (data['usuario'][0].id_cat_estado!=null) 
 		{
@@ -193,6 +194,7 @@ $('#pagination').on('click','a',function(e){
 function loadPagination(pagno)
 {	
 	var id_cat_usuario=$('#id_cat_usuario').val()
+	var id_cat_profesion=$( "#favoritos_id_cat_profesion" ).val();
 	let method_pagination = 'CPerfilCliente/loadRecord';
 	var post_url = baseUrl+method_pagination;
 		
@@ -200,7 +202,7 @@ function loadPagination(pagno)
 	  url: post_url,
 	  type: 'POST',
 	  dataType: 'json',
-	  data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario}, 			
+	  data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario,"id_cat_profesion":id_cat_profesion}, 			
 	  success: function(response)
 	  {
 		 $('#pagination').html(response.links);
@@ -212,6 +214,7 @@ function loadPagination(pagno)
 function loadPagination_contenido_interes(pagno)
 {	
 	var id_cat_usuario=$('#id_cat_usuario').val()
+	var id_cat_profesion=$( "#publicaciones_id_cat_profesion" ).val();
 	let method_pagination = 'CPerfilCliente/loadRecord_contenido_interes';
 	var post_url = baseUrl+method_pagination;
     
@@ -219,7 +222,7 @@ function loadPagination_contenido_interes(pagno)
 	url: post_url,
 	type: 'POST',
 	dataType: 'json',
-	data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario}, 			
+	data : {"pagno":pagno,"id_cat_usuario":id_cat_usuario,"id_cat_profesion":id_cat_profesion}, 			
 	success: function(response)
 	{    
 		 $('#pagination').html(response.links);
@@ -249,8 +252,7 @@ function loadPagination_preguntas(pagno)
 
 function createTable(result,sno)
 {
-	cat_profesion('');
-
+	
 	sno = Number(sno);
 	$('#tbody_profesionistas_favoritos').empty();
 	html="";
@@ -273,23 +275,21 @@ function createTable(result,sno)
 											"<strong> "+result[index].profesion+"</strong><br>"+
 											"<small> Especialidad  - "+result[index].especialidad+"</small><br>"+
 											"<small> Cedula Profesional  - 123123123123</small>"+
-										"</p>"+
-										//"<p class='card-text' style='color: #007b5e+'> <small> ☆☆☆☆☆ 4/5 / 250 valoraciones </small></p>"+									
-
-										//"<div class='card-footer'>"+							
-										"<div style='background-color: #eeeeee;'>"+	
-											"<div class='pull-left pr-2'>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star checked'></span>"+
-												"<span class='fa fa-star'></span>"+
-												"<span class='fa fa-star'></span>"+
-											"</div>"+    
-											"<p class='card-text' style='color: green;'>250 valoraciones</p>"+    
-										"</div>"+
-
+										"</p>"+										
 
 									"</div>"+
+
+									"<div class='card-footer text-center'>"+
+										"<div class='row'>"+ 
+											"<div class='col-6'>"+
+												"<div id='valoracion_general_favoritos_rating_"+result[index].id_cat_profesional+"'></div>"+															
+											"</div>"+    
+											"<div class='col-6'>"+
+												"<p class='card-text' style='color: green;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+											"</div>"+    
+										"</div>"+    
+							  		"</div>"+
+
 								"</div>"+
 							"</div>"+
 
@@ -353,8 +353,17 @@ function createTable(result,sno)
 	  {
 		  html+="</div>";          		
 	   	  $('#tbody_profesionistas_favoritos').append(html);   				
-	  }		 
-
+	  }	
+	  
+	  for(index in result)
+			{  		
+				$("#valoracion_general_favoritos_rating_"+result[index].id_cat_profesional).raty({ 	
+					path: baseUrl+'assets/images/rating',	
+					readOnly: true, 
+					score: +result[index].val_gral
+					
+				});			
+			} 	
 
 }
 
@@ -371,17 +380,24 @@ function createTable_contenido_interes(result,sno)
 
 						
 							"<div class='col-md-5' style='text-align: left;'>"+
-							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-							"<h5 class='tituloV'>"+"<strong>Area de interes:</strong></h5>"		
-								+result[index].area_interes+
-							"</a>"+	
+							  "<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							    "<h5 class='tituloV'>"+"<strong>Area de interes:</strong></h5>"		
+							     +result[index].area_interes+'-' +result[index].profesion+
+							  "</a>"+	
 							"</div>"+
 							
-							"<div class='col-md-7' style='text-align: left;'>"+
-							"<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
-							"<h5 class='tituloV'><strong>Título:</strong></h5>"								
+							"<div class='col-md-5' style='text-align: left;'>"+
+							  "<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							    "<h5 class='tituloV'><strong>Título:</strong></h5>"								
 								+result[index].titulo+								
-							"</a>"+		
+							  "</a>"+		
+							"</div>"+
+
+							"<div class='col-md-2' style='text-align: left;'>"+
+							  "<a href='#' onclick='consultarPublicacion("+result[index].id_cat_publicacion+"); return false;'  style='color: #2e9ff4;'>"+ 
+							    "<h5 class='tituloV'><strong>Fecha:</strong></h5>"								
+								+result[index].fecha_alta+								
+							  "</a>"+		
 							"</div>"+
 						
 					
@@ -406,6 +422,8 @@ function createTable_contenido_interes(result,sno)
 
 function createTable_preguntas(result,sno)
 {     
+	cat_profesion('',0);		
+	
 	sno = Number(sno);
 	$('#tbody_preguntas').empty();
 	html="";
@@ -419,9 +437,12 @@ function createTable_preguntas(result,sno)
 					"<div class='row' style='text-align: left;'>"+
 						"<div class='col-md-8' style='border-radius: 25px; border-color: black; background-color: #f1efef;'>"+
 						"<br>"+
-						"<a data-toggle='collapse' href='#collapsePregunta"+result[index].id_cat_pregunta+"' role='button' aria-expanded='false' aria-controls='collapsePregunta"+result[index].id_cat_pregunta+"'>"
+						"<a data-toggle='collapse' id='pregunta"+result[index].id_cat_pregunta+"' href='#collapsePregunta"+result[index].id_cat_pregunta+"' role='button' aria-expanded='false' aria-controls='collapsePregunta"+result[index].id_cat_pregunta+"'>"
 							+result[index].pregunta+
 							"<br>"+
+							"<div class='float-right pr-2'>"                    
+								+result[index].fecha_alta_pregunta+
+							"</div>"+
 							"<br>"+
 						"</a>"+
 						"</div>"+
@@ -443,9 +464,19 @@ function createTable_preguntas(result,sno)
 								"</a>"+                        
 							"</div>"+
 							"<div class='col-md-8' style='border-radius: 25px; background: #dddddd;'>"+	
-								"<br>"
-								+result[index].respuesta+
 								"<br>"+
+								"<div class='float-left'>"                    
+									+result[index].respuesta+
+								"</div>"+
+								"<br>"+
+								
+								"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"_"+result[index].id_cat_respuesta+"'></div>"+															
+							    
+
+
+								"<div class='float-right pr-2'>"                    
+									+result[index].fecha_alta_respuesta+
+								"</div>"+
 								"<br>"+
 							"</div>"+
 						"</div>";
@@ -458,7 +489,41 @@ function createTable_preguntas(result,sno)
 			     	"<br> ";
 		}		
 	} 
-	$('#tbody_preguntas').append(html);   				
+	$('#tbody_preguntas').append(html);  	
+	
+	for(index in result)
+			{  	
+				if (result[index].id_cat_respuesta!=null)  
+				{	
+					let method_get_valoracion_respuesta = 'CPerfilCliente/get_score_respuesta';
+					var post_url = baseUrl+method_get_valoracion_respuesta
+					var valoracion=0;
+					$.ajax({
+						type: "POST",   
+						dataType:'json',       
+						data : {"id_cat_respuesta":result[index].id_cat_respuesta}, 			  
+						url: post_url,                          
+						success: function(data){                                																							
+
+							$("#valoracion_general_rating_"+data['get_score_respuesta'][0].id_cat_profesional+"_"+data['get_score_respuesta'][0].id_cat_respuesta).raty({ 	
+								path: baseUrl+'assets/images/rating',	
+								readOnly: false, 
+								hints:       ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],					
+								score: +data['get_score_respuesta'][0].valoracion,
+								click: function (score, evt) 
+								{						
+									save_score(data['get_score_respuesta'][0].id_cat_respuesta,score);
+									
+								}					
+							});	
+						}
+				
+					});
+							
+				}	
+			} 
+
+	$("#pregunta"+$('#id_cat_pregunta_tmp').val()).trigger("click");
 }	
 
 function consultarPublicacion(id_cat_publicacion)
@@ -593,12 +658,12 @@ function savePregunta()
             cache:false,
             async:false,      
 			success: function(data)
-			{					
+			{	
 				$('#pregunta').val("");								
 				$('#Modal_Add_Pregunta').modal('hide');
 
 				Swal.fire({
-					title: 'Actualización realizada con exitó!',                        
+					title: 'Tu pregunta fue enviada correctamente, en breve recibiras respuesta de los Profesionales!',                        
 				}).then((result) => {
 					loadPagination_preguntas(0);					
 				})	
@@ -610,18 +675,21 @@ function savePregunta()
 		
 	});			
 
-	function cat_profesion(profesion)
+	function cat_profesion(profesion,favoritos)
 {
 
+	var id_cat_usuario=$( "#id_cat_usuario" ).val();
 	let method_profesion = 'CPerfilCliente/profesion';
 	var post_url = baseUrl+method_profesion
 
 	$.ajax({
 		type: "POST",   
-		dataType:'json',         
+		dataType:'json',     
+		data : {"id_cat_usuario":id_cat_usuario,"favoritos":favoritos}, 			      
 		url: post_url,                          
 		success: function(data){                                
-			var html = '<option value="">Selecciona Profesión</option>';                
+			//var html = '<option value="">Selecciona Profesión</option>';        
+			var html = "<option value=''>Selecciona Profesión</option>";                        
 			for (let i in data['profesion']) 				{  
 				    
 					if (data['profesion'][i].nombre==profesion)                                                  
@@ -630,15 +698,71 @@ function savePregunta()
 					  html += '<option value='+data['profesion'][i].id_cat_profesion+' data-nombre="'+data['profesion'][i].nombre+'">'+data['profesion'][i].nombre+'</option>';                   
 				}    
 			
-			$('#id_cat_profesion').html(html);	
-			$('#id_cat_profesion').select2({
-				 dropdownParent: $('#Modal_Add_Pregunta'),
-				
-			});
-			// $('#id_cat_profesion').change();  				
+				if (favoritos==0)
+					{
+						$('#id_cat_profesion').html(html);			
+						$('#id_cat_profesion').select2({
+							dropdownParent: $('#Modal_Add_Pregunta'),							
+						});
+						// $('#id_cat_profesion').change();  				
+					}
+				else 
+					{ 
+						$('#favoritos_id_cat_profesion').html(html);			
+						$('#publicaciones_id_cat_profesion').html(html);	
+					}	
+
 
 			
 		}
 	});
 
 }
+
+function save_score(id_cat_respuesta,score)
+{
+		
+	var formData = new FormData();
+
+	formData.append("id_cat_respuesta", id_cat_respuesta);
+	formData.append("score", score);	
+
+					
+	let method_data_save = 'CPerfilCliente/save_score_respuesta';
+	var post_url = baseUrl+method_data_save 
+	
+	$.ajax        
+	({
+		url: post_url,                       
+		type: "POST",               
+		dataType:'json',            
+		data:formData,            
+		processData:false,
+		contentType:false,
+		cache:false,
+		async:false,      
+		success: function(data)
+		{	
+			
+			Swal.fire({
+				title: 'Valoración de la respuesta actualizada!',                        
+			}).then((result) => {
+			
+			})	
+		}
+	});
+	
+
+		return false;
+
+}
+
+
+$( "#favoritos_id_cat_profesion").change(function() {				
+	loadPagination(0);
+});
+
+
+$( "#publicaciones_id_cat_profesion").change(function() {				
+	loadPagination_contenido_interes(0);
+});

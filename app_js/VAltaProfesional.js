@@ -1397,9 +1397,12 @@ function validate(evt) {
 						"<div class='row' style='text-align: left;'>"+
 							"<div class='col-md-8' style='border-radius: 25px; border-color: black; background-color: #f1efef;'>"+
 							"<br>"+
-							"<a data-toggle='collapse' href='#collapsePregunta"+result[index].id_cat_pregunta+"' role='button' aria-expanded='false' aria-controls='collapsePregunta"+result[index].id_cat_pregunta+"'>"
+							"<a data-toggle='collapse' id='pregunta"+result[index].id_cat_pregunta+"' href='#collapsePregunta"+result[index].id_cat_pregunta+"' role='button' aria-expanded='false' aria-controls='collapsePregunta"+result[index].id_cat_pregunta+"'>"
 								+result[index].pregunta+
 								"<br>"+
+								"<div class='float-right pr-2'>"                    
+									+result[index].fecha_alta_pregunta+
+								"</div>"+								
 								"<br>"+
 							"</a>"+
 							"</div>"+
@@ -1431,9 +1434,17 @@ function validate(evt) {
 									"</a>"+                        
 								"</div>"+
 								"<div class='col-md-8' style='border-radius: 25px; background: #dddddd;'>"+	
-									"<br>"
-									+result[index].respuesta+
 									"<br>"+
+									"<div class='float-left'>"                    
+										+result[index].respuesta+
+									"</div>"+
+									"<br>"+
+									
+									"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"_"+result[index].id_cat_respuesta+"'></div>"+																												
+
+									"<div class='float-right pr-2'>"                    
+										+result[index].fecha_alta_respuesta+
+									"</div>"+
 									"<br>"+
 								"</div>"+
 							"</div>";
@@ -1446,7 +1457,38 @@ function validate(evt) {
 						 "<br> ";
 			}		
 		} 
-		$('#tbody_preguntas').append(html);   				
+		$('#tbody_preguntas').append(html);   	
+
+		for(index in result)
+		{  	
+				if (result[index].id_cat_respuesta!=null )   
+				{	
+					let method_get_valoracion_respuesta = 'CAltaProfesional/get_score_respuesta';
+					var post_url = baseUrl+method_get_valoracion_respuesta
+					var valoracion=0;
+					$.ajax({
+						type: "POST",   
+						dataType:'json',       
+						data : {"id_cat_respuesta":result[index].id_cat_respuesta}, 			  
+						url: post_url,                          
+						success: function(data){                                																							
+
+							if (data['get_score_respuesta'][0].valoracion>0 )   
+								$("#valoracion_general_rating_"+data['get_score_respuesta'][0].id_cat_profesional+"_"+data['get_score_respuesta'][0].id_cat_respuesta).raty({ 	
+									path: baseUrl+'assets/images/rating',	
+									readOnly: true, 
+									hints:       ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],					
+									score: +data['get_score_respuesta'][0].valoracion								
+								});	
+						}
+				
+					});
+							
+				}	
+
+		} 
+
+		$("#pregunta"+$('#id_cat_pregunta_tmp').val()).trigger("click");			
 	}		
 
 	function deletePublicacion(id_cat_publicacion)
@@ -1607,7 +1649,7 @@ function validate(evt) {
 				$('#Modal_Add_Respuesta').modal('hide');
 
 				Swal.fire({
-					title: 'Actualización realizada con exitó!',                        
+					title: 'Tu respuesta fue enviada correctamente',                        
 				}).then((result) => {
 					loadPagination_preguntas(0,$( "#id_cat_profesion" ).val());					
 				})
@@ -1618,3 +1660,80 @@ function validate(evt) {
 		 return false;
 		
 	});	
+
+	$("#form_save_profesion").on("submit", function(){ 	 
+		var id_cat_profesional=$( "#id_cat_profesional" ).val();		
+		var area_interes = $('#area_interes').val();
+		var profesion = $('#profesion').val();
+		
+        //**************************************************************************** 
+		let method_data_verificar = 'CAltaProfesional/verificar_profesion';
+		var post_url = baseUrl+method_data_verificar                        
+		
+		$.ajax
+		({
+			type: "POST",   
+			dataType:'json',         
+			url: post_url,           
+			data : {"area_interes":area_interes,"profesion":profesion}, 
+			success: function(data)
+			{	
+				if (data['verificar'][0].existe==0)
+                  {   
+					$('#btn_save').html("Guardar <span class='spinner-border spinner-border-sm'></span>");
+					$('#btn_save').spinner();  
+
+					//sleep(5000);				 	
+					//**************************************************************************** 	
+					let method_data_save = 'CAltaProfesional/save_profesion';
+					var post_url = baseUrl+method_data_save                        
+					
+					$.ajax
+					({
+						type: "POST",   
+						dataType:'json',         
+						url: post_url,           
+						data : {"id_cat_profesional":id_cat_profesional,"area_interes":area_interes,"profesion":profesion}, 
+						success: function(data)
+						{	//console.log(data);			
+							$('#btn_save').html("Guardar");
+							$('#area_interes').val("");
+							$('#profesion').val("");				
+							
+
+							Swal.fire({
+								title: 'Tu solicitud  fue enviada correctamente',                        
+							}).then((result) => {
+								$('#Modal_Profesion').modal('hide');	
+							})
+						}
+					});
+					//**************************************************************************** 	
+				  }
+				else  
+				{	
+					Swal.fire({						
+						title: 'La profesión ya existe!"',                        
+					}).then((result) => {						
+						$('#area_interes').val("");
+						$('#profesion').val("");				
+						$('#Modal_Profesion').modal('hide');	
+					})
+				}
+			}
+		});
+		
+		 return false;
+		
+	 });	
+
+
+	 function sleep(milliseconds) 
+	 {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+		  if ((new Date().getTime() - start) > milliseconds){
+			break;
+		  }
+		}
+	  }
