@@ -196,11 +196,11 @@ function createTable(result,sno)
 
 								"<div class='card-footer text-center'>"+
 									"<div class='row'>"+ 
-										"<div class='col-7 float-left pl-0'>"+
+										"<div class='col-6 float-left p-0'>"+
 											"<div id='valoracion_general_rating_"+result[index].id_cat_profesional+"'></div>"+			
 										"</div>"+    
-										"<div class='col-5 text-center pl-0'>"+
-											"<p class='card-text' style='color: green;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
+										"<div class='col-6 text-center p-0 pt-1'>"+
+											"<p class='card-text h1 small' style='color: green; font-size: 13px;'>"+result[index].total_valoraciones+" valoraciones</p>"+    
 										"</div>"+    
 									"</div>"+    	
 							  	"</div>"+
@@ -213,7 +213,8 @@ function createTable(result,sno)
 
 								"<div class='card-body text-center mt-4'>"+
 									"<h4 class='card-title'>"+
-										"<a class='dropdown-item text-primary' href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
+										//"<a class='dropdown-item text-primary' href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
+										"<a href='"+baseUrl+"CProfesional/index/"+result[index].id_cat_profesional+"'>"+result[index].profesionista+"</a>"+
 									"</h4>"+
 									"<p class='card-text'>"+
 										"<strong> "+result[index].profesion+"</strong><br>"+
@@ -223,19 +224,19 @@ function createTable(result,sno)
 
 									"<div class='container-fluid'>"+
 										"<div class='row'>"+
-											"<div class='col-4'>"+
+											"<div class='col-5'>"+
 												"<small>Telefono:</small>"+
 											"</div>"+
-											"<div class='col'>"+
+											"<div class='col-7'>"+
 												"<small> "+result[index].tel+" </small>"+
 											"</div>"+
 										"</div>"+
 
 										"<div class='row'>"+
-											"<div class='col-4'>"+
+											"<div class='col-5'>"+
 												"<small>Dirección:</small>"+
 											"</div>"+
-											"<div class='col'>"+
+											"<div class='col-7'>"+
 												"<small> "+result[index].direccion+"</small>"+
 											"</div>"+
 										"</div>"+

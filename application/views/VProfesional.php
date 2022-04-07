@@ -16,12 +16,13 @@
         <div class="container-fluid  py-3 px-0">      
             <!--Carta de informacion del profesional inicio  -->
             <div class="row">    
-
+            
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="card-deck">     
-                    <div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">           
+                    <!--<div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">-->           
+                    <div class="card px-1 py-0 mx-1 my-1" >           
                       <div class="row py-0 px-0">
-                        <div class="col px-0" style="text-align: center; color: #757474">                        
+                        <div class="col px-0" style="text-align: center; color: #757474">       
                           <input type="hidden" id="id_cat_usuario" value="<?php echo $idUsuario ?>" >                          
                           <input type="hidden" id="id_cat_profesional" value="<?php echo $datosvista["id_cat_profesional"] ?>" >                          
                           <input type="hidden" name="id_cat_rol" id="id_cat_rol" value="<?php echo  $id_perfil ?>" >  
@@ -42,17 +43,29 @@
                           <br>                                                     
                           <div id="cedula_profesional">123123123123</div>
                           <!-- <p style="color: #007b5e;"> ☆☆☆☆☆ 4/5 / 250 valoracioness </p>  -->
-                          <div id="valoracion_general_rating2"></div>
-                          <h6 id='valoracion_general_texto2' style="color: #007b5e;">0/5 / 0 valoraciones </h6> 
+                          <div class='card-footer' >
+                          <div class='row' >
+											      <div class='col-6 float-left p-0'>
+                              <div id="valoracion_general_rating2"></div>
+                            </div>  
+                            <!--<h6 id='valoracion_general_texto2' style="color: #007b5e;">0/5 / 0 valoraciones </h6>--> 
+                            <div class='col-6 text-center p-0 pt-1' >                              
+                              <p id='valoracion_general_texto2' class='card-text h1 small' style='color: green; font-size: 13px;'></p>
+                            </div>
+                          </div>    
+                          </div>    
+
                         </div>
                       </div>
+                      
                     </div>    
                   </div>  
                 </div>
        
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="card-deck">     
-                  <div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">
+                  <!--<div class="card px-1 py-1 mx-1 my-1" style="min-height: 350px;">-->
+                  <div class="card px-1 py-0 mx-1 my-1"  style="min-height: 340px;">
                     <div class="row py-3 px-3" style="text-align: center; color: #757474; text-align: justify-all;">
                       <div class="col">
                         <strong>Resumen: </strong> 
@@ -97,14 +110,12 @@
                           <br>                                                       
                           <br>                                                       
                           <div class="row">    
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                              <?php if ($id_perfil==3) {?>
-                              <a href="#" onclick="savePregunta();"  >                   
+                            <div class="col-xs-12 col-sm-12 col-md-12">                              
+                              <a href="#" id="ancla_pregunta_experto" style="padding: 10px;">  
                                 <span data-toggle="tooltip" data-placement="top" title="Pregunta a un Profesional">
-                                  Pregunta a un Profesional
+                                  Pregunta a un Experto
                                 </span>
-                              </a> 
-                              <?php } ?> 
+                              </a>                               
                             </div>
                           </div>
 
@@ -198,14 +209,14 @@
                     <div class="col-xs-4 col-sm-8 col-md-8" style="text-align: center;">                        
                       <ul class="list-inline">                          
                         <li class="list-inline-item">
-                          <a  href="#" data-toggle="popover" data-placement="top" title="Profesionista Destacado" data-content="Profesionista Destacado">
+                          <!--<a  href="#" data-toggle="popover" data-placement="top" title="Profesionista Destacado" data-content="Profesionista Destacado">-->
                             <img src="<?php echo base_url(); ?>imagenes/destacado_logo_mini.png" style="height: 50px; width: 40px;"  alt="Profesionista Destacado">
-                          </a>
+                          <!--</a>-->
                         </li>
                         <li class="list-inline-item">
-                          <a  href="" target="_blank">
+                          <!--<a  href="" target="_blank">-->
                             <img src="<?php echo base_url(); ?>imagenes/Verificado.png" style="height: 45px; width: 50px;" title="Profesionista Verificado"  alt="Profesionista Verificado">
-                          </a>
+                          <!--</a>-->
                         </li>
                       </ul>
                     </div>
@@ -254,8 +265,8 @@
                     <div class="col-md-12">
                       <h5 class="tituloV"><strong>Informacion completa del Servicio:</strong></h5>
                       
-                      <div id="informacion_completa">
-                        <textarea id="txta_informacion_completa" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div id="txta_informacion_completa" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_informacion_completa" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div> 
 
                         
@@ -287,8 +298,8 @@
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#collapse_experiencia">
-                      <div class="card-body" id="experiencia_servicios_ofrecidos">
-                        <textarea id="txta_experiencia_servicios_ofrecidos" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div class="card-body" id="txta_experiencia_servicios_ofrecidos" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_experiencia_servicios_ofrecidos" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div>
                     </div>
                   </div>
@@ -372,8 +383,8 @@
                       </h2>
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#collapse_experiencia">
-                      <div class="card-body"id="preguntas_frecuentes">
-                        <textarea id="txta_preguntas_frecuentes" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>
+                      <div class="card-body"id="txta_preguntas_frecuentes" class="text-justify" style="max-height: 250px; overflow-y: scroll;">
+                        <!--<textarea id="txta_preguntas_frecuentes" readonly rows="8" style="min-width: 100%; border:none; color: #3e5569; font-weight: lighter; font-family: serif Arial;"></textarea>-->
                       </div>
                     </div>
                   </div>
@@ -394,8 +405,20 @@
                   <div class="col-xs-8 col-sm-3 col-md-3">
                     <h1> <span class="badge" style="background: #158151;" id='valoracion_general'> 0 </span></h1>
                     <h5 class="tituloV"><strong> Valoracion General:</strong> </h5>
+                    <!--
                     <div id="valoracion_general_rating"></div>
                     <h6 id='valoracion_general_texto' style="color: #007b5e;">0/5 / 0 valoraciones </h6> 
+                    -->              
+
+                    <div class='row'>
+                      <div class='col-7 text-right pr-1'>
+                        <div id="valoracion_general_rating"></div>
+                      </div>                   
+                      <div class='col-5 text-left pl-2' >
+                        <p id='valoracion_general_texto' class='card-text' style='color: green;'></p>
+                      </div>
+                    </div>    
+
                   </div>
                   <div class="col-xs-4 col-sm-3 col-md-3" style="text-align: left;">
                     <div class="row">

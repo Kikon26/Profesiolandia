@@ -73,9 +73,9 @@ class CCambio_Password extends CI_Controller {
 			
 			<meta charset='utf-8'>
 			<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-			<link href='http://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
-			<link href='http://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
-			<link href='http://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/style_profesiolandia.css' rel='stylesheet' type='text/css'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/bootstrap.min.css' rel='stylesheet'>
+			<link href='https://profesiolandia.com/mochoo/assets/css/mdb.min.css' rel='stylesheet'>
 		</head>
 		<body>
 		<div class='container mt-n0'>
@@ -83,7 +83,7 @@ class CCambio_Password extends CI_Controller {
 			<div class='container' style='text-align: justify-all; font-family: Candara; font-size: 18px;'>
 				
 				<div class='row' style='text-align: center;'>
-					<img src='http://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
+					<img src='https://profesiolandia.com/mochoo/imagenes/Logo_Profesiolandia_perspectiva.png' class='d-block' style='height: 200px; width: 450px;'  alt='Profesiolandia Logo'>
 				</div>
 				<strong>
 						<h4 style='color: #007b5e'> <strong> Hola ". $user['usuario'] . "</strong> </h4>						

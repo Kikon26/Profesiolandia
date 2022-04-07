@@ -35,7 +35,8 @@ const asyncGetReq = async (datos, url) => {
 			$('#profesion2').html(data['profesional'][0].profesion);
 			$('#tel').html(data['profesional'][0].tel);
 			$('#direccion').html(data['profesional'][0].direccion);
-			$('#txta_informacion_completa').html(data['profesional'][0].informacion_completa);
+			$('#txta_informacion_completa').html(data['profesional'][0].informacion_completa);		
+			
 			
 			$('#cedula_profesional').html("Cédula Profesional  - "+data['profesional'][0].cedula_profesional);
 			$('#cedula_profesional2').html(data['profesional'][0].cedula_profesional);
@@ -336,36 +337,45 @@ function get_reconocimientos()
 		data : {"id_cat_profesional":id_cat_profesional}, 			  
 		url: post_url,                          
 		success: function(data){                                
-			html="";		
-			for (let i in data['reconocimiento']) 				
-			{  			    
+			html="";	
+			for (i in data['reconocimiento']) 				
+			{  	if(i % 3 == 0) html+="<div class='row d-flex justify-content-center pb-3'><div class='col-9'><div class='row'>";          	 
 				html+= 	"<div class='card-body'>"+
 							"<a href='#' data-toggle='modal' data-target='#rec_"+data['reconocimiento'][i].id_cat_reconocimiento+"'  style='color: #2e9ff4;'>"+
-								"» "+data['reconocimiento'][i].nombre+"   <br>"+
+								"» "+data['reconocimiento'][i].nombre+"   <br>"+								
+								"<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='width: 80px; height: 80px;' class='img-fluid' alt='Especialidad'>"+
+
 								"<!-- Modal -->"+
 								"<div class='modal fade' id='rec_"+data['reconocimiento'][i].id_cat_reconocimiento+"' tabindex='-1' role='dialog' aria-labelledby='EspecialidadLabel' aria-hidden='true'>"+
 									"<div class='modal-dialog' role='document'>"+
 									"<div class='modal-content'>"+
 										"<div class='modal-header'>"+
-										"<h5 class='modal-title' id='BcardLabel'>"+data['reconocimiento'][i].nombre+"</h5>"+
-										"<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
+										  "<h5 class='modal-title' id='BcardLabel'>"+data['reconocimiento'][i].nombre+"</h5>"+
+										  "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"+
 											"<span aria-hidden='true'>&times;</span>"+
-										"</button>"+
+										  "</button>"+
 										"</div>"+
 										"<div class='modal-body' style='text-align: center;'>"+
-										"<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='max-width: 100%; max-height: 100;' alt='Especialidad'>"+
+										  "<img src='"+baseUrl+"assets/images/profesionales/"+data['reconocimiento'][i].id_cat_profesional+"/rec/"+data['reconocimiento'][i].archivo+"' style='max-width: 100%; max-height: 100;' alt='Especialidad'>"+
 										"</div>"+
 										"<div class='modal-footer'>"+
-										"<button type='button' class='btn my-0 border border-white' style='background: #0856c7;' >Cerrar</button>"+
+										  "<button type='button' class='btn my-0 border border-white' style='background: #0856c7;' >Cerrar</button>"+
 										"</div>"+
 									"</div>"+
 									"</div>"+
 								"</div>"+
 							"</a>"+
-						"</div>";				
+						"</div>";	
+						
+						if((i+1) % 3 == 0)  html+="</div></div></div>";     									
+						
 
-			}  
-			$('#collapseTwo').html(html);  
+			} 
+			console.log(i); 
+			if((i+1) % 3 != 0)        html+="<div class='card-body'></div>  </div></div></div>";   
+			else  if((i+2) % 3 != 0)  html+="<div class='card-body'></div> <div class='card-body'></div> </div></div></div>";   
+			
+			$('#collapseTwo').append(html);  
 			
 		}
 	});
@@ -921,8 +931,15 @@ function get_valoracion_gral()
 
 				$( "#valoracion_general_rating").raty({ readOnly: true, hints:  ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: Math.round(val_gral/(conta*5)) });				
 				$( "#valoracion_general_rating2").raty({ readOnly: true, hints: ['Negativa', 'Mala', 'Neutral', 'Buena', 'Excelente'],score: Math.round(val_gral/(conta*5)) });				
-				$( "#valoracion_general_texto" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
-				$( "#valoracion_general_texto2" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+				//$( "#valoracion_general_texto" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+				$( "#valoracion_general_texto" ).html(conta+" valoraciones" );
+
+				//$( "#valoracion_general_texto2" ).html(Math.round(val_gral/(conta*5))+"/5 / "+conta+" valoraciones" );
+
+				$( "#valoracion_general_texto2" ).html(conta+" valoraciones" );
+
+
+
 				$( "#atencion" ).html(Math.round(val_atencion/conta));
 				$( "#calidad" ).html(Math.round(val_calidad/conta));
 				$( "#puntualidad" ).html(Math.round(val_puntualidad/conta));
@@ -959,13 +976,13 @@ function get_opiniones_positivas()
 			for (let i in data['opiniones_positivas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_positivas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
@@ -1009,13 +1026,13 @@ function get_opiniones_negativas()
 			for (let i in data['opiniones_negativas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_negativas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
@@ -1059,13 +1076,13 @@ function get_opiniones_neutras()
 			for (let i in data['opiniones_neutras']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_neutras'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
@@ -1110,13 +1127,13 @@ function get_opiniones_todas()
 			for (let i in data['opiniones_todas']) 				
 			{  			    
 
-				html+= 	"<div class='row px-1 py-1 mx-1 my-1' style='background-color: #f7fff7;'>"+
+				html+= 	"<div class='row px-1 py-1 mx-1 my-1'>"+
 							"<div class='col-xs-12 col-md-6'>"+
 								
 								"<strong>" +data['opiniones_todas'][i].usuario+"</strong>"+
 								"<br>"+
 								"Usuario"+
-								"<img src='"+baseUrl+"imagenes/Verificado.png' style='height: 20px; width: 70px;' title='Profesionista Verificado'  alt='Profesionista Verificado'>"+
+								"<img src='"+baseUrl+"imagenes/destacado_logo_mini.png' style='height: 50px; width: 40px;' title='Usuario Verificado'  alt='Usuario Verificado'>"+
 							"</div>"+
 							"<div class='col-xs-12 col-md-6' style='text-align: right;'>"+
 								
@@ -1445,17 +1462,6 @@ function get_horario_atencion()
 /***********************************************************************************************************************/
 /***********************************************************************************************************************/
 
-function savePregunta()
-	{
-		$("#btn_save_edit_pregunta").html("Guardar");
-		//$('#id_cat_profesion').val("-1");		
-		$('#id_cat_pregunta').val("-1");
-		$('#pregunta').val("");		
-
-		
-		$('#Modal_Add_Pregunta').modal('show');
-	}
-
 	$("#form_save_update_pregunta").on("submit", function(){ 			
 		var id_cat_usuario=$( "#id_cat_usuario" ).val();
 		var id_cat_profesion=$( "#id_cat_profesion" ).val();		
@@ -1540,3 +1546,47 @@ function savePregunta()
 	});
 
 }	
+
+$('#ancla_pregunta_experto').click(function(){	
+	
+	if($('#id_cat_rol').val()=="3")	 
+	{   
+		$("#btn_save_edit_pregunta").html("Guardar");
+		//$('#id_cat_profesion').val("-1");		
+		$('#id_cat_pregunta').val("-1");
+		$('#pregunta').val("");		
+
+		
+		$('#Modal_Add_Pregunta').modal('show');
+
+		//location.href=baseUrl + "CPreguntaExperto";
+	}	
+	else
+	{
+		
+
+		/*********/
+		Swal.fire({
+			title: "Para poder dejar una pregunta a los  profesionales es necesario que estes registrado como usuario",
+			//text: "No se podra recuperar!",
+			//type: "advertencia",
+			showCancelButton: true,
+			confirmButtonColor: '#DD6B55',
+			confirmButtonText: 'Si, registrarme!',
+			cancelButtonText: "No!"/*,
+			closeOnConfirm: false,
+			closeOnCancel: false*/
+		}).then((result) => {
+			
+			if (result.value)
+			{											
+								
+				location.href=baseUrl + "CRegistro/index/3";
+			}
+			
+		})
+
+	} 
+
+	return false;	
+});
